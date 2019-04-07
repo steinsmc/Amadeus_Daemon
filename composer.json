@@ -1,0 +1,27 @@
+{
+    "name": "steinsmc/amadeus_daemon",
+    "description": "Minecraft Server Controlling System Daemon (Amadeus)",
+    "type": "project",
+    "license": "Mozilla Public License",
+    "authors": [
+        {
+            "name": "William Wang",
+            "email": "dhdjwjy@gmail.com"
+        },
+        {
+            "name": "LixWorth",
+            "email": "lixworth@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/lixworth/Amadeus_Daemon"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {"Amadeus\\": "src/"}
+    }
+}

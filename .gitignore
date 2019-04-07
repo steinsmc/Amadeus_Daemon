@@ -1,1 +1,2 @@
 .ideagit rm -r --cached
+/vendor/

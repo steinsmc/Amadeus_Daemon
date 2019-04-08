@@ -2,7 +2,8 @@
 
 namespace {
     echo 'Amadeus Daemon Starting...' . PHP_EOL;
-    @unlink('Amadeus.log');
+    $_BASE = empty(Phar::running(false))?__DIR__:dirname(Phar::running(false));
+    @unlink($_BASE.'/Amadeus.log');
     if (file_exists('Amadeus.pid')) {
         exit('Error: Amadeus Daemon already running' . PHP_EOL);
     }
@@ -23,11 +24,11 @@ namespace {
     if ($pid < 0) {
         exit('Error: Fork Failed ' . $pid . PHP_EOL);
     } else if ($pid > 0) {
-        @file_put_contents('Amadeus.pid', $pid);
+        @file_put_contents($_BASE.'/Amadeus.pid', $pid);
         exit;
     }
     @cli_set_process_title('Amadeus Daemon');
-    chdir(__DIR__);
+    chdir($_BASE);
     echo 'Amadeus Daemon Started!' . PHP_EOL;
     $loader = require('vendor/autoload.php');
 }

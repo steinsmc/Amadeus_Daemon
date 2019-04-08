@@ -20,8 +20,10 @@
             "url": "https://github.com/lixworth/Amadeus_Daemon"
         }
     ],
-    "require": {},
+    "require": {
+        "humbug/box": "^3.0@dev"
+    },
     "autoload": {
-        "psr-4": {"Amadeus\\": "src/"}
+        "psr-4": {"Amadeus\\": "src/Amadeus/"}
     }
 }

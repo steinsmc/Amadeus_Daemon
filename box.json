@@ -1,0 +1,35 @@
+{
+  "main": "Amadeus.php",
+  "output": "build/Amadeus.phar",
+  "directories": [
+    "src"
+  ],
+  "finder": [
+    {
+      "notName": "/LICENSE|.*\\.md|.*\\.dist|composer\\.json|composer\\.lock/",
+      "exclude": [
+        "doc",
+        "docs",
+        "test",
+        "test_old",
+        "tests",
+        "Tests",
+        "vendor-bin"
+      ],
+      "in": "vendor"
+    },
+    {
+      "name": "composer.json",
+      "in": "."
+    },
+    {
+      "name": "Amadeus.php",
+      "in": "."
+    }
+  ],
+  "compression": "GZ",
+  "compactors": [
+    "KevinGH\\Box\\Compactor\\Json",
+    "KevinGH\\Box\\Compactor\\Php"
+  ]
+}

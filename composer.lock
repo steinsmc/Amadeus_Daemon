@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3adc35dd9b0914d7d33e2c5170e0ba39",
+    "content-hash": "113c3814496644112feaa980397b6fdc",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4186,12 +4186,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "93d8bd2aa30c6f0614e155dec377c3503b9cba7b"
+                "reference": "425c2023f6bdde287df2f32bef68845757827998"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/93d8bd2aa30c6f0614e155dec377c3503b9cba7b",
-                "reference": "93d8bd2aa30c6f0614e155dec377c3503b9cba7b",
+                "url": "https://api.github.com/repos/symfony/console/zipball/425c2023f6bdde287df2f32bef68845757827998",
+                "reference": "425c2023f6bdde287df2f32bef68845757827998",
                 "shasum": ""
             },
             "require": {
@@ -4253,7 +4253,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-04-06T16:39:17+00:00"
+            "time": "2019-04-08T15:52:58+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -4764,12 +4764,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "a34c3326c497dba6576f56b0cec5a2b9dd8d2f22"
+                "reference": "47729fed18c89d6b52c7473591e050b1a76c5b2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/a34c3326c497dba6576f56b0cec5a2b9dd8d2f22",
-                "reference": "a34c3326c497dba6576f56b0cec5a2b9dd8d2f22",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/47729fed18c89d6b52c7473591e050b1a76c5b2a",
+                "reference": "47729fed18c89d6b52c7473591e050b1a76c5b2a",
                 "shasum": ""
             },
             "require": {
@@ -4836,7 +4836,7 @@
             ],
             "description": "Symfony Serializer Component",
             "homepage": "https://symfony.com",
-            "time": "2019-04-07T12:24:52+00:00"
+            "time": "2019-04-08T15:16:54+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -5120,6 +5120,10 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-yaml": "^2.0",
+        "ext-posix": "^7.3",
+        "ext-pcntl": "^7.3"
+    },
     "platform-dev": []
 }

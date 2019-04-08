@@ -1,6 +1,8 @@
 <?php
 
-namespace Amadeus;
+namespace Amadeus\IO;
+
+use Amadeus\Config\Config;
 
 class Logger
 {
@@ -8,17 +10,20 @@ class Logger
     public static function register()
     {
         self::printLine('|                   Amadeus                   |');
-        //self::PrintLine('|                                        ' . \Service\Config\Config::Param('API_VERSION') . '|');
+        self::PrintLine('|                                         v' . Config::get('daemon_api_version') . '  |');
+        set_error_handler(['Amadeus\IO\Error\ErrorHandler','onError']);
         self::printLine('Successfully registered', 233);
     }
 
     public static function printLine($Message, $Level = 0)
     {
-            file_put_contents('Amadeus.log',"[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " .debug_backtrace()[1]['class'].debug_backtrace()[1]['type'].debug_backtrace()[1]['function'].": ". $Message . PHP_EOL,FILE_APPEND);
-            if (self::getLevel($Level) == "FATAL") {
-                //exit("THE DAEMON DIES BECAUSE AN FATAL ERROR OCCURRED".PHP_EOL);
-                exit;
-            }
+        file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . $Message . PHP_EOL, FILE_APPEND);
+        if (self::getLevel($Level) == "  FATAL") {
+            //exit("THE DAEMON DIES BECAUSE AN FATAL ERROR OCCURRED".PHP_EOL);
+            self::printLine("THE DAEMON DIES BECAUSE AN FATAL ERROR OCCURRED", 7);
+            @unlink('Amadeus.pid');
+            exit;
+        }
     }
 
     private static function getLevel($Level)
@@ -44,6 +49,9 @@ class Logger
                 break;
             case 6:
                 $stype = "  FATAL";
+                break;
+            case 7:
+                $stype = "   DEAD";
                 break;
             case 233:
                 $stype = "SUCCESS";

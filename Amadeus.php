@@ -43,5 +43,6 @@ namespace {
 
 namespace Amadeus {
     Process::init();
+    \Amadeus\IO\Logger::printLine('Stopping the Daemon...');
     @unlink('Amadeus.pid');
 }

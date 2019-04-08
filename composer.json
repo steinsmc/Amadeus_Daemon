@@ -22,7 +22,10 @@
     ],
     "require": {
         "humbug/box": "^3.0@dev",
-        "docker-php/docker-php": "^2.0@dev"
+        "docker-php/docker-php": "^2.0@dev",
+        "ext-yaml": "^2.0",
+        "ext-posix": "^7.3",
+        "ext-pcntl": "^7.3"
     },
     "autoload": {
         "psr-4": {"Amadeus\\": "src/Amadeus/"}

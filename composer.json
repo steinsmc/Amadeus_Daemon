@@ -21,7 +21,8 @@
         }
     ],
     "require": {
-        "humbug/box": "^3.0@dev"
+        "humbug/box": "^3.0@dev",
+        "docker-php/docker-php": "^2.0@dev"
     },
     "autoload": {
         "psr-4": {"Amadeus\\": "src/Amadeus/"}

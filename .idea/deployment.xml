@@ -7,6 +7,9 @@
           <mappings>
             <mapping deploy="/root/Amadeus_Daemon" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="Raspberry PI">

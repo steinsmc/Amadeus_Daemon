@@ -11,7 +11,7 @@ class Logger
     {
         self::printLine('|                   Amadeus                   |');
         self::PrintLine('|                                         v' . Config::get('daemon_api_version') . '  |');
-        set_error_handler(['Amadeus\IO\Error\ErrorHandler','onError']);
+        set_error_handler(['Amadeus\IO\Error\ErrorHandler', 'onError']);
         self::printLine('Successfully registered', 233);
     }
 

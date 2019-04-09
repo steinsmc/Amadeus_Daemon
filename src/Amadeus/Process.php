@@ -4,6 +4,7 @@ namespace Amadeus;
 
 use Amadeus\IO\Logger;
 use Amadeus\Config\Config;
+use Amadeus\Network\WebSocketServer;
 
 class Process
 {
@@ -11,7 +12,8 @@ class Process
     {
         Logger::register();
         Config::register();
-
+        WebSocketServer::register();
         Logger::printLine('Amadeus System Successfully Started', 233);
+        WebSocketServer::start();
     }
 }

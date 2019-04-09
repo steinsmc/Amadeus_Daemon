@@ -4,9 +4,8 @@ cd /tmp
 groupadd Minecraft
 useradd Amadeus
 usermod -g Minecraft Amadeus
-mkdir /home/Amadeus/
 mkdir /home/Amadeus/SteinsMC/
-yum -y install vim git openssl* gcc gcc-c++ autoconf cmake libcurl* curl* *jpeg* *png* screen libicu* libxml2* wget tar zip unzip libzip-devel
+yum -y install vim git openssl* gcc gcc-c++ autoconf cmake libcurl* curl* *jpeg* *png* screen libicu* libxml2* wget tar zip unzip libzip-devel libyaml-devel
 wget "http://us1.php.net/get/php-7.3.3.tar.gz/from/this/mirror" -O m
 tar -zxvf m
 cd php-7.3.3
@@ -24,8 +23,8 @@ cd /tmp
 rm -rf m
 git clone https://github.com/lixworth/Amadeus_Daemon.git
 cd Amadeus_Daemon
-php -r "file_put_contents('/home/Amadeus/SteinsMC/php/bin/php.ini','extension=swoole.so',FILE_APPEND);"
-php -r "file_put_contents('/home/Amadeus/SteinsMC/php/bin/php.ini','extension=yaml.so',FILE_APPEND);"
+php -r "file_put_contents('/home/Amadeus/SteinsMC/php/bin/php.ini','extension=swoole.so'.PHP_EOL,FILE_APPEND);"
+php -r "file_put_contents('/home/Amadeus/SteinsMC/php/bin/php.ini','extension=yaml.so'.PHP_EOL,FILE_APPEND);"
 curl https://getcomposer.org/installer | php
 php composer.phar install
 sh build.sh

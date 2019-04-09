@@ -84,6 +84,7 @@
       <path value="$PROJECT_DIR$/vendor/league/uri-schemes" />
       <path value="$PROJECT_DIR$/vendor/league/uri-interfaces" />
       <path value="$PROJECT_DIR$/vendor/league/uri-manipulations" />
+      <path value="$PROJECT_DIR$/../swoole" />
     </include_path>
   </component>
 </project>

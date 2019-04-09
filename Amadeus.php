@@ -8,12 +8,12 @@ namespace {
         exit('Error: Amadeus Daemon already running' . PHP_EOL);
     }
     if (posix_geteuid() === 0) {
-        exit('Error: You should not run Amadeus with root user' . PHP_EOL);
+        exit('Error: You should not run Amadeus with root user' .PHP_EOL);
     }
     umask(0);
     $pid = pcntl_fork();
     if ($pid < 0) {
-        exit('Error: Fork Failed ' . $pid . PHP_EOL);
+        exit('Error: Fork Failed ' . $pid .PHP_EOL);
     } else if ($pid > 0) {
         exit;
     }
@@ -30,6 +30,7 @@ namespace {
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
     echo 'Amadeus Daemon Started!' . PHP_EOL;
+    echo PHP_EOL;
     $loader = require('vendor/autoload.php');
 }
 

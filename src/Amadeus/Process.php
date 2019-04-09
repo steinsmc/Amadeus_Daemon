@@ -11,6 +11,7 @@ class Process
     {
         Logger::register();
         Config::register();
+
         Logger::printLine('Amadeus System Successfully Started', 233);
     }
 }

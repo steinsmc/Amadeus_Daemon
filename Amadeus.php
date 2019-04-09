@@ -30,7 +30,6 @@ namespace {
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
     echo 'Amadeus Daemon Started!' . PHP_EOL;
-    echo PHP_EOL;
     $loader = require('vendor/autoload.php');
 }
 

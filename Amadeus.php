@@ -30,10 +30,11 @@ namespace {
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
     echo 'Amadeus Daemon Started!' . PHP_EOL;
-    $loader = require('vendor/autoload.php');
 }
 
 namespace Amadeus {
+    @mkdir('plugins');
+    $loader = require('vendor/autoload.php');
     Process::init();
     \Amadeus\IO\Logger::printLine('Stopping the Daemon...');
     @unlink('Amadeus.pid');

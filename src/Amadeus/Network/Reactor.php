@@ -6,7 +6,7 @@ namespace Amadeus\Network;
 use Swoole\WebSocket\Server as Server;
 use Amadeus\IO\Logger;
 
-class WebSocketCallback
+class Reactor
 {
     public static function onOpen(Server $server, $request)
     {

@@ -12,11 +12,8 @@ class Process
     {
         Logger::register();
         Config::register();
-
-        $WebSocketServer = new WebSocketServer();
-
+        WebSocketServer::register();
         Logger::printLine('Amadeus System Successfully Started', 233);
-
-        $WebSocketServer->start();
+        WebSocketServer::start();
     }
 }

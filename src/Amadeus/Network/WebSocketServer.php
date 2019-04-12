@@ -10,39 +10,39 @@ use Swoole\WebSocket\Server as Server;
 
 class WebSocketServer
 {
-    private
+    private static
         $server,
         $server_ip,
         $server_port,
         $server_workers;
 
-    public function __construct()
+    public static function register()
     {
-        $this->server_ip = Config::get('daemon_address');
-        $this->server_port = Config::get('daemon_port');
-        $this->server_workers = Config::get('daemon_workers');
-        if (empty($this->server_ip) or empty($this->server_port) or empty($this->server_workers)) {
+        self::$server_ip = Config::get('daemon_address');
+        self::$server_port = Config::get('daemon_port');
+        self::$server_workers = Config::get('daemon_workers');
+        if (empty(self::$server_ip) or empty(self::$server_port) or empty(self::$server_workers)) {
             Logger::printLine('Failed to start websocket server...shutting down!', 6);
         }
-        $this->server = new Server($this->server_ip, $this->server_port, SWOOLE_BASE, SWOOLE_TCP);
-        $this->server->set(array(
-            'worker_num' => $this->server_workers
+        self::$server = new Server(self::$server_ip, self::$server_port, SWOOLE_BASE, SWOOLE_TCP);
+        self::$server->set(array(
+            'worker_num' => self::$server_workers
         ));
-        $this->server->on('open', ['Amadeus\Network\Reactor', 'onOpen']);
-        $this->server->on('message', ['Amadeus\Network\Reactor', 'onMessage']);
-        $this->server->on('close', ['Amadeus\Network\Reactor', 'onClose']);
-        Logger::PrintLine('Successfully constructed', 233);
+        self::$server->on('open', ['Amadeus\Network\Reactor', 'onOpen']);
+        self::$server->on('message', ['Amadeus\Network\Reactor', 'onMessage']);
+        self::$server->on('close', ['Amadeus\Network\Reactor', 'onClose']);
+        Logger::PrintLine('Successfully registered', 233);
     }
 
-    public function start()
+    public static function start()
     {
         Logger::PrintLine('Starting Websocket server', 233);
-        $this->server->start();
+        self::$server->start();
         return true;
     }
 
-    public function getServer()
+    public static function getServer()
     {
-        return $this->server;
+        return self::$server;
     }
 }

@@ -29,7 +29,7 @@ curl https://getcomposer.org/installer | php
 php composer.phar install
 sh build.sh
 cd build
-cp -r Amadeus.phar /home/steinsmc/amadeus/library/Amadeus.phar
+cp -r Amadeus.phar /home/steinsmc/amadeus/library/build/Amadeus.phar
 chown -R steinsmc:amadeus /home/steinsmc/
 cd /home/steinsmc/amadeus/
 su steinsmc

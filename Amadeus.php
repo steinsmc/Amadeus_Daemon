@@ -8,7 +8,7 @@ namespace {
         exit('Error: Amadeus Daemon already running' . PHP_EOL);
     }
     if (posix_geteuid() === 0) {
-        exit('Error: You should not run Amadeus with root user' .PHP_EOL);
+        //exit('Error: You should not run Amadeus with root user' .PHP_EOL);
     }
     umask(0);
     $pid = pcntl_fork();
@@ -33,9 +33,11 @@ namespace {
 }
 
 namespace Amadeus {
+
+    use Phar;
     @mkdir('plugins');
     $loader = require('vendor/autoload.php');
-    Process::init();
+    Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)));
     \Amadeus\IO\Logger::printLine('Stopping the Daemon...');
     @unlink('Amadeus.pid');
 }

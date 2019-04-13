@@ -5,6 +5,7 @@ namespace Amadeus\Config;
 
 use Amadeus\IO\Logger;
 use Amadeus\Config\Sample\SampleConfig;
+use Amadeus\Process;
 
 class Config
 {
@@ -24,6 +25,9 @@ class Config
             if (!is_array(self::$_CONFIG)) {
                 Logger::printLine('Failed to load Amadeus.conf', 6);
             }
+            if(!SampleConfig::verify(self::$_CONFIG)){
+                Logger::printLine('Failed to read Amadeus.conf', 6);
+            }
         }
         self::$_CONFIG['daemon_api_version'] = 1;
         self::$_CONFIG['daemon_os'] = PHP_OS;
@@ -35,6 +39,9 @@ class Config
         if (isset(self::$_CONFIG[$key])) {
             return self::$_CONFIG[$key];
         } else {
+            if(isset(SampleConfig::generate()[$key])){
+                return SampleConfig::generate()[$key];
+            }
             return '';
         }
     }

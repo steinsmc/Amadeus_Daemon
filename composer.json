@@ -26,7 +26,8 @@
         "ext-yaml": "^2.0",
         "ext-posix": "^7.3",
         "ext-pcntl": "^7.3",
-        "ext-json": "^1.7"
+        "ext-json": "^1.7",
+        "ext-mysqli": "^7.3"
     },
     "autoload": {
         "psr-4": {"Amadeus\\": "src/Amadeus/"}

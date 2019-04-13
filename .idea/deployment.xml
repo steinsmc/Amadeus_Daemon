@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="Amadeus-Daemon-Test">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Amadeus-Daemon" showAutoUploadSettingsWarning="false">
     <serverData>
+      <paths name="Amadeus-Daemon">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/Amadeus_Daemon" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
       <paths name="Amadeus-Daemon-Test">
         <serverdata>
           <mappings>

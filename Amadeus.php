@@ -1,5 +1,5 @@
 <?php
-
+//苟
 namespace {
     echo 'Amadeus Daemon Starting...' . PHP_EOL;
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));

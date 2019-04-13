@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="9a13cc31-4178-4e70-8f92-6034bf2f4b18" name="Amadeus-Daemon-Test" url="http://45.76.53.179">
-        <fileTransfer host="45.76.53.179" port="22" accessType="SFTP">
+        <fileTransfer host="45.76.53.179" port="22" rootFolder="/root/Amadeus_Daemon_lix" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

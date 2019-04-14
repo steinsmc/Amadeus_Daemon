@@ -2,7 +2,7 @@
     "name": "steinsmc/amadeus_daemon",
     "description": "Minecraft Server Controlling System Daemon (Amadeus)",
     "type": "project",
-    "license": "Mozilla Public License",
+    "license": "Mozilla Public License 2.0",
     "authors": [
         {
             "name": "William Wang",

@@ -1,10 +1,17 @@
 <?php
 
 namespace {
-    echo 'Amadeus Daemon Starting...' . PHP_EOL;
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));
+    foreach($argv as $arg){
+        if($arg === '-s'){
+            @system('kill '.@file_get_contents($_BASE.'/Amadeus.pid').' >/dev/null 2&>1');
+            @unlink($_BASE . '/Amadeus.pid');
+            exit;
+        }
+    }
+    echo 'Amadeus Daemon Starting...' . PHP_EOL;
     @unlink($_BASE . '/Amadeus.log');
-    if (file_exists('Amadeus.pid')) {
+    if (file_exists($_BASE . '/Amadeus.pid')) {
         exit('Error: Amadeus Daemon already running' . PHP_EOL);
     }
     if (posix_geteuid() === 0) {

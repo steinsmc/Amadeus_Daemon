@@ -11,7 +11,7 @@ class ExceptionHandler
 {
     public static function onException(Exception $exception)
     {
-        Logger::printLine("Exception: [".$exception->getFile().":".$exception->getLine()."]".$exception->getMessage()." \n <pre>".$exception->getCode()."</pre> \n ".$exception->getTraceAsString(),6);
+        Logger::printLine("Exception: [" . $exception->getFile() . ":" . $exception->getLine() . "]" . $exception->getMessage() . " \n <pre>" . $exception->getCode() . "</pre> \n " . $exception->getTraceAsString(), 6);
         return true;
     }
 }

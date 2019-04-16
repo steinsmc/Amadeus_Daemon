@@ -18,9 +18,9 @@ class Logger
 
     public static function printLine($Message, $Level = 0)
     {
-        if(is_array($Message)){
-            file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . json_encode($Message,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
-        }else{
+        if (is_array($Message)) {
+            file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . json_encode($Message, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+        } else {
             file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . $Message . PHP_EOL, FILE_APPEND);
         }
         if (self::getLevel($Level) == "  FATAL") {

@@ -8,10 +8,13 @@ use Amadeus\Process;
 
 class ServerManager
 {
-    public function __construct(){
+    public function __construct()
+    {
         Logger::PrintLine('Successfully registered', 233);
     }
-    public function generateServerEnvironment($name){
+
+    public function generateServerEnvironment($name)
+    {
 
     }
 }

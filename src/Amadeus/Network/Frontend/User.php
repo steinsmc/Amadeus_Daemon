@@ -12,19 +12,25 @@ class User
 
     public function __construct($fd, $ip)
     {
-        $this->fd=$fd;
-        $this->ip=$ip;
+        $this->fd = $fd;
+        $this->ip = $ip;
     }
-    public function getFd(){
+
+    public function getFd()
+    {
         return $this->fd;
     }
-    public function getIp(){
+
+    public function getIp()
+    {
         return $this->ip;
     }
-    public function getUser(){
+
+    public function getUser()
+    {
         return array(
-            'fd'=>$this->fd,
-            'ip'=>$this->ip
+            'fd' => $this->fd,
+            'ip' => $this->ip
         );
     }
 }

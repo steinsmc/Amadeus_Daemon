@@ -25,7 +25,7 @@ class Config
             if (!is_array(self::$_CONFIG)) {
                 Logger::printLine('Failed to load Amadeus.conf', 6);
             }
-            if(!SampleConfig::verify(self::$_CONFIG)){
+            if (!SampleConfig::verify(self::$_CONFIG)) {
                 Logger::printLine('Failed to read Amadeus.conf', 6);
             }
         }
@@ -39,7 +39,7 @@ class Config
         if (isset(self::$_CONFIG[$key])) {
             return self::$_CONFIG[$key];
         } else {
-            if(isset(SampleConfig::generate()[$key])){
+            if (isset(SampleConfig::generate()[$key])) {
                 return SampleConfig::generate()[$key];
             }
             return '';

@@ -5,13 +5,13 @@ namespace Amadeus\IO\Exception;
 
 
 use Amadeus\IO\Logger;
-use Exception;
+use Error;
 
 class ExceptionHandler
 {
-    public static function onException(Exception $exception)
+    public static function onException(Error $exception)
     {
-        Logger::printLine("Exception: [" . $exception->getFile() . ":" . $exception->getLine() . "]" . $exception->getMessage() . " \n <pre>" . $exception->getCode() . "</pre> \n " . $exception->getTraceAsString(), 6);
+        Logger::printLine("Exception: [" . $exception->getFile() . ":" . $exception->getLine() . "]" . $exception->getMessage() . PHP_EOL . $exception->getCode() . PHP_EOL . $exception->getTraceAsString(), 6);
         return true;
     }
 }

@@ -5,8 +5,10 @@ namespace Amadeus\Network;
 
 use Amadeus\Network\Frontend\User;
 use Amadeus\Network\Verification\API;
-use Swoole\WebSocket\Server as Server;
+use Swoole\WebSocket\Server;
+use Swoole\Websocket\Frame;
 use Amadeus\IO\Logger;
+use Amadeus\Process;
 
 class Reactor
 {
@@ -19,7 +21,7 @@ class Reactor
         return true;
     }
 
-    public static function onMessage(Server $server, $request)
+    public static function onMessage(Server $server, Frame $request)
     {
         if (self::$userList[$request->fd]->getIp() !== $server->getClientInfo($request->fd)['remote_ip']) {
             self::rageQuit($request->fd, 'IP change detected');
@@ -41,7 +43,7 @@ class Reactor
     public static function rageQuit($fd, $reason = 'Undefined')
     {
         Logger::PrintLine('Kicked a user,fd: ' . $fd . ', Reason: ' . $reason, 1);
-        WebSocketServer::getServer()->disconnect($fd, 4000, json_encode(array('action' => 'rageQuit', 'message' => $reason)));
+        Process::getWebSocketServer()->getServer()->disconnect($fd, 4000, json_encode(array('action' => 'rageQuit', 'message' => $reason)));
         return true;
     }
 }

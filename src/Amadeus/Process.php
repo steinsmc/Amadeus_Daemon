@@ -12,19 +12,21 @@ class Process
 {
     private static $_BASE;
     private static $ServerManager;
+    private static $MySQL;
+    private static $WebSocketServer;
 
     public static function init($_BASE)
     {
         self::$_BASE = $_BASE;
         Logger::register();
         Config::register();
-        MySQL::register();
-        WebSocketServer::register();
 
+        self::$MySQL = new MySQL();
+        self::$WebSocketServer = new WebSocketServer();
         self::$ServerManager = new ServerManager();
 
         Logger::printLine('Amadeus System Successfully Started', 233);
-        WebSocketServer::start();
+        self::$WebSocketServer->start();
     }
 
     public static function getBase()
@@ -35,5 +37,15 @@ class Process
     public static function getServerManager()
     {
         return self::$ServerManager;
+    }
+
+    public static function getMySQL()
+    {
+        return self::$MySQL;
+    }
+
+    public static function getWebSocketServer()
+    {
+        return self::$WebSocketServer;
     }
 }

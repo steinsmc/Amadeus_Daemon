@@ -19,12 +19,14 @@ ln -s /home/steinsmc/amadeus/library/bin/php-config /usr/bin/php-config
 mv php.ini-development /home/steinsmc/amadeus/library/bin/php.ini
 pecl install swoole
 pecl install yaml
+pecl install uuid
 cd /tmp
 rm -rf m
 git clone https://github.com/lixworth/Amadeus_Daemon.git
 cd Amadeus_Daemon
 php -r "file_put_contents('/home/steinsmc/amadeus/library/bin/php.ini','extension=swoole.so'.PHP_EOL,FILE_APPEND);"
 php -r "file_put_contents('/home/steinsmc/amadeus/library/bin/php.ini','extension=yaml.so'.PHP_EOL,FILE_APPEND);"
+php -r "file_put_contents('/home/steinsmc/amadeus/library/bin/php.ini','extension=uuid.so'.PHP_EOL,FILE_APPEND);"
 curl https://getcomposer.org/installer | php
 php composer.phar install
 sh build.sh

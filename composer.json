@@ -27,7 +27,9 @@
         "ext-posix": "^7.3",
         "ext-pcntl": "^7.3",
         "ext-json": "^1.7",
-        "ext-mysqli": "^7.3"
+        "ext-mysqli": "^7.3",
+        "ramsey/uuid": "^4.0@dev",
+        "moontoast/math": "dev-master"
     },
     "autoload": {
         "psr-4": {"Amadeus\\": "src/Amadeus/"}

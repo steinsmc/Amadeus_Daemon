@@ -28,7 +28,7 @@ class SampleConfig
 
     public static function verify($config)
     {
-        Logger::printLine($config);
+        Logger::printLine($config,Logger::LOG_INFORM);
         foreach (self::$config as $k => $v) {
             Logger::printLine($k);
             if (!array_key_exists($k, $config)) {

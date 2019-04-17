@@ -10,7 +10,7 @@ class Tables
         "Servers" => "
 			CREATE TABLE IF NOT EXISTS `Servers`(
 				`SID` INT UNSIGNED AUTO_INCREMENT,
-				`Key` VARCHAR(32) NOT NULL,
+				`Key` VARCHAR(36) NOT NULL,
 				`Directory` VARCHAR(1000) NOT NULL,
 				`Cpu` TINYINT UNSIGNED NOT NULL,
 				`Mem` MEDIUMINT UNSIGNED NOT NULL,

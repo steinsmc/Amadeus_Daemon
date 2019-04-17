@@ -7,6 +7,15 @@ use Amadeus\Config\Config;
 class Logger
 {
 
+    const LOG_INFORM = 0;
+    const LOG_WARNING = 1;
+    const LOG_ERROR = 2;
+    const LOG_DANGER = 3;
+    const LOG_PANIC = 4;
+    const LOG_DEADLY = 5;
+    const LOG_FATAL = 6;
+    const LOG_DEAD = 7;
+    const LOG_SUCCESS = 233;
     public static function register()
     {
         self::printLine('|                   Amadeus                   |');

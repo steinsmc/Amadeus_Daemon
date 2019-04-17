@@ -22,10 +22,11 @@ class Process
         Config::register();
 
         self::$MySQL = new MySQL();
+        //self::$MySQL->newServer('/233',1,1,1,1,1);
         self::$WebSocketServer = new WebSocketServer();
         self::$ServerManager = new ServerManager();
 
-        Logger::printLine('Amadeus System Successfully Started', 233);
+        Logger::printLine('Amadeus System Successfully Started', Logger::LOG_SUCCESS);
         self::$WebSocketServer->start();
     }
 

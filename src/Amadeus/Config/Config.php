@@ -23,15 +23,15 @@ class Config
         } else {
             self::$_CONFIG = yaml_parse_file('Amadeus.conf');
             if (!is_array(self::$_CONFIG)) {
-                Logger::printLine('Failed to load Amadeus.conf', 6);
+                Logger::printLine('Failed to load Amadeus.conf', Logger::LOG_FATAL);
             }
             if (!SampleConfig::verify(self::$_CONFIG)) {
-                Logger::printLine('Failed to read Amadeus.conf', 6);
+                Logger::printLine('Failed to read Amadeus.conf', Logger::LOG_FATAL);
             }
         }
         self::$_CONFIG['daemon_api_version'] = 1;
         self::$_CONFIG['daemon_os'] = PHP_OS;
-        Logger::printLine('Successfully registered', 233);
+        Logger::printLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
     public static function get($key)

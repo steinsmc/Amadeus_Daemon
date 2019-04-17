@@ -22,7 +22,7 @@ class WebSocketServer
         $this->server_port = Config::get('daemon_port');
         $this->server_workers = Config::get('daemon_workers');
         if (empty($this->server_ip) or empty($this->server_port) or empty($this->server_workers)) {
-            Logger::printLine('Failed to start websocket server...shutting down!', 6);
+            Logger::printLine('Failed to start websocket server...shutting down!', Logger::LOG_FATAL);
         }
         $this->server = new Server($this->server_ip, $this->server_port, SWOOLE_BASE, SWOOLE_TCP);
         $this->server->set(array(
@@ -31,12 +31,12 @@ class WebSocketServer
         $this->server->on('open', ['Amadeus\Network\Reactor', 'onOpen']);
         $this->server->on('message', ['Amadeus\Network\Reactor', 'onMessage']);
         $this->server->on('close', ['Amadeus\Network\Reactor', 'onClose']);
-        Logger::PrintLine('Successfully registered', 233);
+        Logger::PrintLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
     public function start()
     {
-        Logger::PrintLine('Starting Websocket server', 233);
+        Logger::PrintLine('Starting Websocket server', Logger::LOG_SUCCESS);
         $this->server->start();
         return true;
     }

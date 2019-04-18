@@ -17,6 +17,7 @@ class Tables
 				`Disk` MEDIUMINT UNSIGNED NOT NULL,
 				`DiskSpeed` SMALLINT UNSIGNED NOT NULL,
 				`NetworkSpeed` SMALLINT UNSIGNED NOT NULL,
+				`Status` BOOLEAN NOT NULL,
 				PRIMARY KEY ( `SID` )
 			)ENGINE=InnoDB DEFAULT CHARSET=utf8;"
     );

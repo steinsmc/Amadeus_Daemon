@@ -22,7 +22,6 @@ class Process
         Config::register();
 
         self::$MySQL = new MySQL();
-        //self::$MySQL->newServer('/233',1,1,1,1,1);
         self::$WebSocketServer = new WebSocketServer();
         self::$ServerManager = new ServerManager();
 

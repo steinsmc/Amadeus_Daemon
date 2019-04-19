@@ -16,16 +16,18 @@ class Logger
     const LOG_FATAL = 6;
     const LOG_DEAD = 7;
     const LOG_SUCCESS = 233;
-    public static function register()
+
+    public static function register(): bool
     {
         self::printLine('|                   Amadeus                   |');
         self::PrintLine('|                                         v' . Config::get('daemon_api_version') . '  |');
         set_error_handler(['Amadeus\IO\Error\ErrorHandler', 'onError']);
         set_exception_handler(['Amadeus\IO\Exception\ExceptionHandler', 'onException']);
         self::printLine('Successfully registered', 233);
+        return true;
     }
 
-    public static function printLine($Message, $Level = 0)
+    public static function printLine($Message, int $Level = 0)
     {
         if (is_array($Message)) {
             file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . json_encode($Message, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
@@ -40,7 +42,7 @@ class Logger
         }
     }
 
-    private static function getLevel($Level)
+    private static function getLevel(int $Level): string
     {
         switch ($Level) {
             case 0:

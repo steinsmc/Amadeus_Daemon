@@ -27,7 +27,6 @@ class MySQL
         $this->MySQL->set_charset("utf8");
         if ($this->MySQL->connect_error) {
             Logger::PrintLine('Failed to connect to MySQL server', Logger::LOG_FATAL);
-            return false;
         }
         foreach (Tables::getTables() as $table) {
             $this->MySQL->query($table);
@@ -35,7 +34,7 @@ class MySQL
         Logger::printLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
-    public function newServer($Directory, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed)
+    public function newServer(string $Directory, int $Cpu, int $Mem, int $Disk, int $DiskSpeed, int $NetworkSpeed): bool
     {
         try {
             $uuid = Uuid::uuid4()->__toString();
@@ -50,7 +49,7 @@ class MySQL
         $Status = 1;
         Logger::printLine('UUID Generated: ' . $uuid, Logger::LOG_INFORM);
         $sql = $this->MySQL->prepare(StateMents::getStatement('newServer'));
-        $sql->bind_param("ssiiiiii", $uuid, $Directory, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status);
+        $sql->bind_param('ssiiiiii', $uuid, $Directory, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status);
         $sql->execute();
         if (!empty($sql->error)) {
             Logger::printLine($sql->error, Logger::LOG_DEADLY);
@@ -59,16 +58,18 @@ class MySQL
         Logger::printLine('Succeed', Logger::LOG_SUCCESS);
         return true;
     }
-    public function getServers(){
+
+    public function getServers():array
+    {
         $sql = $this->MySQL->prepare(StateMents::getStatement('getServers'));
-        $sql->bind_result($RSID,$RKey, $RDirectory, $RCpu, $RMem, $RDisk, $RDiskSpeed, $RNetworkSpeed, $RStatus);
+        $sql->bind_result($RSID, $RKey, $RDirectory, $RCpu, $RMem, $RDisk, $RDiskSpeed, $RNetworkSpeed, $RStatus);
         $sql->execute();
         if (!empty($sql->error)) {
-            return false;
+            return [];
         }
         $list = array();
         while ($sql->fetch()) {
-            $list[$RSID] = array('SID'=>$RSID,'Key'=>$RKey,'Directory'=>$RDirectory,'Cpu'=>$RCpu,'Mem'=>$RMem,'Disk'=>$RDisk,'DiskSpeed'=>$RDiskSpeed,'NetworkSpeed'=>$RNetworkSpeed,'Status'=>$RStatus);
+            $list[$RSID] = array('SID' => $RSID, 'Key' => $RKey, 'Directory' => $RDirectory, 'Cpu' => $RCpu, 'Mem' => $RMem, 'Disk' => $RDisk, 'DiskSpeed' => $RDiskSpeed, 'NetworkSpeed' => $RNetworkSpeed, 'Status' => $RStatus);
         }
         $sql->free_result();
         return $list;

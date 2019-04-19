@@ -8,7 +8,7 @@ use Amadeus\IO\Logger;
 
 class ErrorHandler
 {
-    public static function onError($errno, $errstr, $errfile, $errline)
+    public static function onError(int $errno, string $errstr, string $errfile, int $errline): bool
     {
         if (!(error_reporting() & $errno)) {
             return false;

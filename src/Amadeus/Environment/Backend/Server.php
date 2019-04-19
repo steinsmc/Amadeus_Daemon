@@ -29,17 +29,17 @@ class Server
     {
         $this->SID = $SID;
         $this->key = $Key;
-        $this->directory=$Directory;
-        $this->cpu=$Cpu;
-        $this->mem=$Mem;
-        $this->disk=$Disk;
-        $this->diskSpeed=$DiskSpeed;
-        $this->networkSpeed=$NetworkSpeed;
-        $this->status=$Status;
-        $this->user='server'.$SID;
-        $this->group='server'.$SID;
+        $this->directory = $Directory;
+        $this->cpu = $Cpu;
+        $this->mem = $Mem;
+        $this->disk = $Disk;
+        $this->diskSpeed = $DiskSpeed;
+        $this->networkSpeed = $NetworkSpeed;
+        $this->status = $Status;
+        $this->user = 'server' . $SID;
+        $this->group = 'server' . $SID;
         $this->Cgroup = new Cgroup();
         $this->Quota = new Quota();
-        Logger::printLine('Server '.$SID.' is starting',Logger::LOG_INFORM);
+        Logger::printLine('Server ' . $SID . ' is starting', Logger::LOG_INFORM);
     }
 }

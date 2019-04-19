@@ -44,7 +44,6 @@
       <path value="$PROJECT_DIR$/vendor/hoa/visitor" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/hoa/event" />
-      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/hoa/compiler" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
@@ -87,6 +86,8 @@
       <path value="$PROJECT_DIR$/../swoole" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/moontoast/math" />
+      <path value="$USER_HOME$/Downloads/ide-helper-4.3.2/output" />
     </include_path>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
 </project>

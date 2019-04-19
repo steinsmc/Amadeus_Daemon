@@ -1,37 +1,39 @@
 {
-    "name": "steinsmc/amadeus_daemon",
-    "description": "Minecraft Server Controlling System Daemon (Amadeus)",
-    "type": "project",
-    "license": "Mozilla Public License 2.0",
-    "authors": [
-        {
-            "name": "William Wang",
-            "email": "dhdjwjy@gmail.com"
-        },
-        {
-            "name": "LixWorth",
-            "email": "lixworth@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/lixworth/Amadeus_Daemon"
-        }
-    ],
-    "require": {
-        "humbug/box": "^3.0@dev",
-        "docker-php/docker-php": "^2.0@dev",
-        "ext-yaml": "^2.0",
-        "ext-posix": "^7.3",
-        "ext-pcntl": "^7.3",
-        "ext-json": "^1.7",
-        "ext-mysqli": "^7.3",
-        "ramsey/uuid": "^4.0@dev",
-        "moontoast/math": "dev-master"
+  "name": "steinsmc/amadeus_daemon",
+  "description": "Minecraft Server Controlling System Daemon (Amadeus)",
+  "type": "project",
+  "license": "Mozilla Public License 2.0",
+  "authors": [
+    {
+      "name": "William Wang",
+      "email": "dhdjwjy@gmail.com"
     },
-    "autoload": {
-        "psr-4": {"Amadeus\\": "src/Amadeus/"}
+    {
+      "name": "LixWorth",
+      "email": "lixworth@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/lixworth/Amadeus_Daemon"
+    }
+  ],
+  "require": {
+    "humbug/box": "^3.0@dev",
+    "docker-php/docker-php": "^2.0@dev",
+    "ext-yaml": "^2.0",
+    "ext-posix": "^7.3",
+    "ext-pcntl": "^7.3",
+    "ext-json": "^1.7",
+    "ext-mysqli": "^7.3",
+    "ramsey/uuid": "^4.0@dev",
+    "moontoast/math": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Amadeus\\": "src/Amadeus/"
+    }
+  }
 }

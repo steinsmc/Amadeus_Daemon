@@ -21,14 +21,14 @@ class SampleConfig
         'daemon_password' => 'lixisgay'
     );
 
-    public static function generate()
+    public static function generate():array
     {
         return self::$config;
     }
 
-    public static function verify($config)
+    public static function verify(array $config):bool
     {
-        Logger::printLine($config,Logger::LOG_INFORM);
+        Logger::printLine($config, Logger::LOG_INFORM);
         foreach (self::$config as $k => $v) {
             Logger::printLine($k);
             if (!array_key_exists($k, $config)) {

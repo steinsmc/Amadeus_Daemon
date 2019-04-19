@@ -14,14 +14,14 @@ class Reactor
 {
     private static $userList = array();
 
-    public static function onOpen(Server $server, $request)
+    public static function onOpen(Server $server, object $request):bool
     {
         self::$userList[$request->fd] = new User($request->fd, $server->getClientInfo($request->fd)['remote_ip']);
         Logger::PrintLine('New Connection,fd: ' . $request->fd . ', ip: ' . $server->getClientInfo($request->fd)['remote_ip'], Logger::LOG_INFORM);
         return true;
     }
 
-    public static function onMessage(Server $server, Frame $request)
+    public static function onMessage(Server $server, Frame $request):bool
     {
         if (self::$userList[$request->fd]->getIp() !== $server->getClientInfo($request->fd)['remote_ip']) {
             self::rageQuit($request->fd, 'IP change detected');
@@ -33,14 +33,14 @@ class Reactor
         return true;
     }
 
-    public static function onClose(Server $server, $fd)
+    public static function onClose(Server $server, int $fd):bool
     {
         unset(self::$userList[$fd]);
         Logger::PrintLine('New Disconnection,fd: ' . $fd . ', ip: ' . $server->getClientInfo($fd)['remote_ip'], Logger::LOG_INFORM);
         return true;
     }
 
-    public static function rageQuit($fd, $reason = 'Undefined')
+    public static function rageQuit(int $fd, string $reason = 'Undefined'):bool
     {
         Logger::PrintLine('Kicked a user,fd: ' . $fd . ', Reason: ' . $reason, Logger::LOG_WARNING);
         Process::getWebSocketServer()->getServer()->disconnect($fd, 4000, json_encode(array('action' => 'rageQuit', 'message' => $reason)));

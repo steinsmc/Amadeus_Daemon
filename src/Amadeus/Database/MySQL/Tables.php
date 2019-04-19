@@ -21,7 +21,9 @@ class Tables
 				PRIMARY KEY ( `SID` )
 			)ENGINE=InnoDB DEFAULT CHARSET=utf8;"
     );
-    public static function getTables() {
+
+    public static function getTables(): array
+    {
         return self::$tables;
     }
 }

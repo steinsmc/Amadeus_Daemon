@@ -15,7 +15,7 @@ class StateMents
         'checkServerStatusBySID' => '
             SELECT * FROM `Servers` WHERE `SID`=?
         ',
-        'getServers'=>'
+        'getServers' => '
         SELECT * FROM `Servers`
         '
     );
@@ -24,7 +24,7 @@ class StateMents
     {
         if (array_key_exists($name, self::$statements)) {
             return self::$statements[$name];
-        }else{
+        } else {
             return '';
 
         }

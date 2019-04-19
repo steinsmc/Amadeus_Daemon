@@ -12,9 +12,10 @@ namespace {
 namespace Amadeus {
 
     use Phar;
+    use Amadeus\IO\Logger;
 
     @mkdir('plugins');
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)));
-    \Amadeus\IO\Logger::printLine('Stopping the Daemon...');
+    Logger::printLine('Stopping the Daemon...');
 }

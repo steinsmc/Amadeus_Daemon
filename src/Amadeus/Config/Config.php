@@ -14,7 +14,7 @@ class Config
         'daemon_os' => PHP_OS
     );
 
-    public static function register()
+    public static function register():bool
     {
         if (!file_exists('Amadeus.conf')) {
             self::$_CONFIG = SampleConfig::generate();
@@ -24,14 +24,17 @@ class Config
             self::$_CONFIG = yaml_parse_file('Amadeus.conf');
             if (!is_array(self::$_CONFIG)) {
                 Logger::printLine('Failed to load Amadeus.conf', Logger::LOG_FATAL);
+                return false;
             }
             if (!SampleConfig::verify(self::$_CONFIG)) {
                 Logger::printLine('Failed to read Amadeus.conf', Logger::LOG_FATAL);
+                return false;
             }
         }
         self::$_CONFIG['daemon_api_version'] = 1;
         self::$_CONFIG['daemon_os'] = PHP_OS;
         Logger::printLine('Successfully registered', Logger::LOG_SUCCESS);
+        return true;
     }
 
     public static function get($key)

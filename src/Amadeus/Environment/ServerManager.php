@@ -12,12 +12,12 @@ class ServerManager
 
     public function __construct()
     {
-        $servers=Process::getMySQL()->getServers();
+        $servers = Process::getMySQL()->getServers();
         Logger::PrintLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
-    public function generateServerEnvironment($name)
+    public function newServer(): array
     {
-
+        return array();
     }
 }

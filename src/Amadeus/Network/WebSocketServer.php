@@ -34,14 +34,14 @@ class WebSocketServer
         Logger::PrintLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
-    public function start()
+    public function start(): bool
     {
         Logger::PrintLine('Starting Websocket server', Logger::LOG_SUCCESS);
         $this->server->start();
         return true;
     }
 
-    public function getServer()
+    public function getServer(): Server
     {
         return $this->server;
     }

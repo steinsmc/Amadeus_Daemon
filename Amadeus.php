@@ -60,7 +60,7 @@ namespace Amadeus {
 
     @mkdir('plugins');
     $loader = require('vendor/autoload.php');
-    Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)));
+    Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)),$loader);
     Logger::printLine('Stopping the Daemon...');
     @unlink('Amadeus.pid');
 }

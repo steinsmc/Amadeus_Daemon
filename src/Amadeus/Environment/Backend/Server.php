@@ -14,6 +14,7 @@ class Server
         $SID,
         $key,
         $directory,
+        $gameType,
         $cpu,
         $mem,
         $disk,
@@ -25,11 +26,12 @@ class Server
     private $Cgroup;
     private $Quota;
 
-    public function __construct($SID, $Key, $Directory, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status)
+    public function __construct($SID, $Key, $Directory,$GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status)
     {
         $this->SID = $SID;
         $this->key = $Key;
         $this->directory = $Directory;
+        $this->gameType = $GameType;
         $this->cpu = $Cpu;
         $this->mem = $Mem;
         $this->disk = $Disk;
@@ -38,7 +40,7 @@ class Server
         $this->status = $Status;
         $this->user = 'server' . $SID;
         $this->group = 'server' . $SID;
-        $this->Cgroup = new Cgroup();
+        $this->Cgroup = new Cgroup($SID,$Cpu,$Mem,$DiskSpeed,$NetworkSpeed);
         $this->Quota = new Quota();
         Logger::printLine('Server ' . $SID . ' is starting', Logger::LOG_INFORM);
     }

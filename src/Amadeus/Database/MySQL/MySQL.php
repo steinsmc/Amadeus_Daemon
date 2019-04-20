@@ -34,7 +34,7 @@ class MySQL
         Logger::printLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
-    public function newServer(string $Directory, int $Cpu, int $Mem, int $Disk, int $DiskSpeed, int $NetworkSpeed): bool
+    public function newServer(string $Directory,string $GameType, int $Cpu, int $Mem, int $Disk, int $DiskSpeed, int $NetworkSpeed): bool
     {
         try {
             $uuid = Uuid::uuid4()->__toString();
@@ -49,7 +49,7 @@ class MySQL
         $Status = 1;
         Logger::printLine('UUID Generated: ' . $uuid, Logger::LOG_INFORM);
         $sql = $this->MySQL->prepare(StateMents::getStatement('newServer'));
-        $sql->bind_param('ssiiiiii', $uuid, $Directory, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status);
+        $sql->bind_param('sssiiiiii', $uuid, $Directory,$GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status);
         $sql->execute();
         if (!empty($sql->error)) {
             Logger::printLine($sql->error, Logger::LOG_DEADLY);
@@ -62,14 +62,14 @@ class MySQL
     public function getServers():array
     {
         $sql = $this->MySQL->prepare(StateMents::getStatement('getServers'));
-        $sql->bind_result($RSID, $RKey, $RDirectory, $RCpu, $RMem, $RDisk, $RDiskSpeed, $RNetworkSpeed, $RStatus);
+        $sql->bind_result($RSID, $RKey, $RDirectory, $RGameType,$RCpu, $RMem, $RDisk, $RDiskSpeed, $RNetworkSpeed, $RStatus);
         $sql->execute();
         if (!empty($sql->error)) {
             return [];
         }
         $list = array();
         while ($sql->fetch()) {
-            $list[$RSID] = array('SID' => $RSID, 'Key' => $RKey, 'Directory' => $RDirectory, 'Cpu' => $RCpu, 'Mem' => $RMem, 'Disk' => $RDisk, 'DiskSpeed' => $RDiskSpeed, 'NetworkSpeed' => $RNetworkSpeed, 'Status' => $RStatus);
+            $list[$RSID] = array('SID' => $RSID, 'Key' => $RKey, 'Directory' => $RDirectory,'GameType'=>$RGameType ,'Cpu' => $RCpu, 'Mem' => $RMem, 'Disk' => $RDisk, 'DiskSpeed' => $RDiskSpeed, 'NetworkSpeed' => $RNetworkSpeed, 'Status' => $RStatus);
         }
         $sql->free_result();
         return $list;

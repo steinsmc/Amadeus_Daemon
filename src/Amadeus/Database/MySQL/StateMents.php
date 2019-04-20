@@ -9,9 +9,9 @@ class StateMents
     private static $statements = array(
         'newServer' => '
             INSERT INTO `Servers`
-			(`Key`, `Directory`, `Cpu`, `Mem`, `Disk`, `DiskSpeed`, `NetworkSpeed`, `Status`) 
+			(`Key`, `Directory`, `GameType`, `Cpu`, `Mem`, `Disk`, `DiskSpeed`, `NetworkSpeed`, `Status`) 
 			VALUES
-			(?,?,?,?,?,?,?,?)',
+			(?,?,?,?,?,?,?,?,?)',
         'checkServerStatusBySID' => '
             SELECT * FROM `Servers` WHERE `SID`=?
         ',

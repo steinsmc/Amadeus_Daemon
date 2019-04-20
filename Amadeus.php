@@ -7,11 +7,13 @@ namespace {
         switch($arg){
             case '-s':
                 @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
+                sleep(1);
                 @unlink($_BASE . '/Amadeus.pid');
                 exit;
                 break;
             case '-r':
                 @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
+                sleep(1);
                 @unlink($_BASE . '/Amadeus.pid');
                 break;
             default:

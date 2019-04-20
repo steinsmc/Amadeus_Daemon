@@ -18,7 +18,8 @@ class SampleConfig
         'daemon_address' => '127.0.0.1',
         'daemon_port' => '2333',
         'daemon_workers' => '4',
-        'daemon_password' => 'lixisgay'
+        'daemon_password' => 'lixisgay',
+        'cgroup_dir'=>'/sys/fs/cgroup/'
     );
 
     public static function generate():array

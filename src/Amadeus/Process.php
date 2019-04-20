@@ -24,7 +24,7 @@ class Process
         self::$MySQL = new MySQL();
         self::$WebSocketServer = new WebSocketServer();
         self::$ServerManager = new ServerManager();
-        self::$MySQL->newServer('/',1,1,1,1,1);
+        //self::$MySQL->newServer('/',1,1,1,1,1);
         Logger::printLine('Amadeus System Successfully Started', Logger::LOG_SUCCESS);
         self::$WebSocketServer->start();
         return true;

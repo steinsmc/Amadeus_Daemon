@@ -33,6 +33,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/humbug/php-scoper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jane-php/json-schema-runtime" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jane-php/open-api-runtime" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jetbrains/phpstorm-stubs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/justinrainbow/json-schema" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/uri-components" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/uri-hostname-parser" />

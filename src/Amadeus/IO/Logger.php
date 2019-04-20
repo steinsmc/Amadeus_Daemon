@@ -3,6 +3,7 @@
 namespace Amadeus\IO;
 
 use Amadeus\Config\Config;
+use Swoole\Coroutine;
 
 class Logger
 {

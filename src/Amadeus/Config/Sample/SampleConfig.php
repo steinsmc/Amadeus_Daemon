@@ -30,11 +30,14 @@ class SampleConfig
     {
         Logger::printLine($config, Logger::LOG_INFORM);
         foreach (self::$config as $k => $v) {
-            Logger::printLine($k);
+            Logger::printLine($k, Logger::LOG_INFORM);
             if (!array_key_exists($k, $config)) {
+                Logger::printLine('invalid',Logger::LOG_PANIC);
                 return false;
             }
+            Logger::printLine('valid',Logger::LOG_INFORM);
         }
+        Logger::printLine('success',Logger::LOG_SUCCESS);
         return true;
     }
 }

@@ -4,10 +4,18 @@ declare(strict_types=1);
 namespace {
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));
     foreach ($argv as $arg) {
-        if ($arg === '-s') {
-            @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2&>1');
-            @unlink($_BASE . '/Amadeus.pid');
-            exit;
+        switch($arg){
+            case '-s':
+                @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
+                @unlink($_BASE . '/Amadeus.pid');
+                exit;
+                break;
+            case '-r':
+                @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
+                @unlink($_BASE . '/Amadeus.pid');
+                break;
+            default:
+                break;
         }
     }
     echo 'Amadeus Daemon Starting...' . PHP_EOL;
@@ -37,6 +45,9 @@ namespace {
     }
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
+    register_shutdown_function(function(){
+        @unlink('/Amadeus.pid');
+    });
     echo 'Amadeus Daemon Started!' . PHP_EOL;
 }
 

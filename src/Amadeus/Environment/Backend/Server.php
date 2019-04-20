@@ -40,7 +40,7 @@ class Server
         $this->status = $Status;
         $this->user = 'server' . $SID;
         $this->group = 'server' . $SID;
-        $this->Cgroup = new Cgroup($SID,$Cpu,$Mem,$DiskSpeed,$NetworkSpeed);
+        $this->Cgroup = new Cgroup($SID,$Cpu,$Mem,$DiskSpeed,$NetworkSpeed,233);
         $this->Quota = new Quota();
         Logger::printLine('Server ' . $SID . ' is starting', Logger::LOG_INFORM);
     }

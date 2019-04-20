@@ -17,26 +17,40 @@ class Cgroup
         $SID,
         $Cpu,
         $Mem,
-        $Disk,
         $DiskSpeed,
-        $NetworkSpeed;
+        $NetworkSpeed,
+        $PID;
+    private
+        $c_cpu,
+        $c_memory,
+        $c_blkio,
+        $c_net_cls;
 
-    public function __construct(int $SID, int $Cpu, int $Mem, int $DiskSpeed, int $NetworkSpeed)
+    public function __construct(int $SID, int $Cpu, int $Mem, int $DiskSpeed, int $NetworkSpeed, int $PID)
     {
         $this->cgroupBase = Config::get('cgroup_dir');
+        $this->c_cpu = $this->cgroupBase . 'cpu' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
+        $this->c_memory = $this->cgroupBase . 'memory' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
+        $this->c_blkio = $this->cgroupBase . 'blkio' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
+        $this->c_net_cls = $this->cgroupBase . 'net_cls' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
         $this->SID = $SID;
         $this->Cpu = $Cpu;
         $this->Mem = $Mem;
         $this->DiskSpeed = $DiskSpeed;
         $this->NetworkSpeed = $NetworkSpeed;
+        $this->PID = $PID;
         $this->cgroupInit();
     }
 
     private function cgroupInit()
     {
-        is_dir($this->cgroupBase . 'cpu' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/')?Logger::printLine('cpu limit for '.$this->SID.'exists',Logger::LOG_INFORM):mkdir($this->cgroupBase . 'cpu' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/');
-        is_dir($this->cgroupBase . 'memory' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/')?Logger::printLine('memory limit for '.$this->SID.'exists',Logger::LOG_INFORM):mkdir($this->cgroupBase . 'memory' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/');
-        is_dir($this->cgroupBase . 'blkio' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/')?Logger::printLine('diskspeed limit for '.$this->SID.'exists',Logger::LOG_INFORM):mkdir($this->cgroupBase . 'blkio' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/');
-        is_dir($this->cgroupBase . 'net_cls' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/')?Logger::printLine('networkspeed limit for '.$this->SID.'exists',Logger::LOG_INFORM):mkdir($this->cgroupBase . 'net_cls' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/');
+        is_dir($this->c_cpu) ? Logger::printLine('cpu limit for ' . $this->SID . 'exists', Logger::LOG_INFORM) : mkdir($this->c_cpu);
+        is_dir($this->c_memory) ? Logger::printLine('memory limit for ' . $this->SID . 'exists', Logger::LOG_INFORM) : mkdir($this->c_memory);
+        is_dir($this->c_blkio) ? Logger::printLine('disk speed limit for ' . $this->SID . 'exists', Logger::LOG_INFORM) : mkdir($this->c_blkio);
+        is_dir($this->c_net_cls) ? Logger::printLine('network speed limit for ' . $this->SID . 'exists', Logger::LOG_INFORM) : mkdir($this->c_net_cls);
+        Cpu::set($this->c_cpu,$this->Cpu);
+        Mem::set($this->c_memory,$this->Mem);
+        Disk::set($this->c_blkio,$this->DiskSpeed);
+        Network::set($this->c_net_cls,$this->NetworkSpeed);
     }
 }

@@ -4,8 +4,15 @@
 namespace Amadeus\Database\MySQL;
 
 
+/**
+ * Class Tables
+ * @package Amadeus\Database\MySQL
+ */
 class Tables
 {
+    /**
+     * @var array
+     */
     private static $tables = array(
         "Servers" => "
 			CREATE TABLE IF NOT EXISTS `Servers`(
@@ -23,6 +30,9 @@ class Tables
 			)ENGINE=InnoDB DEFAULT CHARSET=utf8;"
     );
 
+    /**
+     * @return array
+     */
     public static function getTables(): array
     {
         return self::$tables;

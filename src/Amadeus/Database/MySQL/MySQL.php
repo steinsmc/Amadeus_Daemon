@@ -11,10 +11,20 @@ use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use Ramsey\Uuid\Uuid;
 use Exception;
 
+/**
+ * Class MySQL
+ * @package Amadeus\Database\MySQL
+ */
 class MySQL
 {
+    /**
+     * @var mysqli
+     */
     private $MySQL;
 
+    /**
+     * MySQL constructor.
+     */
     public function __construct()
     {
         if (is_null(Config::get('daemon_mysql_sock'))) {
@@ -34,7 +44,17 @@ class MySQL
         Logger::printLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
-    public function newServer(string $Directory,string $GameType, int $Cpu, int $Mem, int $Disk, int $DiskSpeed, int $NetworkSpeed): bool
+    /**
+     * @param string $Directory
+     * @param string $GameType
+     * @param int $Cpu
+     * @param int $Mem
+     * @param int $Disk
+     * @param int $DiskSpeed
+     * @param int $NetworkSpeed
+     * @return bool
+     */
+    public function newServer(string $Directory, string $GameType, int $Cpu, int $Mem, int $Disk, int $DiskSpeed, int $NetworkSpeed): bool
     {
         try {
             $uuid = Uuid::uuid4()->__toString();
@@ -59,6 +79,9 @@ class MySQL
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function getServers():array
     {
         $sql = $this->MySQL->prepare(StateMents::getStatement('getServers'));

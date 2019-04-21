@@ -16,6 +16,9 @@ class PluginManager
     private $listeners;
     private $plugins;
 
+    /**
+     * PluginManager constructor.
+     */
     public function __construct()
     {
         $items = array_diff(scandir('plugins/'), array('..', '.'));
@@ -33,7 +36,10 @@ class PluginManager
         Logger::printLine('Successfully registered', Logger::LOG_INFORM);
     }
 
-    public function start()
+    /**
+     * @return bool
+     */
+    public function start():bool
     {
         if (count($this->plugins) > 0) {
             foreach ($this->plugins as $plugin) {
@@ -53,7 +59,12 @@ class PluginManager
         return true;
     }
 
-    /* @Deprecated */
+    /**
+     * @Deprecacted
+     * @param $reference
+     * @param $name
+     * @return bool
+     */
     public function register($reference, $name): bool
     {
         Logger::printLine('Registering ' . $name, Logger::LOG_INFORM);
@@ -61,6 +72,11 @@ class PluginManager
         return true;
     }
 
+    /**
+     * @param string $event
+     * @param null $data
+     * @return bool
+     */
     public function trigger(string $event, $data = null): bool
     {
         foreach ($this->listeners as $listener) {

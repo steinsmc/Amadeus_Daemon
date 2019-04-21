@@ -10,10 +10,22 @@ use Swoole\Websocket\Frame;
 use Amadeus\IO\Logger;
 use Amadeus\Process;
 
+/**
+ * Class Reactor
+ * @package Amadeus\Network
+ */
 class Reactor
 {
+    /**
+     * @var array
+     */
     private static $userList = array();
 
+    /**
+     * @param Server $server
+     * @param object $request
+     * @return bool
+     */
     public static function onOpen(Server $server, object $request):bool
     {
         self::$userList[$request->fd] = new User($request->fd, $server->getClientInfo($request->fd)['remote_ip']);
@@ -21,6 +33,11 @@ class Reactor
         return true;
     }
 
+    /**
+     * @param Server $server
+     * @param Frame $request
+     * @return bool
+     */
     public static function onMessage(Server $server, Frame $request):bool
     {
         if (self::$userList[$request->fd]->getIp() !== $server->getClientInfo($request->fd)['remote_ip']) {
@@ -33,6 +50,11 @@ class Reactor
         return true;
     }
 
+    /**
+     * @param Server $server
+     * @param int $fd
+     * @return bool
+     */
     public static function onClose(Server $server, int $fd):bool
     {
         unset(self::$userList[$fd]);
@@ -40,6 +62,11 @@ class Reactor
         return true;
     }
 
+    /**
+     * @param int $fd
+     * @param string $reason
+     * @return bool
+     */
     public static function rageQuit(int $fd, string $reason = 'Undefined'):bool
     {
         Logger::PrintLine('Kicked a user,fd: ' . $fd . ', Reason: ' . $reason, Logger::LOG_WARNING);

@@ -6,8 +6,16 @@ namespace Amadeus\Network\Verification;
 
 use Amadeus\Config\Config;
 
+/**
+ * Class API
+ * @package Amadeus\Network\Verification
+ */
 class API
 {
+    /**
+     * @param $request
+     * @return bool
+     */
     public static function isOkay($request)
     {
         if (!($request = self::unpackData($request->data, true))) {
@@ -22,6 +30,11 @@ class API
         return false;
     }
 
+    /**
+     * @param $data
+     * @param $assoc
+     * @return bool|mixed
+     */
     public static function unpackData($data, $assoc)
     {
         $data = json_decode($data, $assoc);

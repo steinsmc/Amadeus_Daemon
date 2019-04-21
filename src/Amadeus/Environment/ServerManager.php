@@ -7,10 +7,20 @@ use Amadeus\Environment\Backend\Server;
 use Amadeus\IO\Logger;
 use Amadeus\Process;
 
+/**
+ * Class ServerManager
+ * @package Amadeus\Environment
+ */
 class ServerManager
 {
+    /**
+     * @var
+     */
     private $servers;
 
+    /**
+     * ServerManager constructor.
+     */
     public function __construct()
     {
         $servers = Process::getMySQL()->getServers();
@@ -20,6 +30,9 @@ class ServerManager
         Logger::PrintLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
+    /**
+     * @return array
+     */
     public function newServer(): array
     {
         return array();

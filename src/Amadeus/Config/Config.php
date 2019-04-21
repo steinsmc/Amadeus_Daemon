@@ -7,13 +7,23 @@ use Amadeus\IO\Logger;
 use Amadeus\Config\Sample\SampleConfig;
 use Amadeus\Process;
 
+/**
+ * Class Config
+ * @package Amadeus\Config
+ */
 class Config
 {
+    /**
+     * @var array
+     */
     private static $_CONFIG = array(
         'daemon_api_version' => 1,
         'daemon_os' => PHP_OS
     );
 
+    /**
+     * @return bool
+     */
     public static function register():bool
     {
         if (!file_exists('Amadeus.conf')) {
@@ -37,6 +47,10 @@ class Config
         return true;
     }
 
+    /**
+     * @param $key
+     * @return mixed|string
+     */
     public static function get($key)
     {
         if (isset(self::$_CONFIG[$key])) {

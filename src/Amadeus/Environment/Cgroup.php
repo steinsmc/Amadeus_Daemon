@@ -10,9 +10,34 @@ use Amadeus\Environment\Cgroup\Mem;
 use Amadeus\Environment\Cgroup\Network;
 use Amadeus\IO\Logger;
 
+/**
+ * Class Cgroup
+ * @package Amadeus\Environment
+ */
 class Cgroup
 {
+    /**
+     * @var mixed|string
+     */
     private $cgroupBase;
+    /**
+     * @var int
+     */
+    /**
+     * @var int
+     */
+    /**
+     * @var int
+     */
+    /**
+     * @var int
+     */
+    /**
+     * @var int
+     */
+    /**
+     * @var int
+     */
     private
         $SID,
         $Cpu,
@@ -20,12 +45,33 @@ class Cgroup
         $DiskSpeed,
         $NetworkSpeed,
         $PID;
+    /**
+     * @var string
+     */
+    /**
+     * @var string
+     */
+    /**
+     * @var string
+     */
+    /**
+     * @var string
+     */
     private
         $c_cpu,
         $c_memory,
         $c_blkio,
         $c_net_cls;
 
+    /**
+     * Cgroup constructor.
+     * @param int $SID
+     * @param int $Cpu
+     * @param int $Mem
+     * @param int $DiskSpeed
+     * @param int $NetworkSpeed
+     * @param int $PID
+     */
     public function __construct(int $SID, int $Cpu, int $Mem, int $DiskSpeed, int $NetworkSpeed, int $PID)
     {
         $this->cgroupBase = Config::get('cgroup_dir');
@@ -42,6 +88,9 @@ class Cgroup
         $this->cgroupInit();
     }
 
+    /**
+     *
+     */
     private function cgroupInit()
     {
         is_dir($this->c_cpu) ? Logger::printLine('cpu limit for ' . $this->SID . 'exists', Logger::LOG_INFORM) : mkdir($this->c_cpu);

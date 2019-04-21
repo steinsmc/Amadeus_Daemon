@@ -8,8 +8,48 @@ use Amadeus\Environment\Cgroup;
 use Amadeus\Environment\Quota;
 use Amadeus\IO\Logger;
 
+/**
+ * Class Server
+ * @package Amadeus\Environment\Backend
+ */
 class Server
 {
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
+    /**
+     * @var string
+     */
+    /**
+     * @var string
+     */
     private
         $SID,
         $key,
@@ -23,10 +63,29 @@ class Server
         $status,
         $user,
         $group;
+    /**
+     * @var Cgroup
+     */
     private $Cgroup;
+    /**
+     * @var Quota
+     */
     private $Quota;
 
-    public function __construct($SID, $Key, $Directory,$GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status)
+    /**
+     * Server constructor.
+     * @param $SID
+     * @param $Key
+     * @param $Directory
+     * @param $GameType
+     * @param $Cpu
+     * @param $Mem
+     * @param $Disk
+     * @param $DiskSpeed
+     * @param $NetworkSpeed
+     * @param $Status
+     */
+    public function __construct($SID, $Key, $Directory, $GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status)
     {
         $this->SID = $SID;
         $this->key = $Key;

@@ -8,14 +8,33 @@ use Amadeus\Config\Config;
 use Amadeus\IO\Logger;
 use Swoole\WebSocket\Server as Server;
 
+/**
+ * Class WebSocketServer
+ * @package Amadeus\Network
+ */
 class WebSocketServer
 {
+    /**
+     * @var Server
+     */
+    /**
+     * @var mixed|string|Server
+     */
+    /**
+     * @var mixed|string|Server
+     */
+    /**
+     * @var mixed|string|Server
+     */
     private
         $server,
         $server_ip,
         $server_port,
         $server_workers;
 
+    /**
+     * WebSocketServer constructor.
+     */
     public function __construct()
     {
         $this->server_ip = Config::get('daemon_address');
@@ -34,6 +53,9 @@ class WebSocketServer
         Logger::PrintLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
+    /**
+     * @return bool
+     */
     public function start(): bool
     {
         Logger::PrintLine('Starting Websocket server', Logger::LOG_SUCCESS);
@@ -41,6 +63,9 @@ class WebSocketServer
         return true;
     }
 
+    /**
+     * @return Server
+     */
     public function getServer(): Server
     {
         return $this->server;

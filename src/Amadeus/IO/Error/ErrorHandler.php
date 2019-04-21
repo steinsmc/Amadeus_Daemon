@@ -6,8 +6,19 @@ namespace Amadeus\IO\Error;
 
 use Amadeus\IO\Logger;
 
+/**
+ * Class ErrorHandler
+ * @package Amadeus\IO\Error
+ */
 class ErrorHandler
 {
+    /**
+     * @param int $errno
+     * @param string $errstr
+     * @param string $errfile
+     * @param int $errline
+     * @return bool
+     */
     public static function onError(int $errno, string $errstr, string $errfile, int $errline): bool
     {
         if (!(error_reporting() & $errno)) {

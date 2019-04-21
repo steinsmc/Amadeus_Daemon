@@ -6,8 +6,15 @@ namespace Amadeus\Config\Sample;
 
 use Amadeus\IO\Logger;
 
+/**
+ * Class SampleConfig
+ * @package Amadeus\Config\Sample
+ */
 class SampleConfig
 {
+    /**
+     * @var array
+     */
     private static $config = array(
         'daemon_mysql_host' => '127.0.0.1',
         'daemon_mysql_port' => 3306,
@@ -22,11 +29,18 @@ class SampleConfig
         'cgroup_dir'=>'/sys/fs/cgroup/'
     );
 
+    /**
+     * @return array
+     */
     public static function generate():array
     {
         return self::$config;
     }
 
+    /**
+     * @param array $config
+     * @return bool
+     */
     public static function verify(array $config):bool
     {
         Logger::printLine($config, Logger::LOG_INFORM);

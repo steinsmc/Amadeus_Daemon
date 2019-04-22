@@ -2,6 +2,9 @@
 declare(strict_types=1);
 
 namespace {
+
+    use Amadeus\IO\Logger;
+
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));
     foreach ($argv as $arg) {
         switch($arg){
@@ -48,6 +51,7 @@ namespace {
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
     register_shutdown_function(function(){
+        Amadeus\IO\Logger::printLine('Stopping the Daemon...');
         @unlink('/Amadeus.pid');
     });
     echo 'Amadeus Daemon Started!' . PHP_EOL;
@@ -55,12 +59,9 @@ namespace {
 
 namespace Amadeus {
 
-    use Amadeus\IO\Logger;
     use Phar;
 
     @mkdir('plugins');
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)),$loader);
-    Logger::printLine('Stopping the Daemon...');
-    @unlink('Amadeus.pid');
 }

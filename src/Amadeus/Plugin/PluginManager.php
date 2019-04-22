@@ -21,6 +21,7 @@ class PluginManager
      */
     public function __construct()
     {
+        Logger::printLine('Loading Plugins', Logger::LOG_SUCCESS);
         $items = array_diff(scandir('plugins/'), array('..', '.'));
         $this->plugins = array();
         foreach ($items as $item) {
@@ -39,7 +40,7 @@ class PluginManager
     /**
      * @return bool
      */
-    public function start():bool
+    public function start(): bool
     {
         if (count($this->plugins) > 0) {
             foreach ($this->plugins as $plugin) {
@@ -55,6 +56,7 @@ class PluginManager
                 }
             }
         }
+        $this->trigger('onLoaded');
         Logger::printLine('All plugins loaded', Logger::LOG_INFORM);
         return true;
     }
@@ -81,13 +83,20 @@ class PluginManager
     {
         foreach ($this->listeners as $listener) {
             if (method_exists($listener, $event)) {
-                if($data===null){
+                if ($data === null) {
                     $listener->$event();
-                }else{
+                } else {
                     $listener->$event($data);
                 }
             }
         }
+        return true;
+    }
+
+    public function registerGame(string $type,object $reference):bool
+    {
+        Logger::printLine('Registering game controller ' . $type, Logger::LOG_INFORM);
+        Process::getGameType()->onGameTypeRegister($type,$reference);
         return true;
     }
 }

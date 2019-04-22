@@ -4,6 +4,7 @@ namespace Amadeus;
 
 use Amadeus\Database\MySQL\MySQL;
 use Amadeus\Environment\ServerManager;
+use Amadeus\Game\GameType;
 use Amadeus\IO\Logger;
 use Amadeus\Config\Config;
 use Amadeus\Network\WebSocketServer;
@@ -40,6 +41,7 @@ class Process
      * @var
      */
     private static $PluginManager;
+    private static $GameType;
 
     /**
      * @param string $_BASE
@@ -55,11 +57,11 @@ class Process
 
         self::$MySQL = new MySQL();
         self::$WebSocketServer = new WebSocketServer();
-        self::$ServerManager = new ServerManager();
-        self::$MySQL->newServer('/', 'pm', 1, 1, 1, 1, 1);
-        Logger::printLine('Loading Plugins', Logger::LOG_SUCCESS);
+        //self::$MySQL->newServer('/', 'pm', 1, 1, 1, 1, 1);
+        self::$GameType = new GameType();
         self::$PluginManager = new PluginManager();
         self::$PluginManager->start();
+        self::$ServerManager = new ServerManager();
         Logger::printLine('Amadeus System Successfully Started', Logger::LOG_SUCCESS);
         self::$WebSocketServer->start();
         return true;
@@ -111,5 +113,10 @@ class Process
     public static function getWebSocketServer(): WebSocketServer
     {
         return self::$WebSocketServer;
+    }
+
+    public static function getGameType(): GameType
+    {
+        return self::$GameType;
     }
 }

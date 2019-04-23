@@ -7,6 +7,7 @@ namespace Amadeus\Environment\Backend;
 use Amadeus\Environment\Cgroup;
 use Amadeus\Environment\Quota;
 use Amadeus\IO\Logger;
+use Amadeus\Process;
 
 /**
  * Class Server
@@ -71,6 +72,7 @@ class Server
      * @var Quota
      */
     private $Quota;
+    private $GameTypeController;
 
     /**
      * Server constructor.
@@ -87,6 +89,7 @@ class Server
      */
     public function __construct($SID, $Key, $Directory, $GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status)
     {
+        Logger::printLine('Server ' . $SID . ' is starting', Logger::LOG_INFORM);
         $this->SID = $SID;
         $this->key = $Key;
         $this->directory = $Directory;
@@ -101,6 +104,11 @@ class Server
         $this->group = 'server' . $SID;
         $this->Cgroup = new Cgroup($SID,$Cpu,$Mem,$DiskSpeed,$NetworkSpeed,233);
         $this->Quota = new Quota();
-        Logger::printLine('Server ' . $SID . ' is starting', Logger::LOG_INFORM);
+        if(!Process::getGameType()->getGameType($this->gameType)){
+            $this->GameTypeController = Process::getGameType()->getGameType($this->gameType);
+        }else{
+            Logger::printLine('Server ' . $SID . ' failed to load '.$this->gameType, Logger::LOG_FATAL);
+        }
+        Logger::printLine('Server ' . $SID . ' successfully started', Logger::LOG_INFORM);
     }
 }

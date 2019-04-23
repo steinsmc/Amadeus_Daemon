@@ -13,7 +13,13 @@ use Amadeus\Process;
  */
 class PluginManager
 {
+    /**
+     * @var
+     */
     private $listeners;
+    /**
+     * @var array
+     */
     private $plugins;
 
     /**
@@ -93,7 +99,12 @@ class PluginManager
         return true;
     }
 
-    public function registerGame(string $type,object $reference):bool
+    /**
+     * @param string $type
+     * @param object $reference
+     * @return bool
+     */
+    public function registerGameType(string $type, object $reference):bool
     {
         Logger::printLine('Registering game controller ' . $type, Logger::LOG_INFORM);
         Process::getGameType()->onGameTypeRegister($type,$reference);

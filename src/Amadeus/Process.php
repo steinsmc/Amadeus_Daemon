@@ -41,6 +41,9 @@ class Process
      * @var
      */
     private static $PluginManager;
+    /**
+     * @var
+     */
     private static $GameType;
 
     /**
@@ -115,6 +118,9 @@ class Process
         return self::$WebSocketServer;
     }
 
+    /**
+     * @return GameType
+     */
     public static function getGameType(): GameType
     {
         return self::$GameType;

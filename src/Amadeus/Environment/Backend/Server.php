@@ -63,7 +63,8 @@ class Server
         $networkSpeed,
         $status,
         $user,
-        $group;
+        $group,
+        $PID;
     /**
      * @var Cgroup
      */
@@ -102,13 +103,18 @@ class Server
         $this->status = $Status;
         $this->user = 'server' . $SID;
         $this->group = 'server' . $SID;
-        $this->Cgroup = new Cgroup($SID,$Cpu,$Mem,$DiskSpeed,$NetworkSpeed,233);
-        $this->Quota = new Quota();
-        if(!Process::getGameType()->getGameType($this->gameType)){
-            $this->GameTypeController = Process::getGameType()->getGameType($this->gameType);
-        }else{
-            Logger::printLine('Server ' . $SID . ' failed to load '.$this->gameType, Logger::LOG_FATAL);
+        if (!@is_dir($this->directory)) {
+            Logger::printLine('Server ' . $SID . ' directory does not exist ' . $this->directory, Logger::LOG_FATAL);
         }
+        $this->Quota = new Quota();
+        if (Process::getGameControl()->getGameType($this->gameType) !== false) {
+            $this->GameTypeController = Process::getGameControl()->getGameType($this->gameType);
+            $this->GameTypeController->initServer($this->SID);
+        } else {
+            Logger::printLine('Server ' . $SID . ' failed to load ' . $this->gameType, Logger::LOG_FATAL);
+        }
+        $this->PID = $this->GameTypeController->onServerStart($this->SID);
+        $this->Cgroup = new Cgroup($this->SID, $this->cpu, $this->mem, $this->diskSpeed, $this->networkSpeed, $this->PID);
         Logger::printLine('Server ' . $SID . ' successfully started', Logger::LOG_INFORM);
     }
 }

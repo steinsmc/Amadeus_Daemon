@@ -16,7 +16,7 @@ class StateMents
     private static $statements = array(
         'newServer' => '
             INSERT INTO `Servers`
-			(`Key`, `Directory`, `GameType`, `Cpu`, `Mem`, `Disk`, `DiskSpeed`, `NetworkSpeed`, `Status`) 
+			(`Key`, `Directory`, `GameControl`, `Cpu`, `Mem`, `Disk`, `DiskSpeed`, `NetworkSpeed`, `Status`) 
 			VALUES
 			(?,?,?,?,?,?,?,?,?)',
         'checkServerStatusBySID' => '
@@ -24,6 +24,9 @@ class StateMents
         ',
         'getServers' => '
         SELECT * FROM `Servers`
+        ',
+        'countServers'=>'
+        SELECT COUNT(`SID`) AS `Numbers` FROM `Servers`
         '
     );
 

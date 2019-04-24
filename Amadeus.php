@@ -62,6 +62,7 @@ namespace Amadeus {
     use Phar;
 
     @mkdir('plugins');
+    @mkdir('servers');
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)),$loader);
 }

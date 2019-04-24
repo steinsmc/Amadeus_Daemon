@@ -6,6 +6,6 @@ namespace Amadeus\Plugin\Listener;
 
 interface GameListener extends Listener
 {
-    public function onServerStart();
-    public function onServerStop();
+    public function onServerStart($pid);
+    public function onServerStop($pid);
 }

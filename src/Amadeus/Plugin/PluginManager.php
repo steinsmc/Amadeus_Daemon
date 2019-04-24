@@ -104,10 +104,10 @@ class PluginManager
      * @param object $reference
      * @return bool
      */
-    public function registerGameType(string $type, object $reference):bool
+    public function registerGameType(string $type, object $reference): bool
     {
         Logger::printLine('Registering game controller ' . $type, Logger::LOG_INFORM);
-        Process::getGameType()->onGameTypeRegister($type,$reference);
+        Process::getGameControl()->onGameTypeRegister($type, $reference);
         return true;
     }
 }

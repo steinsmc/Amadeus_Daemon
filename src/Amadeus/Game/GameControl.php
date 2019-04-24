@@ -7,10 +7,10 @@ namespace Amadeus\Game;
 use Amadeus\IO\Logger;
 
 /**
- * Class GameType
+ * Class GameControl
  * @package Amadeus\Game
  */
-class GameType
+class GameControl
 {
     /**
      * @var array
@@ -18,7 +18,7 @@ class GameType
     private $types = array();
 
     /**
-     * GameType constructor.
+     * GameControl constructor.
      */
     public function __construct()
     {
@@ -42,6 +42,6 @@ class GameType
      */
     public function getGameType(string $type)
     {
-        return array_key_exists($type,$this->types)?$this->types[$type]:false;
+        return array_key_exists($type, $this->types) ? $this->types[$type] : false;
     }
 }

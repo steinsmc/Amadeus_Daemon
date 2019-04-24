@@ -15,6 +15,7 @@ namespace Amadeus {
     use Amadeus\IO\Logger;
 
     @mkdir('plugins');
+    @mkdir('servers');
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)),$loader);
     Logger::printLine('Stopping the Daemon...');

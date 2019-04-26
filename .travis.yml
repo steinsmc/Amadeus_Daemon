@@ -6,7 +6,7 @@ php:
   - '7.3'
 
 before_script:
-  -
+  - chmod -R 777 ./tests/travis.sh
 
 script:
   - ./tests/travis.sh

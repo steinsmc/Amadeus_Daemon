@@ -1,0 +1,12 @@
+language: php
+notifications:
+  email:
+    - lixworth@gmail.com
+php:
+  - '7.3'
+
+before_script:
+  -
+
+script:
+  - ./tests/travis.sh

@@ -29,7 +29,7 @@ namespace {
         exit('Error: Amadeus Daemon already running' . PHP_EOL);
     }
     if (posix_geteuid() === 0) {
-        echo 'Error: You should not run Amadeus with root user' . PHP_EOL;
+//        echo 'Error: You should not run Amadeus with root user' . PHP_EOL;
     }
     umask(0);
     $pid = pcntl_fork();

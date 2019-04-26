@@ -35,5 +35,8 @@
     "psr-4": {
       "Amadeus\\": "src/Amadeus/"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.2"
   }
 }

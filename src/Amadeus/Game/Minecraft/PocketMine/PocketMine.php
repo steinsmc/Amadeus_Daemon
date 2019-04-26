@@ -1,10 +1,11 @@
 <?php
-namespace Amadeus\Game\MineCraft\PocketMine;
+namespace Amadeus\Game\Minecraft\PocketMine;
 
 use Amadeus\Plugin\Game\GameController;
 use Amadeus\Plugin\Listener\GameListener;
 
 /**
+ * @Deprecated 你妈的要说多少遍写成插件啊，而且如果你要插件放在amadeus里的话，命名空间也不能是Amadeus\Game\MineCraft\PocketMine 如果你非要自带pm支持的话我就去写一个自动引导
  * Class PocketMine
  */
 class PocketMine extends GameController implements GameListener {
@@ -25,12 +26,12 @@ class PocketMine extends GameController implements GameListener {
         // TODO: Implement initServer() method.
     }
 
-    public function onServerStart($pid)
+    public function onServerStart($sid)
     {
         // TODO: Implement onServerStart() method.
     }
 
-    public function onServerStop($pid)
+    public function onServerStop($sid)
     {
         // TODO: Implement onServerStop() method.
     }

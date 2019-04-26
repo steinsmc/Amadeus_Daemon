@@ -64,7 +64,11 @@ class Process
         self::$PluginManager = new PluginManager();
         self::$PluginManager->start();
         self::$ServerManager = new ServerManager();
-        //self::$ServerManager->newServer('pm', 1, 1, 1, 1, 1);
+//        self::$ServerManager->newServer('pm', 1, 1, 1024, 1, 1);
+//        self::$ServerManager->newServer('pm', 1, 1, 2048, 1, 1);
+//        self::$ServerManager->newServer('pm', 1, 1, 4096, 1, 1);
+//        self::$ServerManager->newServer('pm', 1, 1, 8192, 1, 1);
+//        self::$ServerManager->newServer('pm', 1, 1, 16384, 1, 1);
         //self::$MySQL->newServer('/','pm',1,1,1,1,1);
         Logger::printLine('Amadeus System Successfully Started', Logger::LOG_SUCCESS);
         self::$WebSocketServer->start();

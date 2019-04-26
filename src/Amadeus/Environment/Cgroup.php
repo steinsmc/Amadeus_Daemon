@@ -93,13 +93,17 @@ class Cgroup
      */
     private function cgroupInit()
     {
-        is_dir($this->c_cpu) ? Logger::printLine('cpu limit for ' . $this->SID . ' exists', Logger::LOG_INFORM) : mkdir($this->c_cpu);
-        is_dir($this->c_memory) ? Logger::printLine('memory limit for ' . $this->SID . ' exists', Logger::LOG_INFORM) : mkdir($this->c_memory);
-        is_dir($this->c_blkio) ? Logger::printLine('disk speed limit for ' . $this->SID . ' exists', Logger::LOG_INFORM) : mkdir($this->c_blkio);
-        is_dir($this->c_net_cls) ? Logger::printLine('network speed limit for ' . $this->SID . ' exists', Logger::LOG_INFORM) : mkdir($this->c_net_cls);
-        Cpu::set($this->c_cpu,$this->Cpu);
-        Mem::set($this->c_memory,$this->Mem);
-        Disk::set($this->c_blkio,$this->DiskSpeed);
-        Network::set($this->c_net_cls,$this->NetworkSpeed);
+        is_dir($this->c_cpu) ?: mkdir($this->c_cpu);
+        is_dir($this->c_cpu) ?: Logger::printLine('creating cpu limit for' . $this->SID, Logger::LOG_INFORM);
+        is_dir($this->c_memory) ?: mkdir($this->c_memory);
+        is_dir($this->c_memory) ?: Logger::printLine('creating memory limit for' . $this->SID, Logger::LOG_INFORM);
+        is_dir($this->c_blkio) ?: mkdir($this->c_blkio);
+        is_dir($this->c_blkio) ?: Logger::printLine('creating disk limit for' . $this->SID, Logger::LOG_INFORM);
+        is_dir($this->c_net_cls) ?: mkdir($this->c_net_cls);
+        is_dir($this->c_net_cls) ?: Logger::printLine('creating network limit for' . $this->SID, Logger::LOG_INFORM);
+        Cpu::set($this->c_cpu, $this->Cpu);
+        Mem::set($this->c_memory, $this->Mem);
+        Disk::set($this->c_blkio, $this->DiskSpeed);
+        Network::set($this->c_net_cls, $this->NetworkSpeed);
     }
 }

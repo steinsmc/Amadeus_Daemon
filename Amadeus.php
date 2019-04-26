@@ -50,11 +50,14 @@ namespace {
     }
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
+    echo 'Amadeus Daemon Started!' . PHP_EOL;
+    ob_start();
     register_shutdown_function(function(){
         Amadeus\IO\Logger::printLine('Stopping the Daemon...');
+        Amadeus\IO\Logger::printLine(ob_get_contents());
+        ob_end_clean();
         @unlink('/Amadeus.pid');
     });
-    echo 'Amadeus Daemon Started!' . PHP_EOL;
 }
 
 namespace Amadeus {

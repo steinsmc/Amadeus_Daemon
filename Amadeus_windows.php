@@ -7,6 +7,7 @@ namespace {
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
     echo 'Amadeus Daemon Started!' . PHP_EOL;
+    ob_start();
 }
 
 namespace Amadeus {
@@ -19,4 +20,5 @@ namespace Amadeus {
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)),$loader);
     Logger::printLine('Stopping the Daemon...');
+    ob_end_flush();
 }

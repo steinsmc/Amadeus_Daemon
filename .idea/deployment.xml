@@ -10,6 +10,7 @@
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
             <excludedPath local="true" path="$PROJECT_DIR$/Amadeus.conf" />
+            <excludedPath local="true" path="$PROJECT_DIR$/docs" />
           </excludedPaths>
         </serverdata>
       </paths>

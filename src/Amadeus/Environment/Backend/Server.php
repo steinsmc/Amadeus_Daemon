@@ -106,7 +106,7 @@ class Server
         if (!@is_dir($this->directory)) {
             Logger::printLine('Server ' . $SID . ' directory does not exist ' . $this->directory, Logger::LOG_FATAL);
         }
-        $this->Quota = new Quota();
+        $this->Quota = new Quota($this->SID,$this->disk);
         if (Process::getGameControl()->getGameType($this->gameType) !== false) {
             $this->GameTypeController = Process::getGameControl()->getGameType($this->gameType);
             $this->GameTypeController->initServer($this->SID);
@@ -116,5 +116,12 @@ class Server
         $this->PID = $this->GameTypeController->onServerStart($this->SID);
         $this->Cgroup = new Cgroup($this->SID, $this->cpu, $this->mem, $this->diskSpeed, $this->networkSpeed, $this->PID);
         Logger::printLine('Server ' . $SID . ' successfully started', Logger::LOG_INFORM);
+    }
+    public function getLog(string $key){
+        if($this->key===$key){
+            return $this->GameTypeController->onClientGetLog();
+        }else{
+            return false;
+        }
     }
 }

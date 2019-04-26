@@ -26,7 +26,9 @@ class SampleConfig
         'daemon_port' => '2333',
         'daemon_workers' => '4',
         'daemon_password' => 'lixisgay',
-        'cgroup_dir'=>'/sys/fs/cgroup/'
+        'cgroup_dir'=>'/sys/fs/cgroup/',
+        'quota_disk'=>'/dev/sda1',
+        'quota_file_to_size_rate'=>4
     );
 
     /**

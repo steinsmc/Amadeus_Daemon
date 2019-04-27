@@ -74,17 +74,17 @@ class Cgroup
      */
     public function __construct(int $SID, int $Cpu, int $Mem, int $DiskSpeed, int $NetworkSpeed, int $PID)
     {
-        $this->cgroupBase = Config::get('cgroup_dir');
-        $this->c_cpu = $this->cgroupBase . 'cpu' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
-        $this->c_memory = $this->cgroupBase . 'memory' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
-        $this->c_blkio = $this->cgroupBase . 'blkio' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
-        $this->c_net_cls = $this->cgroupBase . 'net_cls' . DIRECTORY_SEPARATOR . 'server' . $this->SID . '/';
         $this->SID = $SID;
         $this->Cpu = $Cpu;
         $this->Mem = $Mem;
         $this->DiskSpeed = $DiskSpeed;
         $this->NetworkSpeed = $NetworkSpeed;
         $this->PID = $PID;
+        $this->cgroupBase = Config::get('cgroup_dir');
+        $this->c_cpu = $this->cgroupBase . '/cpu' . DIRECTORY_SEPARATOR . 'server' . $this->SID;
+        $this->c_memory = $this->cgroupBase . '/memory' . DIRECTORY_SEPARATOR . 'server' . $this->SID;
+        $this->c_blkio = $this->cgroupBase . '/blkio' . DIRECTORY_SEPARATOR . 'server' . $this->SID;
+        $this->c_net_cls = $this->cgroupBase . '/net_cls' . DIRECTORY_SEPARATOR . 'server' . $this->SID;
         $this->cgroupInit();
     }
 
@@ -101,9 +101,9 @@ class Cgroup
         is_dir($this->c_blkio) ?: Logger::printLine('creating disk limit for' . $this->SID, Logger::LOG_INFORM);
         is_dir($this->c_net_cls) ?: mkdir($this->c_net_cls);
         is_dir($this->c_net_cls) ?: Logger::printLine('creating network limit for' . $this->SID, Logger::LOG_INFORM);
-        Cpu::set($this->c_cpu, $this->Cpu);
-        Mem::set($this->c_memory, $this->Mem);
-        Disk::set($this->c_blkio, $this->DiskSpeed);
-        Network::set($this->c_net_cls, $this->NetworkSpeed);
+        Cpu::set($this->c_cpu, 100000, ($this->Cpu / 100) * 100000) ?: Logger::printLine('failed to set cpu for server' . $this->SID, Logger::LOG_FATAL);
+        Mem::set($this->c_memory, $this->Mem * 1024 * 1024) ?: Logger::printLine('failed to set memory for server' . $this->SID, Logger::LOG_FATAL);
+        Disk::set($this->c_blkio, Config::get('cgroup_disk_primary_id'), Config::get('cgroup_disk_secondary_id'), $this->DiskSpeed * 1024 * 1024) ?: Logger::printLine('failed to set disk speed for server' . $this->SID, Logger::LOG_FATAL);
+        Network::set($this->c_net_cls, $this->NetworkSpeed) ?: Logger::printLine('failed to set network speed for server' . $this->SID, Logger::LOG_FATAL);
     }
 }

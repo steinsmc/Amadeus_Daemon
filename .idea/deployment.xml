@@ -5,7 +5,7 @@
       <paths name="Amadeus-Daemon">
         <serverdata>
           <mappings>
-            <mapping deploy="/root/Amadeus_Daemon" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/Amadeus_Daemon" local="$PROJECT_DIR$" web="/" />
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/vendor" />

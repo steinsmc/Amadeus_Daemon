@@ -27,6 +27,9 @@ class StateMents
         ',
         'countServers'=>'
         SELECT COUNT(`SID`) AS `Numbers` FROM `Servers`
+        ',
+        'delServerBySID'=>'
+        DELETE FROM `Servers` WHERE SID = ?
         '
     );
 
@@ -40,7 +43,6 @@ class StateMents
             return self::$statements[$name];
         } else {
             return '';
-
         }
     }
 }

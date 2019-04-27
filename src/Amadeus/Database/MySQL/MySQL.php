@@ -113,4 +113,15 @@ class MySQL
         $sql->free_result();
         return $list;
     }
+    public function delServerBySID(int $sid):bool{
+        $sql = $this->MySQL->prepare(StateMents::getStatement('delServerBySID'));
+        $sql->bind_param('i', $sid);
+        $sql->execute();
+        if (!empty($sql->error)) {
+            Logger::printLine($sql->error, Logger::LOG_DEADLY);
+            return false;
+        }
+        Logger::printLine('Succeed', Logger::LOG_SUCCESS);
+        return true;
+    }
 }

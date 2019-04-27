@@ -4,6 +4,7 @@
       <w>blkio</w>
       <w>cgroup</w>
       <w>dbname</w>
+      <w>grpquota</w>
       <w>lixworth</w>
       <w>minecraft</w>
       <w>mozilla</w>
@@ -14,6 +15,7 @@
       <w>steinsmc</w>
       <w>useradd</w>
       <w>userdel</w>
+      <w>usrquota</w>
       <w>xcraft</w>
     </words>
   </dictionary>

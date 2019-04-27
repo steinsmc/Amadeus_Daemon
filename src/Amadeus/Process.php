@@ -65,6 +65,7 @@ class Process extends Xcraft implements SteinsMC
         self::$PluginManager = new PluginManager();
         self::$PluginManager->start();
         self::$ServerManager = new ServerManager();
+        self::$ServerManager->startAllServers();
 //        self::$ServerManager->newServer('pm', 1, 1, 1024, 1, 1);
 //        self::$ServerManager->newServer('pm', 1, 1, 2048, 1, 1);
 //        self::$ServerManager->newServer('pm', 1, 1, 4096, 1, 1);

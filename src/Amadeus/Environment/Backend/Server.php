@@ -104,30 +104,44 @@ class Server
         $this->status = $Status;
         $this->user = 'server' . $SID;
         $this->group = 'server' . $SID;
+    }
+
+    public function start(): bool
+    {
         if (!@is_dir($this->directory)) {
-            Logger::printLine('Server' . $SID . ' directory does not exist ' . $this->directory, Logger::LOG_FATAL);
+            Logger::printLine('Server' . $this->SID . ' directory does not exist ' . $this->directory, Logger::LOG_FATAL);
         }
-        $this->Quota = new Quota($this->SID,$this->disk);
+        $this->Quota = new Quota($this->SID, $this->disk);
         if (Process::getGameControl()->getGameType($this->gameType) !== false) {
             $this->GameTypeController = Process::getGameControl()->getGameType($this->gameType);
             $this->GameTypeController->initServer($this->SID);
         } else {
-            Logger::printLine('Server ' . $SID . ' failed to load ' . $this->gameType, Logger::LOG_FATAL);
+            Logger::printLine('Server ' . $this->SID . ' failed to load ' . $this->gameType, Logger::LOG_FATAL);
         }
         $this->PID = $this->GameTypeController->onServerStart($this->SID);
         $this->Cgroup = new Cgroup($this->SID, $this->cpu, $this->mem, $this->diskSpeed, $this->networkSpeed, $this->PID);
-        Logger::printLine('Server ' . $SID . ' successfully started', Logger::LOG_INFORM);
+        Logger::printLine('Server ' . $this->SID . ' successfully started', Logger::LOG_INFORM);
+        return true;
     }
-    public function getLog(string $key){
-        if($this->key===$key){
+
+    public function getLog(string $key)
+    {
+        if ($this->key === $key) {
             return $this->GameTypeController->onClientGetLog();
-        }else{
+        } else {
             return false;
         }
     }
-    public function __destruct(){
+
+    public function getDirectory()
+    {
+        return $this->directory;
+    }
+
+    public function __destruct()
+    {
         Logger::printLine('Deleting server' . $this->SID, Logger::LOG_INFORM);
-        if($this->GameTypeController instanceof GameController){
+        if ($this->GameTypeController instanceof GameController) {
             $this->GameTypeController->onServerStop($this->SID);
             $this->GameTypeController->finServer($this->SID);
         }

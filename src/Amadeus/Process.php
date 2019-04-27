@@ -15,7 +15,8 @@ use Composer\Autoload\ClassLoader;
  * Class Process
  * @package Amadeus
  */
-class Process
+//谨用来纪念xcraft
+class Process extends Xcraft implements SteinsMC
 {
     /**
      * @var
@@ -69,6 +70,7 @@ class Process
 //        self::$ServerManager->newServer('pm', 1, 1, 4096, 1, 1);
 //        self::$ServerManager->newServer('pm', 1, 1, 8192, 1, 1);
 //        self::$ServerManager->newServer('pm', 1, 1, 16384, 1, 1);
+        self::$ServerManager->delServer(1);
         //self::$MySQL->newServer('/','pm',1,1,1,1,1);
         Logger::printLine('Amadeus System Successfully Started', Logger::LOG_SUCCESS);
         self::$WebSocketServer->start();

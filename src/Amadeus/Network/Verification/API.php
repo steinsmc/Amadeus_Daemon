@@ -23,9 +23,10 @@ class API
         }
         if (empty($request['action']) || empty($request['message'])) {
             return false;
-        }
-        if (@$request['message']['api'] > Config::get('daemon_api_version')) {
-            return true;
+        }else{
+            if ($request['message']['api'] > Config::get('daemon_api_version')) {
+                return true;
+            }
         }
         return false;
     }

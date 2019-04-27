@@ -50,8 +50,7 @@ class Reactor
         if (($data = API::unpackData($request->data) === null)) {
             self::rageQuit($request->fd, 'Bad request');
         }
-        Controller::onCall($request->fd, $data);
-        return true;
+        return Controller::onCall($request->fd, $data['action'],$data['message']);
     }
 
     /**
@@ -74,7 +73,13 @@ class Reactor
     public static function rageQuit(int $fd, string $reason = 'Undefined'): bool
     {
         Logger::PrintLine('Kicked a user,fd: ' . $fd . ', Reason: ' . $reason, Logger::LOG_WARNING);
-        Process::getWebSocketServer()->getServer()->disconnect($fd, 4000, json_encode(array('action' => 'rageQuit', 'message' => $reason)));
+        Process::getWebSocketServer()->getServer()->disconnect($fd, 4000, json_encode(array('action' => 'rageQuit', 'message' => array('reason'=>$reason))));
+        return true;
+    }
+    public static function sendMessage(int $fd, string $action, array $message):bool{
+        $message['time']=date('Y-m-d H:i:s', time());
+        Logger::printLine('Sending user'.$fd.' a '.$action.' message, message detail: '.json_encode($message, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT),Logger::LOG_INFORM);
+        Process::getWebSocketServer()->getServer()->push($fd,json_encode(array('action'=>$action,'message'=>$message), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
         return true;
     }
 

@@ -104,7 +104,7 @@ class Server
         $this->user = 'server' . $SID;
         $this->group = 'server' . $SID;
         if (!@is_dir($this->directory)) {
-            Logger::printLine('Server ' . $SID . ' directory does not exist ' . $this->directory, Logger::LOG_FATAL);
+            Logger::printLine('Server' . $SID . ' directory does not exist ' . $this->directory, Logger::LOG_FATAL);
         }
         $this->Quota = new Quota($this->SID,$this->disk);
         if (Process::getGameControl()->getGameType($this->gameType) !== false) {
@@ -123,5 +123,13 @@ class Server
         }else{
             return false;
         }
+    }
+    public function __destruct(){
+        Logger::printLine('Deleting server' . $this->SID, Logger::LOG_INFORM);
+        $this->GameTypeController->onServerStop($this->SID);
+        $this->GameTypeController->finServer($this->SID);
+        unset($this->Cgroup);
+        unset($this->Quota);
+        return true;
     }
 }

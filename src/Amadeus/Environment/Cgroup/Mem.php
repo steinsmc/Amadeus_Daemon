@@ -12,10 +12,23 @@ class Mem
 {
     /**
      * @param string $c_memory
-     * @param int $mem
+     * @param int $limit_in_bytes
      * @return bool
      */
-    public static function set(string $c_memory, int $mem):bool{
+    public static function set(string $c_memory, int $limit_in_bytes): bool
+    {
+        $fd = fopen($c_memory . '/memory.oom_control', 'w+');
+        fwrite($fd, 1);
+        fclose($fd);
+        if (strstr(trim(file_get_contents($c_memory . '/memory.oom_control')), '1') === false) {
+            return false;
+        }
+        $fd = fopen($c_memory . '/memory.limit_in_bytes', 'w+');
+        fwrite($fd, $limit_in_bytes);
+        fclose($fd);
+        if (trim(file_get_contents($c_memory . '/memory.limit_in_bytes')) != $limit_in_bytes) {
+            return false;
+        }
         return true;
     }
 }

@@ -48,7 +48,7 @@ class PluginManager
      */
     public function start(): bool
     {
-        if (count($this->plugins) > 0) {
+        if (count($this->plugins) > 0 && is_array($this->plugins)) {
             foreach ($this->plugins as $plugin) {
                 Process::getLoader()->addPsr4($plugin['namespace'], $plugin['uri'] . '/' . $plugin['stub']);
                 include_once($plugin['uri'] . '/' . $plugin['stub'] . '/' . $plugin['main'] . '.php');

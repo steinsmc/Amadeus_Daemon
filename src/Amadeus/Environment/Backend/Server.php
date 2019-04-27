@@ -7,6 +7,7 @@ namespace Amadeus\Environment\Backend;
 use Amadeus\Environment\Cgroup;
 use Amadeus\Environment\Quota;
 use Amadeus\IO\Logger;
+use Amadeus\Plugin\Game\GameController;
 use Amadeus\Process;
 
 /**
@@ -126,8 +127,10 @@ class Server
     }
     public function __destruct(){
         Logger::printLine('Deleting server' . $this->SID, Logger::LOG_INFORM);
-        $this->GameTypeController->onServerStop($this->SID);
-        $this->GameTypeController->finServer($this->SID);
+        if($this->GameTypeController instanceof GameController){
+            $this->GameTypeController->onServerStop($this->SID);
+            $this->GameTypeController->finServer($this->SID);
+        }
         unset($this->Cgroup);
         unset($this->Quota);
         return true;

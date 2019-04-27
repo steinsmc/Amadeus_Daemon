@@ -52,11 +52,16 @@ class ServerManager
         return array('SID' => $SID, 'Directory' => $Directory);
     }
     public function delServer(int $SID):bool{
-        unset($this->servers[$SID]);
-        $Directory = Process::getBase() . '/servers/server' . $SID;
-        @system('userdel -f server'.$SID);
-        @system('rm -rf '.$Directory);
-        Process::getMySQL()->delServerBySID($SID);
-        return true;
+        if(isset($this->servers[$SID])){
+            unset($this->servers[$SID]);
+            $Directory = Process::getBase() . '/servers/server' . $SID;
+            @system('userdel -f server'.$SID);
+            @system('rm -rf '.$Directory);
+            Process::getMySQL()->delServerBySID($SID);
+            return true;
+        }else{
+            Logger::printLine('Failed to delete server: server does not exist',Logger::LOG_DANGER);
+            return false;
+        }
     }
 }

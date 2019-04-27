@@ -106,4 +106,10 @@ class Cgroup
         Disk::set($this->c_blkio, Config::get('cgroup_disk_primary_id'), Config::get('cgroup_disk_secondary_id'), $this->DiskSpeed * 1024 * 1024) ?: Logger::printLine('failed to set disk speed for server' . $this->SID, Logger::LOG_FATAL);
         Network::set($this->c_net_cls, $this->NetworkSpeed) ?: Logger::printLine('failed to set network speed for server' . $this->SID, Logger::LOG_FATAL);
     }
+    public function __destruct(){
+        Cpu::clear($this->c_cpu)?:Logger::printLine('Failed to remove cpu limit for '.$this->SID,Logger::LOG_PANIC);
+        Mem::clear($this->c_memory)?:Logger::printLine('Failed to remove memory limit for '.$this->SID,Logger::LOG_PANIC);
+        Disk::clear($this->c_blkio)?:Logger::printLine('Failed to remove disk speed limit for '.$this->SID,Logger::LOG_PANIC);
+        Network::clear($this->c_net_cls)?:Logger::printLine('Failed to remove network speed limit for '.$this->SID,Logger::LOG_PANIC);
+    }
 }

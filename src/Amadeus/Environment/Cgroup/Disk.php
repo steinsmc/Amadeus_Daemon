@@ -33,4 +33,14 @@ class Disk
         }
         return true;
     }
+
+    /**
+     * @param string $c_blkio
+     * @return bool
+     */
+    public static function clear(string $c_blkio): bool
+    {
+        rmdir($c_blkio);
+        return is_dir($c_blkio)?false:true;
+    }
 }

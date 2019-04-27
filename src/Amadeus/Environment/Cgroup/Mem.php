@@ -31,4 +31,14 @@ class Mem
         }
         return true;
     }
+
+    /**
+     * @param string $c_memory
+     * @return bool
+     */
+    public static function clear(string $c_memory): bool
+    {
+        rmdir($c_memory);
+        return is_dir($c_memory)?false:true;
+    }
 }

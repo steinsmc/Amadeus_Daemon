@@ -32,4 +32,14 @@ class Cpu
         }
         return true;
     }
+
+    /**
+     * @param string $c_cpu
+     * @return bool
+     */
+    public static function clear(string $c_cpu): bool
+    {
+        rmdir($c_cpu);
+        return is_dir($c_cpu)?false:true;
+    }
 }

@@ -24,4 +24,7 @@ class Quota
         Logger::printLine('quota info: '.'server'.$SID.' '.intval($Disk*512).' '.intval($Disk*1024).' '.intval(($Disk/$rate)/2).' '.intval($Disk/$rate).' '.Config::get('quota_disk'),Logger::LOG_INFORM);
         Disk::set('server'.$SID,intval($Disk*512),intval($Disk*1024),intval(($Disk/$rate)/2),intval($Disk/$rate),Config::get('quota_disk'));
     }
+    public function __destruct(){
+
+    }
 }

@@ -12,8 +12,9 @@ abstract class PluginBase
 {
     /**
      * PluginBase constructor.
+     * @param $directory
      */
-    public abstract function __construct();
+    public abstract function __construct($directory);
 
     /**
      * @return mixed

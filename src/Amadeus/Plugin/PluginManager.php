@@ -55,7 +55,7 @@ class PluginManager
                 $class_name = $plugin['namespace'] . $plugin['main'];
                 Logger::printLine('Loading ' . $plugin['name'], Logger::LOG_INFORM);
                 if (class_exists($class_name)) {
-                    $reference = new $class_name();
+                    $reference = new $class_name($plugin['uri']);
                     $this->listeners[$reference->getName()] = $reference;
                     Logger::printLine('Registering ' . $reference->getName(), Logger::LOG_INFORM);
                     !method_exists($reference, 'onLoading') ?: $reference->onLoading();

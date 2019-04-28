@@ -5,6 +5,7 @@
       <w>cgroup</w>
       <w>dbname</w>
       <w>grpquota</w>
+      <w>lixisgay</w>
       <w>lixworth</w>
       <w>minecraft</w>
       <w>mozilla</w>
@@ -16,7 +17,10 @@
       <w>useradd</w>
       <w>userdel</w>
       <w>usrquota</w>
+      <w>wget</w>
+      <w>winnt</w>
       <w>xcraft</w>
+      <w>zxvf</w>
     </words>
   </dictionary>
 </component>

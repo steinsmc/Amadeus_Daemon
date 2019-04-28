@@ -5,6 +5,15 @@ namespace {
 
     use Amadeus\IO\Logger;
 
+    if(PHP_OS == 'Darwin'){
+        exit('Error: MacOS is still unsupported, please wait for the announcement.');
+    }
+    if(PHP_OS == 'WINNT'){
+        exit('Error: Windows is unsupported and will not be supported in the future.');
+    }
+    if(PHP_OS == 'FreeBSD'){
+        exit('Error: FreeBSD is still unsupported, please wait for the announcement.');
+    }
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));
     foreach ($argv as $arg) {
         switch($arg){
@@ -66,6 +75,7 @@ namespace Amadeus {
 
     @mkdir('plugins');
     @mkdir('servers');
+    @mkdir('cache');
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)),$loader);
 }

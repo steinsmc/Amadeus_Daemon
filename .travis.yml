@@ -7,6 +7,8 @@ php:
 
 before_script:
   - chmod -R 777 ./tests/travis.sh
+  - echo "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n" | pecl install swoole
+  - echo "\r\n" | pecl install yaml
   - composer install
 
 script:

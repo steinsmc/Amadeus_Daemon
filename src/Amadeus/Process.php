@@ -16,6 +16,11 @@ use Composer\Autoload\ClassLoader;
  * @package Amadeus
  */
 //谨用来纪念xcraft
+
+/**
+ * Class Process
+ * @package Amadeus
+ */
 class Process extends Xcraft implements SteinsMC
 {
     /**
@@ -132,5 +137,13 @@ class Process extends Xcraft implements SteinsMC
     public static function getGameControl(): GameControl
     {
         return self::$GameControl;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCache(): string
+    {
+        return self::$_BASE . '/cache';
     }
 }

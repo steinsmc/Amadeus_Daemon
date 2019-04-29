@@ -41,6 +41,6 @@ class Disk
     public static function clear(string $c_blkio): bool
     {
         rmdir($c_blkio);
-        return is_dir($c_blkio)?false:true;
+        return is_dir($c_blkio) ? false : true;
     }
 }

@@ -27,7 +27,7 @@ class Quota
         Disk::set('server' . $SID, intval($Disk * 512), intval($Disk * 1024), intval(($Disk / $rate) / 2), intval($Disk / $rate), $quota_disk);
     }
 
-    public static function sanityCheck():bool
+    public static function sanityCheck(): bool
     {
         $quota_disk = Config::get('quota_disk');
         system('mount > /tmp/amadeus_quota.tmp');

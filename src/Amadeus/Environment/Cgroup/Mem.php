@@ -39,6 +39,6 @@ class Mem
     public static function clear(string $c_memory): bool
     {
         rmdir($c_memory);
-        return is_dir($c_memory)?false:true;
+        return is_dir($c_memory) ? false : true;
     }
 }

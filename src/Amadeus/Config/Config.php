@@ -24,7 +24,7 @@ class Config
     /**
      * @return bool
      */
-    public static function register():bool
+    public static function register(): bool
     {
         if (!file_exists('Amadeus.conf')) {
             self::$_CONFIG = SampleConfig::generate();

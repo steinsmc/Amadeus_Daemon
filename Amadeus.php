@@ -5,18 +5,18 @@ namespace {
 
     use Amadeus\IO\Logger;
 
-    if(PHP_OS == 'Darwin'){
+    if (PHP_OS == 'Darwin') {
         exit('Error: MacOS is still unsupported, please wait for the announcement.');
     }
-    if(PHP_OS == 'WINNT'){
+    if (PHP_OS == 'WINNT') {
         exit('Error: Windows is unsupported and will not be supported in the future.');
     }
-    if(PHP_OS == 'FreeBSD'){
+    if (PHP_OS == 'FreeBSD') {
         exit('Error: FreeBSD is still unsupported, please wait for the announcement.');
     }
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));
     foreach ($argv as $arg) {
-        switch($arg){
+        switch ($arg) {
             case '-s':
                 @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
                 sleep(1);
@@ -61,7 +61,7 @@ namespace {
     chdir($_BASE);
     echo 'Amadeus Daemon Started!' . PHP_EOL;
     ob_start();
-    register_shutdown_function(function(){
+    register_shutdown_function(function () {
         Amadeus\IO\Logger::printLine('Stopping the Daemon...');
         Amadeus\IO\Logger::printLine(ob_get_contents());
         ob_end_clean();
@@ -77,5 +77,5 @@ namespace Amadeus {
     @mkdir('servers');
     @mkdir('cache');
     $loader = require('vendor/autoload.php');
-    Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)),$loader);
+    Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)), $loader);
 }

@@ -6,7 +6,8 @@ namespace Amadeus\Network\Controller;
 
 class register
 {
-    public static function OnCall(int $fd,array $message):bool{
+    public static function OnCall(int $fd, array $message): bool
+    {
         return true;
     }
 }

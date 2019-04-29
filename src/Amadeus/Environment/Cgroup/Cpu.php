@@ -40,6 +40,6 @@ class Cpu
     public static function clear(string $c_cpu): bool
     {
         rmdir($c_cpu);
-        return is_dir($c_cpu)?false:true;
+        return is_dir($c_cpu) ? false : true;
     }
 }

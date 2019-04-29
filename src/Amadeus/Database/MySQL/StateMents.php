@@ -25,10 +25,10 @@ class StateMents
         'getServers' => '
         SELECT * FROM `Servers`
         ',
-        'countServers'=>'
+        'countServers' => '
         SELECT COUNT(`SID`) AS `Numbers` FROM `Servers`
         ',
-        'delServerBySID'=>'
+        'delServerBySID' => '
         DELETE FROM `Servers` WHERE SID = ?
         '
     );

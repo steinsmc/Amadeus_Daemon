@@ -24,11 +24,13 @@ class ServerManager
      */
     public function __construct()
     {
-        Quota::sanityCheck()?Logger::printLine('Quota sanity check succeed',Logger::LOG_SUCCESS):Logger::printLine('Quota sanity check failed',Logger::LOG_FATAL);
-        Cgroup::sanityCheck()?Logger::printLine('Cgroup sanity check succeed',Logger::LOG_SUCCESS):Logger::printLine('Cgroup sanity check failed',Logger::LOG_FATAL);
+        Quota::sanityCheck() ? Logger::printLine('Quota sanity check succeed', Logger::LOG_SUCCESS) : Logger::printLine('Quota sanity check failed', Logger::LOG_FATAL);
+        Cgroup::sanityCheck() ? Logger::printLine('Cgroup sanity check succeed', Logger::LOG_SUCCESS) : Logger::printLine('Cgroup sanity check failed', Logger::LOG_FATAL);
         Logger::PrintLine('Successfully registered', Logger::LOG_SUCCESS);
     }
-    public function startAllServers():bool{
+
+    public function startAllServers(): bool
+    {
         $servers = Process::getMySQL()->getServers();
         foreach ($servers as $SID => $server) {
             @mkdir($server['Directory'], 0755);
@@ -73,7 +75,9 @@ class ServerManager
             return false;
         }
     }
-    public function getServer(int $SID): ?Server{
-        return isset($this->servers[$SID])?$this->servers[$SID]:null;
+
+    public function getServer(int $SID): ?Server
+    {
+        return isset($this->servers[$SID]) ? $this->servers[$SID] : null;
     }
 }

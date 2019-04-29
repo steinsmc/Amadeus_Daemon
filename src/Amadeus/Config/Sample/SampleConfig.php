@@ -26,17 +26,17 @@ class SampleConfig
         'daemon_port' => '2333',
         'daemon_workers' => '4',
         'daemon_password' => 'lixisgay',
-        'cgroup_dir'=>'/sys/fs/cgroup',
-        'cgroup_disk_primary_id'=>253,
-        'cgroup_disk_secondary_id'=>0,
-        'quota_disk'=>'/dev/vda1',
-        'quota_file_to_size_rate'=>4
+        'cgroup_dir' => '/sys/fs/cgroup',
+        'cgroup_disk_primary_id' => 253,
+        'cgroup_disk_secondary_id' => 0,
+        'quota_disk' => '/dev/vda1',
+        'quota_file_to_size_rate' => 4
     );
 
     /**
      * @return array
      */
-    public static function generate():array
+    public static function generate(): array
     {
         return self::$config;
     }
@@ -45,18 +45,18 @@ class SampleConfig
      * @param array $config
      * @return bool
      */
-    public static function verify(array $config):bool
+    public static function verify(array $config): bool
     {
         Logger::printLine($config, Logger::LOG_INFORM);
         foreach (self::$config as $k => $v) {
             Logger::printLine($k, Logger::LOG_INFORM);
             if (!array_key_exists($k, $config)) {
-                Logger::printLine('invalid',Logger::LOG_PANIC);
+                Logger::printLine('invalid', Logger::LOG_PANIC);
                 return false;
             }
-            Logger::printLine('valid',Logger::LOG_INFORM);
+            Logger::printLine('valid', Logger::LOG_INFORM);
         }
-        Logger::printLine('success',Logger::LOG_SUCCESS);
+        Logger::printLine('success', Logger::LOG_SUCCESS);
         return true;
     }
 }

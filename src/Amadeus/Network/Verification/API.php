@@ -23,7 +23,7 @@ class API
         }
         if (empty($request['action']) || empty($request['message'])) {
             return false;
-        }else{
+        } else {
             if ($request['message']['api'] > Config::get('daemon_api_version')) {
                 return true;
             }
@@ -35,7 +35,7 @@ class API
      * @param $data
      * @return bool|mixed
      */
-    public static function unpackData($data):?array
+    public static function unpackData($data): ?array
     {
         $data = json_decode($data, true);
         if ($data && (is_object($data)) || (is_array($data) && !empty(current($data)))) {

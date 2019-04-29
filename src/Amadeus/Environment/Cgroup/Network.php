@@ -15,7 +15,8 @@ class Network
      * @param int $networkSpeed
      * @return bool
      */
-    public static function set(string $c_net_cls, int $networkSpeed):bool{
+    public static function set(string $c_net_cls, int $networkSpeed): bool
+    {
         return true;
     }
 
@@ -26,6 +27,6 @@ class Network
     public static function clear(string $c_net_cls): bool
     {
         rmdir($c_net_cls);
-        return is_dir($c_net_cls)?false:true;
+        return is_dir($c_net_cls) ? false : true;
     }
 }

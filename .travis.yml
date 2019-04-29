@@ -9,4 +9,6 @@ before_script:
   - chmod -R 777 ./tests/travis.sh
 
 script:
+  - composer install
+  - ./build.sh
   - ./tests/travis.sh

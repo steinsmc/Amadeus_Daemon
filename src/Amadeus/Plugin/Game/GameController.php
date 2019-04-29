@@ -8,9 +8,9 @@ use Amadeus\Plugin\Basic\PluginBase;
 
 abstract class GameController extends PluginBase
 {
-    public abstract function getServerType();
+    public abstract function getServerType():string;
 
-    public abstract function initServer($sid);
+    public abstract function initServer(int $sid):bool;
 
-    public abstract function finServer($sid);
+    public abstract function finServer(int $sid):bool;
 }

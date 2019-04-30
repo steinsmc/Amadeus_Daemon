@@ -6,9 +6,9 @@ useradd steinsmc
 usermod -g amadeus steinsmc
 mkdir /home/steinsmc/amadeus/
 yum -y install vim git openssl* gcc gcc-c++ autoconf cmake libcurl* curl* *jpeg* *png* screen libicu* libxml2* wget tar zip unzip libzip-devel libyaml-devel
-wget "http://us1.php.net/get/php-7.3.3.tar.gz/from/this/mirror" -O m
+wget "http://us1.php.net/get/php-7.3.4.tar.gz/from/this/mirror" -O m
 tar -zxvf m
-cd php-7.3.3
+cd php-7.3.4
 ./configure --prefix=/home/steinsmc/amadeus/library/ --disable-fpm --enable-mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir --with-freetype-dir=/usr/local/freetype --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl=/usr/local/curl --enable-mbregex --enable-mbstring --enable-intl --enable-pcntl --enable-ftp --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-soap --with-gettext --enable-fileinfo --enable-opcache --with-libdir=lib64
 make -j8
 make install

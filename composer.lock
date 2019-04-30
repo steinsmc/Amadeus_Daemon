@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2509c3717cac9c97879133d6e8ca3dee",
+    "content-hash": "27ff61bc5fe1877dbc497f9c6ed0542e",
     "packages": [
         {
             "name": "amphp/amp",
@@ -6306,7 +6306,11 @@
         "ext-posix": "^7.3",
         "ext-pcntl": "^7.3",
         "ext-json": "^1.7",
-        "ext-mysqli": "^7.3"
+        "ext-mysqli": "^7.3",
+        "ext-fileinfo": "^7.3",
+        "ext-readline": "^7.3",
+        "ext-sysvshm": "^7.3",
+        "ext-sysvmsg": "^7.3"
     },
     "platform-dev": []
 }

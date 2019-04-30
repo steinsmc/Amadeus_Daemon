@@ -11,6 +11,7 @@
             <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
             <excludedPath local="true" path="$PROJECT_DIR$/Amadeus.conf" />
             <excludedPath local="true" path="$PROJECT_DIR$/docs" />
+            <excludedPath local="true" path="$PROJECT_DIR$/plugins/Amadeus_PMMP/vendor" />
           </excludedPaths>
         </serverdata>
       </paths>

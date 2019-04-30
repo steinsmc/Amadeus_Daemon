@@ -3,6 +3,7 @@
 namespace Amadeus\IO;
 
 use Amadeus\Config\Config;
+use Amadeus\Process;
 use Swoole\Coroutine;
 
 /**
@@ -48,6 +49,10 @@ class Logger
      *
      */
     const LOG_SUCCESS = 233;
+    private static $shutUp =false;
+    private static
+    $err,
+    $exc;
 
     /**
      * @return bool
@@ -56,10 +61,15 @@ class Logger
     {
         self::printLine('|                   Amadeus                   |');
         self::PrintLine('|                                         v' . Config::get('daemon_api_version') . '  |');
-        set_error_handler(['Amadeus\IO\Error\ErrorHandler', 'onError']);
-        set_exception_handler(['Amadeus\IO\Exception\ExceptionHandler', 'onException']);
+        self::$err=set_error_handler(['Amadeus\IO\Error\ErrorHandler', 'onError']);
+        self::$exc=set_exception_handler(['Amadeus\IO\Exception\ExceptionHandler', 'onException']);
         self::printLine('Successfully registered', 233);
         return true;
+    }
+    public static function shutUp(){
+        self::$shutUp=true;
+        set_error_handler(self::$err);
+        set_exception_handler(self::$exc);
     }
 
     /**
@@ -68,6 +78,9 @@ class Logger
      */
     public static function printLine($Message, int $Level = 0)
     {
+        if(self::$shutUp){
+            return false;
+        }
         if (is_array($Message)) {
             file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . json_encode($Message, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
         } else {
@@ -79,6 +92,7 @@ class Logger
             @unlink('Amadeus.pid');
             exit;
         }
+        return true;
     }
 
     /**

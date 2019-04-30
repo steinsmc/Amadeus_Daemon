@@ -33,7 +33,8 @@
     "ext-fileinfo": "^7.3",
     "ext-readline": "^7.3",
     "ext-sysvshm": "^7.3",
-    "ext-sysvmsg": "^7.3"
+    "ext-sysvmsg": "^7.3",
+    "react/event-loop": "dev-master"
   },
   "autoload": {
     "psr-4": {

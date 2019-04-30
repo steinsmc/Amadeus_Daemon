@@ -8,5 +8,5 @@ interface GameListener extends Listener
 {
     public function onServerStart(int $sid):int;
     public function onServerStop(int $sid):bool;
-    public function onClientGetLog();
+    public function onClientGetLog(int $sid);
 }

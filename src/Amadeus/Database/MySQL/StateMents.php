@@ -26,7 +26,7 @@ class StateMents
         SELECT * FROM `Servers`
         ',
         'countServers' => '
-        SELECT COUNT(`SID`) AS `Numbers` FROM `Servers`
+        SELECT MAX(`SID`) FROM `Servers`
         ',
         'delServerBySID' => '
         DELETE FROM `Servers` WHERE SID = ?

@@ -101,16 +101,19 @@ class MySQL
     public function countServers(): int
     {
         $sql = $this->MySQL->prepare(StateMents::getStatement('countServers'));
-        $sql->bind_result($RNumbers);
+        $sql->bind_result($RSID);
         $sql->execute();
         if (!empty($sql->error)) {
             return 0;
         }
         $list = 0;
         while ($sql->fetch()) {
-            $list = $RNumbers;
+            $list = $RSID;
         }
         $sql->free_result();
+        if(is_null($list)){
+            $list=0;
+        }
         return $list;
     }
 

@@ -111,8 +111,8 @@ class MySQL
             $list = $RSID;
         }
         $sql->free_result();
-        if(is_null($list)){
-            $list=0;
+        if (is_null($list)) {
+            $list = 0;
         }
         return $list;
     }

@@ -3,7 +3,6 @@
 
 namespace Amadeus\Environment;
 
-use Amadeus\Database\MySQL\MySQL;
 use Amadeus\Environment\Backend\Server;
 use Amadeus\IO\Logger;
 use Amadeus\Process;

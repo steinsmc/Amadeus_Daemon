@@ -119,7 +119,7 @@ class Server
             Logger::printLine('Server ' . $this->SID . ' failed to load ' . $this->gameType, Logger::LOG_FATAL);
         }
         $this->PID = $this->GameTypeController->onServerStart($this->SID);
-        Logger::printLine('server'.$this->SID.' pid: '.$this->PID);
+        Logger::printLine('server' . $this->SID . ' pid: ' . $this->PID);
         $this->Cgroup = new Cgroup($this->SID, $this->cpu, $this->mem, $this->diskSpeed, $this->networkSpeed, $this->PID);
         Logger::printLine('Server ' . $this->SID . ' successfully started', Logger::LOG_INFORM);
         return true;

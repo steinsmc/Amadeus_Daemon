@@ -8,7 +8,7 @@ use Amadeus\Network\Controller\register;
 
 class Controller
 {
-    public static function onCall(int $fd, int $action, array $message): bool
+    public static function onCall(int $fd, string $action, array $message): bool
     {
         switch ($action) {
             case 'register':

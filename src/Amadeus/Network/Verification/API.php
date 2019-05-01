@@ -5,6 +5,7 @@ namespace Amadeus\Network\Verification;
 
 
 use Amadeus\Config\Config;
+use Amadeus\IO\Logger;
 
 /**
  * Class API
@@ -24,7 +25,7 @@ class API
         if (empty($request['action']) || empty($request['message'])) {
             return false;
         } else {
-            if ($request['message']['api'] > Config::get('daemon_api_version')) {
+            if ($request['message']['api'] >= Config::get('daemon_api_version')) {
                 return true;
             }
         }

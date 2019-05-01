@@ -46,9 +46,11 @@ class Reactor
         }
         if (!API::isOkay($request)) {
             self::rageQuit($request->fd, 'Bad client');
+            return false;
         }
-        if (($data = API::unpackData($request->data) === null)) {
+        if (($data = API::unpackData($request->data)) === null) {
             self::rageQuit($request->fd, 'Bad request');
+            return false;
         }
         return Controller::onCall($request->fd, $data['action'], $data['message']);
     }

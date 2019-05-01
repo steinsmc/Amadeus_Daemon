@@ -83,7 +83,7 @@ class Process extends Xcraft implements SteinsMC
 //        self::$ServerManager->delServer(6);
 //        self::$ServerManager->delServer(7);
 //        self::$ServerManager->delServer(8);
-//        self::$ServerManager->delServer(9);
+        self::$ServerManager->delServer(10);
         //self::$MySQL->newServer('/','pm',1,1,1,1,1);
         Logger::printLine('Amadeus System Successfully Started', Logger::LOG_SUCCESS);
         self::$WebSocketServer->start();

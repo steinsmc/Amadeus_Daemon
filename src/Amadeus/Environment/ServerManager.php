@@ -66,7 +66,7 @@ class ServerManager
         if (isset($this->servers[$SID])) {
             unset($this->servers[$SID]);
             $Directory = Process::getBase() . '/servers/server' . $SID;
-            @system('userdel -f server' . $SID);
+            @system('userdel -f server >/dev/null 2>&1' . $SID);
             @system('rm -rf ' . $Directory);
             Process::getMySQL()->delServerBySID($SID);
             return true;

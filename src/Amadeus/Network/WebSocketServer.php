@@ -49,7 +49,7 @@ class WebSocketServer
         $this->server = new Server($this->server_ip, $this->server_port, SWOOLE_BASE, SWOOLE_TCP);
         $this->server->set(array(
             'worker_num' => $this->server_workers,
-            'task_worker_num' => 2
+            'task_worker_num' => 1
         ));
         $this->server->on('task', function ($server, $task_id, $from_id, $data) {
             Logger::printLine('Swoole task worker started', Logger::LOG_SUCCESS);
@@ -72,7 +72,6 @@ class WebSocketServer
         $this->server->on('WorkerStart', function ($server, $workerId) {
             if ($workerId == 0) {
                 $server->task('tick');
-                Logger::printLine('Amadeus timer started', Logger::LOG_SUCCESS);
             }
         });
         $this->server->on('open', ['Amadeus\Network\Reactor', 'onOpen']);

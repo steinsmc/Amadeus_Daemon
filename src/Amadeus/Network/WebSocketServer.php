@@ -45,6 +45,7 @@ class WebSocketServer
         if (empty($this->server_ip) or empty($this->server_port) or empty($this->server_workers)) {
             Logger::printLine('Failed to start websocket server...shutting down!', Logger::LOG_FATAL);
         }
+        @unlink(Process::getCache() . '/TaskWorker.exist');
         $this->server = new Server($this->server_ip, $this->server_port, SWOOLE_BASE, SWOOLE_TCP);
         $this->server->set(array(
             'worker_num' => $this->server_workers,
@@ -53,9 +54,13 @@ class WebSocketServer
         $this->server->on('task', function ($server, $task_id, $from_id, $data) {
             Logger::printLine('Swoole task worker started', Logger::LOG_SUCCESS);
             if ($data == 'tick') {
-                while (file_exists(Process::getBase() . '/Amadeus.pid')) {
-                    Process::getPluginManager()->trigger('onServerTick');
-                    sleep(1);
+                if (!file_exists(Process::getCache() . '/TaskWorker.exist')) {
+                    file_put_contents(Process::getCache() . '/TaskWorker.exist', '');
+                    while (file_exists(Process::getBase() . '/Amadeus.pid')) {
+                        Process::getPluginManager()->trigger('onServerTick');
+                        sleep(1);
+                    }
+                    @unlink(Process::getCache() . '/TaskWorker.exist');
                 }
             }
             $server->finish("{$data} -> finished");

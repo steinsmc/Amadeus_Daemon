@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['verify',['verify',['../classAmadeus_1_1Config_1_1Sample_1_1SampleConfig.html#a6c45fbfcd63a72ff7c7d869c58bd802f',1,'Amadeus::Config::Sample::SampleConfig']]]
+  ['unpackdata',['unpackData',['../classAmadeus_1_1Network_1_1Verification_1_1API.html#a6a5cd62154f061fc53b8a5678f13de27',1,'Amadeus::Network::Verification::API']]],
+  ['user',['User',['../classAmadeus_1_1Network_1_1Frontend_1_1User.html',1,'Amadeus::Network::Frontend']]]
 ];

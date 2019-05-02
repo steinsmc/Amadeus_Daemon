@@ -77,6 +77,12 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa354e220d24e42ae1bb57956ded446f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Backend_1_1Server.html#aa354e220d24e42ae1bb57956ded446f8">__construct</a> ($SID, $Key, $Directory, $GameType, $<a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Cpu.html">Cpu</a>, $<a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Mem.html">Mem</a>, $<a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Disk.html">Disk</a>, $DiskSpeed, $NetworkSpeed, $Status)</td></tr>
 <tr class="separator:aa354e220d24e42ae1bb57956ded446f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a583dc66e0eb2af1bdeeb2a5e8a43fe66"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Backend_1_1Server.html#a583dc66e0eb2af1bdeeb2a5e8a43fe66">start</a> ()</td></tr>
+<tr class="separator:a583dc66e0eb2af1bdeeb2a5e8a43fe66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6578cd2d86f5254040cbe3edc0a9437b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Backend_1_1Server.html#a6578cd2d86f5254040cbe3edc0a9437b">getLog</a> (string $key)</td></tr>
+<tr class="separator:a6578cd2d86f5254040cbe3edc0a9437b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33996ddb09456f3926768c1669a877d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Backend_1_1Server.html#a33996ddb09456f3926768c1669a877d1">getDirectory</a> ()</td></tr>
+<tr class="separator:a33996ddb09456f3926768c1669a877d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -113,6 +119,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa32fb5aeee400649db3e18c0ea223eab"><td class="memItemLeft" align="right" valign="top"><a id="aa32fb5aeee400649db3e18c0ea223eab"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>$group</b></td></tr>
 <tr class="separator:aa32fb5aeee400649db3e18c0ea223eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0156c1f3ab2b075f3eb10e98d41f182"><td class="memItemLeft" align="right" valign="top"><a id="af0156c1f3ab2b075f3eb10e98d41f182"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>$PID</b></td></tr>
+<tr class="separator:af0156c1f3ab2b075f3eb10e98d41f182"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa354e220d24e42ae1bb57956ded446f8"></a>
@@ -203,6 +212,68 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a33996ddb09456f3926768c1669a877d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33996ddb09456f3926768c1669a877d1">&#9670;&nbsp;</a></span>getDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Amadeus\Environment\Backend\Server::getDirectory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
+
+</div>
+</div>
+<a id="a6578cd2d86f5254040cbe3edc0a9437b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6578cd2d86f5254040cbe3edc0a9437b">&#9670;&nbsp;</a></span>getLog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Amadeus\Environment\Backend\Server::getLog </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
+<a id="a583dc66e0eb2af1bdeeb2a5e8a43fe66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a583dc66e0eb2af1bdeeb2a5e8a43fe66">&#9670;&nbsp;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Amadeus\Environment\Backend\Server::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
 
 </div>
 </div>

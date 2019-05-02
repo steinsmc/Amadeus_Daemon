@@ -49,10 +49,19 @@ class Logger
      *
      */
     const LOG_SUCCESS = 233;
-    private static $shutUp =false;
+    /**
+     * @var bool
+     */
+    private static $shutUp = false;
+    /**
+     * @var
+     */
+    /**
+     * @var
+     */
     private static
-    $err,
-    $exc;
+        $err,
+        $exc;
 
     /**
      * @return bool
@@ -61,15 +70,21 @@ class Logger
     {
         self::printLine('|                   Amadeus                   |');
         self::PrintLine('|                                         v' . Config::get('daemon_api_version') . '  |');
-        self::$err=set_error_handler(['Amadeus\IO\Error\ErrorHandler', 'onError']);
-        self::$exc=set_exception_handler(['Amadeus\IO\Exception\ExceptionHandler', 'onException']);
+        self::$err = set_error_handler(['Amadeus\IO\Error\ErrorHandler', 'onError']);
+        self::$exc = set_exception_handler(['Amadeus\IO\Exception\ExceptionHandler', 'onException']);
         self::printLine('Successfully registered', 233);
         return true;
     }
-    public static function shutUp(){
-        self::$shutUp=true;
+
+    /**
+     * @return bool
+     */
+    public static function shutUp(): bool
+    {
+        self::$shutUp = true;
         set_error_handler(self::$err);
         set_exception_handler(self::$exc);
+        return true;
     }
 
     /**
@@ -78,7 +93,7 @@ class Logger
      */
     public static function printLine($Message, int $Level = 0)
     {
-        if(self::$shutUp){
+        if (self::$shutUp) {
             return false;
         }
         if (is_array($Message)) {

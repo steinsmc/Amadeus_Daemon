@@ -74,6 +74,9 @@ class Server
      * @var Quota
      */
     private $Quota;
+    /**
+     * @var
+     */
     private $GameTypeController;
 
     /**
@@ -106,6 +109,9 @@ class Server
         $this->group = 'server' . $SID;
     }
 
+    /**
+     * @return bool
+     */
     public function start(): bool
     {
         if (!@is_dir($this->directory)) {
@@ -117,6 +123,7 @@ class Server
             $this->GameTypeController->initServer($this->SID);
         } else {
             Logger::printLine('Server ' . $this->SID . ' failed to load ' . $this->gameType, Logger::LOG_FATAL);
+            return false;
         }
         $this->PID = $this->GameTypeController->onServerStart($this->SID);
         Logger::printLine('server' . $this->SID . ' pid: ' . $this->PID);
@@ -125,6 +132,10 @@ class Server
         return true;
     }
 
+    /**
+     * @param string $key
+     * @return bool
+     */
     public function getLog(string $key)
     {
         if ($this->key === $key) {
@@ -134,11 +145,17 @@ class Server
         }
     }
 
-    public function getDirectory()
+    /**
+     * @return string
+     */
+    public function getDirectory():string
     {
         return $this->directory;
     }
 
+    /**
+     *
+     */
     public function __destruct()
     {
         Logger::printLine('Deleting server' . $this->SID, Logger::LOG_INFORM);

@@ -28,6 +28,9 @@ class ServerManager
         Logger::PrintLine('Successfully registered', Logger::LOG_SUCCESS);
     }
 
+    /**
+     * @return bool
+     */
     public function startAllServers(): bool
     {
         $servers = Process::getMySQL()->getServers();
@@ -60,6 +63,10 @@ class ServerManager
         return array('SID' => $SID, 'Directory' => $Directory);
     }
 
+    /**
+     * @param int $SID
+     * @return bool
+     */
     public function delServer(int $SID): bool
     {
         if (isset($this->servers[$SID])) {
@@ -75,6 +82,10 @@ class ServerManager
         }
     }
 
+    /**
+     * @param int $SID
+     * @return Server|null
+     */
     public function getServer(int $SID): ?Server
     {
         return isset($this->servers[$SID]) ? $this->servers[$SID] : null;

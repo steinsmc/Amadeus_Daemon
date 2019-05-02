@@ -27,6 +27,9 @@ class Quota
         Disk::set('server' . $SID, intval($Disk * 512), intval($Disk * 1024), intval(($Disk / $rate) / 2), intval($Disk / $rate), $quota_disk);
     }
 
+    /**
+     * @return bool
+     */
     public static function sanityCheck(): bool
     {
         $quota_disk = Config::get('quota_disk');
@@ -53,6 +56,9 @@ class Quota
         return true;
     }
 
+    /**
+     *
+     */
     public function __destruct()
     {
 

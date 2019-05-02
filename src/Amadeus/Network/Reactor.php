@@ -79,6 +79,12 @@ class Reactor
         return true;
     }
 
+    /**
+     * @param int $fd
+     * @param string $action
+     * @param array $message
+     * @return bool
+     */
     public static function sendMessage(int $fd, string $action, array $message): bool
     {
         $message['time'] = date('Y-m-d H:i:s', time());

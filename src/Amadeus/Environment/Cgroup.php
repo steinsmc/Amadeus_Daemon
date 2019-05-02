@@ -89,9 +89,9 @@ class Cgroup
     }
 
     /**
-     *
+     * @return bool
      */
-    private function cgroupInit()
+    private function cgroupInit():bool
     {
         is_dir($this->c_cpu) ?: mkdir($this->c_cpu);
         is_dir($this->c_cpu) ?: Logger::printLine('creating cpu limit for' . $this->SID, Logger::LOG_INFORM);
@@ -105,8 +105,12 @@ class Cgroup
         Mem::set($this->c_memory, $this->Mem * 1024 * 1024) ?: Logger::printLine('failed to set memory for server' . $this->SID, Logger::LOG_FATAL);
         Disk::set($this->c_blkio, Config::get('cgroup_disk_primary_id'), Config::get('cgroup_disk_secondary_id'), $this->DiskSpeed * 1024 * 1024) ?: Logger::printLine('failed to set disk speed for server' . $this->SID, Logger::LOG_FATAL);
         Network::set($this->c_net_cls, $this->NetworkSpeed) ?: Logger::printLine('failed to set network speed for server' . $this->SID, Logger::LOG_FATAL);
+        return true;
     }
 
+    /**
+     * @return bool
+     */
     public static function sanityCheck(): bool
     {
         $result = is_dir(Config::get('cgroup_dir'));
@@ -116,6 +120,9 @@ class Cgroup
         return $result;
     }
 
+    /**
+     *
+     */
     public function __destruct()
     {
         Cpu::clear($this->c_cpu) ?: Logger::printLine('Failed to remove cpu limit for ' . $this->SID, Logger::LOG_PANIC);

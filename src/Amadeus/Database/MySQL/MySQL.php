@@ -98,6 +98,9 @@ class MySQL
         return $list;
     }
 
+    /**
+     * @return int
+     */
     public function countServers(): int
     {
         $sql = $this->MySQL->prepare(StateMents::getStatement('countServers'));
@@ -117,6 +120,10 @@ class MySQL
         return $list;
     }
 
+    /**
+     * @param int $sid
+     * @return bool
+     */
     public function delServerBySID(int $sid): bool
     {
         $sql = $this->MySQL->prepare(StateMents::getStatement('delServerBySID'));

@@ -58,7 +58,7 @@ class WebSocketServer
                     file_put_contents(Process::getCache() . '/TaskWorker.exist', '');
                     while (file_exists(Process::getBase() . '/Amadeus.pid')) {
                         Process::getPluginManager()->trigger('onServerTick');
-                        sleep(1);
+                        usleep(1000);
                     }
                     @unlink(Process::getCache() . '/TaskWorker.exist');
                 }

@@ -7,16 +7,19 @@ namespace Amadeus\Environment\Cgroup;
 /**
  * Class Network
  * @package Amadeus\Environment\Cgroup
+ * @Deprecated
  */
 class Network
 {
     /**
      * @param string $c_net_cls
      * @param int $networkSpeed
+     * @param int $PID
      * @return bool
      */
-    public static function set(string $c_net_cls, int $networkSpeed): bool
+    public static function set(string $c_net_cls, int $networkSpeed, int $PID): bool
     {
+        is_dir($c_net_cls) ?: mkdir($c_net_cls);
         return true;
     }
 

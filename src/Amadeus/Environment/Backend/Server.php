@@ -4,8 +4,7 @@
 namespace Amadeus\Environment\Backend;
 
 
-use Amadeus\Environment\Cgroup;
-use Amadeus\Environment\Quota;
+use Amadeus\Environment\{Cgroup,Quota};
 use Amadeus\IO\Logger;
 use Amadeus\Plugin\Game\GameController;
 use Amadeus\Process;
@@ -139,7 +138,7 @@ class Server
     public function getLog(string $key)
     {
         if ($this->key === $key) {
-            return $this->GameTypeController->onClientGetLog();
+            return $this->GameTypeController->onClientGetLog($this->SID);
         } else {
             return false;
         }

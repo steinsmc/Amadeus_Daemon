@@ -20,14 +20,25 @@ namespace {
             case '-s':
                 @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
                 @unlink($_BASE . '/Amadeus.pid');
-                sleep(1);
-                @system('killall php >/dev/null 2>&1');
                 exit;
                 break;
             case '-r':
-                @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
+                $pid = @file_get_contents($_BASE . '/Amadeus.pid');
+                @system('kill ' . $pid . ' >/dev/null 2>&1');
                 @unlink($_BASE . '/Amadeus.pid');
-                sleep(1);
+                $x=0;
+                while (true) {
+                    system('kill -0 '.$pid.' >/dev/null 2>&1',$ret);
+                    if($ret!=0){
+                        break;
+                    }
+                    $x++;
+                    if($x>3000){
+                        echo "Performing a force kill".PHP_EOL;
+                        system('killall php');
+                    }
+                    usleep(100);
+                }
                 break;
             default:
                 break;
@@ -77,9 +88,9 @@ namespace Amadeus {
 
     use Phar;
 
-    @mkdir('plugins',0755);
-    @mkdir('servers',0755);
-    @mkdir('cache',0777);
+    @mkdir('plugins', 0755);
+    @mkdir('servers', 0755);
+    @mkdir('cache', 0777);
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)), $loader);
 }

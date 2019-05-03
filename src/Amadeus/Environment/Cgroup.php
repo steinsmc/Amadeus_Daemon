@@ -4,10 +4,7 @@
 namespace Amadeus\Environment;
 
 use Amadeus\Config\Config;
-use Amadeus\Environment\Cgroup\Cpu;
-use Amadeus\Environment\Cgroup\Disk;
-use Amadeus\Environment\Cgroup\Mem;
-use Amadeus\Environment\Cgroup\Network;
+use Amadeus\Environment\Cgroup\{Cpu, Disk, Mem, Network};
 use Amadeus\IO\Logger;
 
 /**
@@ -91,20 +88,16 @@ class Cgroup
     /**
      * @return bool
      */
-    private function cgroupInit():bool
+    private function cgroupInit(): bool
     {
-        is_dir($this->c_cpu) ?: mkdir($this->c_cpu);
         is_dir($this->c_cpu) ?: Logger::printLine('creating cpu limit for' . $this->SID, Logger::LOG_INFORM);
-        is_dir($this->c_memory) ?: mkdir($this->c_memory);
         is_dir($this->c_memory) ?: Logger::printLine('creating memory limit for' . $this->SID, Logger::LOG_INFORM);
-        is_dir($this->c_blkio) ?: mkdir($this->c_blkio);
         is_dir($this->c_blkio) ?: Logger::printLine('creating disk limit for' . $this->SID, Logger::LOG_INFORM);
-        is_dir($this->c_net_cls) ?: mkdir($this->c_net_cls);
         is_dir($this->c_net_cls) ?: Logger::printLine('creating network limit for' . $this->SID, Logger::LOG_INFORM);
-        Cpu::set($this->c_cpu, 100000, ($this->Cpu / 100) * 100000) ?: Logger::printLine('failed to set cpu for server' . $this->SID, Logger::LOG_FATAL);
-        Mem::set($this->c_memory, $this->Mem * 1024 * 1024) ?: Logger::printLine('failed to set memory for server' . $this->SID, Logger::LOG_FATAL);
-        Disk::set($this->c_blkio, Config::get('cgroup_disk_primary_id'), Config::get('cgroup_disk_secondary_id'), $this->DiskSpeed * 1024 * 1024) ?: Logger::printLine('failed to set disk speed for server' . $this->SID, Logger::LOG_FATAL);
-        Network::set($this->c_net_cls, $this->NetworkSpeed) ?: Logger::printLine('failed to set network speed for server' . $this->SID, Logger::LOG_FATAL);
+        Cpu::set($this->c_cpu, 100000, ($this->Cpu / 100) * 100000, $this->PID) ?: Logger::printLine('failed to set cpu for server' . $this->SID, Logger::LOG_FATAL);
+        Mem::set($this->c_memory, $this->Mem * 1024 * 1024, $this->PID) ?: Logger::printLine('failed to set memory for server' . $this->SID, Logger::LOG_FATAL);
+        Disk::set($this->c_blkio, Config::get('cgroup_disk_primary_id'), Config::get('cgroup_disk_secondary_id'), $this->DiskSpeed * 1024 * 1024, $this->PID) ?: Logger::printLine('failed to set disk speed for server' . $this->SID, Logger::LOG_FATAL);
+        Network::set($this->c_net_cls, $this->NetworkSpeed, $this->PID) ?: Logger::printLine('failed to set network speed for server' . $this->SID, Logger::LOG_FATAL);
         return true;
     }
 

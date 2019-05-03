@@ -27,7 +27,7 @@ class PluginManager
      */
     public function __construct()
     {
-        Logger::printLine('Loading Plugins', Logger::LOG_SUCCESS);
+        Logger::printLine('Loading plugins', Logger::LOG_SUCCESS);
         $items = array_diff(scandir('plugins/'), array('..', '.'));
         $this->plugins = array();
         foreach ($items as $item) {

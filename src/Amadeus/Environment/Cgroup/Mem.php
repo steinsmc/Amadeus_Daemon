@@ -13,10 +13,12 @@ class Mem
     /**
      * @param string $c_memory
      * @param int $limit_in_bytes
+     * @param int $PID
      * @return bool
      */
-    public static function set(string $c_memory, int $limit_in_bytes): bool
+    public static function set(string $c_memory, int $limit_in_bytes, int $PID): bool
     {
+        is_dir($c_memory) ?: mkdir($c_memory);
         $fd = fopen($c_memory . '/memory.oom_control', 'w+');
         fwrite($fd, 1);
         fclose($fd);
@@ -27,6 +29,12 @@ class Mem
         fwrite($fd, $limit_in_bytes);
         fclose($fd);
         if (trim(file_get_contents($c_memory . '/memory.limit_in_bytes')) != $limit_in_bytes) {
+            return false;
+        }
+        $fd = fopen($c_memory . '/tasks', 'a');
+        fwrite($fd, $PID);
+        fclose($fd);
+        if (strstr(trim(file_get_contents($c_memory . '/tasks')), (string)$PID) === false) {
             return false;
         }
         return true;

@@ -74,8 +74,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab30a043028b8607b7975f060e9fa7e30"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Cpu.html#ab30a043028b8607b7975f060e9fa7e30">set</a> (string $c_cpu, int $rt_period_us, int $rt_runtime_us)</td></tr>
-<tr class="separator:ab30a043028b8607b7975f060e9fa7e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fbb6c1fcb5a5337c7bb9541ff3e97f4"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Cpu.html#a3fbb6c1fcb5a5337c7bb9541ff3e97f4">set</a> (string $c_cpu, int $cfs_period_us, int $cfs_quota_us, int $PID)</td></tr>
+<tr class="separator:a3fbb6c1fcb5a5337c7bb9541ff3e97f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45aa137c35b2f5dcf00c513871819174"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Cpu.html#a45aa137c35b2f5dcf00c513871819174">clear</a> (string $c_cpu)</td></tr>
 <tr class="separator:a45aa137c35b2f5dcf00c513871819174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -113,8 +113,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab30a043028b8607b7975f060e9fa7e30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab30a043028b8607b7975f060e9fa7e30">&#9670;&nbsp;</a></span>set()</h2>
+<a id="a3fbb6c1fcb5a5337c7bb9541ff3e97f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fbb6c1fcb5a5337c7bb9541ff3e97f4">&#9670;&nbsp;</a></span>set()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,13 +132,19 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>$rt_period_us</em>, </td>
+          <td class="paramname"><em>$cfs_period_us</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>$rt_runtime_us</em>&#160;</td>
+          <td class="paramname"><em>$cfs_quota_us</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$PID</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -155,8 +161,9 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$c_cpu</td><td></td></tr>
-    <tr><td class="paramtype">int</td><td class="paramname">$rt_period_us</td><td></td></tr>
-    <tr><td class="paramtype">int</td><td class="paramname">$rt_runtime_us</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$cfs_period_us</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$cfs_quota_us</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$PID</td><td></td></tr>
   </table>
   </dd>
 </dl>

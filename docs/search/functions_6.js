@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ragequit',['rageQuit',['../classAmadeus_1_1Network_1_1Reactor.html#aad07620fd7a3053c524584ae5d89f74f',1,'Amadeus::Network::Reactor']]],
-  ['register',['register',['../classAmadeus_1_1Config_1_1Config.html#a31fbcff959be2ea82854478f2b20125d',1,'Amadeus\Config\Config\register()'],['../classAmadeus_1_1IO_1_1Logger.html#ab036ba7046f519398947a6114ade89df',1,'Amadeus\IO\Logger\register()'],['../classAmadeus_1_1Plugin_1_1PluginManager.html#ae379fe4637a82326105a58144610daa6',1,'Amadeus\Plugin\PluginManager\register()']]]
+  ['newserver',['newServer',['../classAmadeus_1_1Database_1_1MySQL_1_1MySQL.html#a7858872437be1ddd6ca2500a9ab12183',1,'Amadeus\Database\MySQL\MySQL\newServer()'],['../classAmadeus_1_1Environment_1_1ServerManager.html#a2d5b9bfdecb7911a0670ebefa8804ee6',1,'Amadeus\Environment\ServerManager\newServer()']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trigger',['trigger',['../classAmadeus_1_1Plugin_1_1PluginManager.html#aac254ba855c612dbfdb47ec2699761f6',1,'Amadeus::Plugin::PluginManager']]]
+  ['printline',['printLine',['../classAmadeus_1_1IO_1_1Logger.html#ac45cf77193592c9e89925deb5d31521f',1,'Amadeus::IO::Logger']]]
 ];

@@ -74,12 +74,47 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a0fe90fbf05780b86048dceeb9c4956ba"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Disk.html#a0fe90fbf05780b86048dceeb9c4956ba">set</a> (string $c_blkio, int $diskSpeed)</td></tr>
-<tr class="separator:a0fe90fbf05780b86048dceeb9c4956ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93a222081a11a50bd93a4ae46c58e5ef"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Disk.html#a93a222081a11a50bd93a4ae46c58e5ef">set</a> (string $c_blkio, int $primary_id, int $secondary_id, int $bps_device)</td></tr>
+<tr class="separator:a93a222081a11a50bd93a4ae46c58e5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8bc2a33f4ebe99d3acfc2dabe4299c3"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Disk.html#af8bc2a33f4ebe99d3acfc2dabe4299c3">clear</a> (string $c_blkio)</td></tr>
+<tr class="separator:af8bc2a33f4ebe99d3acfc2dabe4299c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0fe90fbf05780b86048dceeb9c4956ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fe90fbf05780b86048dceeb9c4956ba">&#9670;&nbsp;</a></span>set()</h2>
+<a id="af8bc2a33f4ebe99d3acfc2dabe4299c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8bc2a33f4ebe99d3acfc2dabe4299c3">&#9670;&nbsp;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Amadeus\Environment\Cgroup\Disk::clear </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$c_blkio</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$c_blkio</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
+<a id="a93a222081a11a50bd93a4ae46c58e5ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93a222081a11a50bd93a4ae46c58e5ef">&#9670;&nbsp;</a></span>set()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -97,7 +132,19 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>$diskSpeed</em>&#160;</td>
+          <td class="paramname"><em>$primary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$secondary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$bps_device</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -114,7 +161,9 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$c_blkio</td><td></td></tr>
-    <tr><td class="paramtype">int</td><td class="paramname">$diskSpeed</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$primary_id</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$secondary_id</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$bps_device</td><td></td></tr>
   </table>
   </dd>
 </dl>

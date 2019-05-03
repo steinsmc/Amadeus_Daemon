@@ -76,8 +76,14 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a033da04a5b4168e2859bb605666b6bcd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1ServerManager.html#a033da04a5b4168e2859bb605666b6bcd">__construct</a> ()</td></tr>
 <tr class="separator:a033da04a5b4168e2859bb605666b6bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a731323f507ef1f33ae3976c029843222"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1ServerManager.html#a731323f507ef1f33ae3976c029843222">newServer</a> ()</td></tr>
-<tr class="separator:a731323f507ef1f33ae3976c029843222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2869d592a3980581042215bcc946299a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1ServerManager.html#a2869d592a3980581042215bcc946299a">startAllServers</a> ()</td></tr>
+<tr class="separator:a2869d592a3980581042215bcc946299a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d5b9bfdecb7911a0670ebefa8804ee6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1ServerManager.html#a2d5b9bfdecb7911a0670ebefa8804ee6">newServer</a> (string $GameType='PM', int $<a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Cpu.html">Cpu</a>=100, int $<a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Mem.html">Mem</a>=1024, int $<a class="el" href="classAmadeus_1_1Environment_1_1Cgroup_1_1Disk.html">Disk</a>=5120, int $DiskSpeed=5, int $NetworkSpeed=1)</td></tr>
+<tr class="separator:a2d5b9bfdecb7911a0670ebefa8804ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01c05628b92fc550e2705c0e6c306f10"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1ServerManager.html#a01c05628b92fc550e2705c0e6c306f10">delServer</a> (int $SID)</td></tr>
+<tr class="separator:a01c05628b92fc550e2705c0e6c306f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84ff363737c67aee09feea5b29721c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Environment_1_1ServerManager.html#ae84ff363737c67aee09feea5b29721c2">getServer</a> (int $SID)</td></tr>
+<tr class="separator:ae84ff363737c67aee09feea5b29721c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a033da04a5b4168e2859bb605666b6bcd"></a>
@@ -99,8 +105,58 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a731323f507ef1f33ae3976c029843222"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a731323f507ef1f33ae3976c029843222">&#9670;&nbsp;</a></span>newServer()</h2>
+<a id="a01c05628b92fc550e2705c0e6c306f10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01c05628b92fc550e2705c0e6c306f10">&#9670;&nbsp;</a></span>delServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Amadeus\Environment\ServerManager::delServer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$SID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$SID</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
+<a id="ae84ff363737c67aee09feea5b29721c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae84ff363737c67aee09feea5b29721c2">&#9670;&nbsp;</a></span>getServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Amadeus\Environment\ServerManager::getServer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$SID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$SID</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Server|null </dd></dl>
+
+</div>
+</div>
+<a id="a2d5b9bfdecb7911a0670ebefa8804ee6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d5b9bfdecb7911a0670ebefa8804ee6">&#9670;&nbsp;</a></span>newServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,12 +164,76 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Amadeus\Environment\ServerManager::newServer </td>
           <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$GameType</em> = <code>'PM'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$Cpu</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$Mem</em> = <code>1024</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$Disk</em> = <code>5120</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$DiskSpeed</em> = <code>5</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$NetworkSpeed</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$GameType</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$Cpu</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$Mem</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$Disk</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$DiskSpeed</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$NetworkSpeed</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
+
+</div>
+</div>
+<a id="a2869d592a3980581042215bcc946299a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2869d592a3980581042215bcc946299a">&#9670;&nbsp;</a></span>startAllServers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Amadeus\Environment\ServerManager::startAllServers </td>
+          <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
 
 </div>
 </div>

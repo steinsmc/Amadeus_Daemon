@@ -82,8 +82,45 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a972b704eec9bc53416f682833aab9fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad07620fd7a3053c524584ae5d89f74f"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Network_1_1Reactor.html#aad07620fd7a3053c524584ae5d89f74f">rageQuit</a> (int $fd, string $reason='Undefined')</td></tr>
 <tr class="separator:aad07620fd7a3053c524584ae5d89f74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc13928cea71823a7c58ba75aa29f3bf"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Network_1_1Reactor.html#afc13928cea71823a7c58ba75aa29f3bf">sendMessage</a> (int $fd, string $action, array $message)</td></tr>
+<tr class="separator:afc13928cea71823a7c58ba75aa29f3bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37280125d8a161e0e5e8cac79f47da01"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAmadeus_1_1Network_1_1Reactor.html#a37280125d8a161e0e5e8cac79f47da01">getUser</a> (int $fd)</td></tr>
+<tr class="separator:a37280125d8a161e0e5e8cac79f47da01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a37280125d8a161e0e5e8cac79f47da01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37280125d8a161e0e5e8cac79f47da01">&#9670;&nbsp;</a></span>getUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Amadeus\Network\Reactor::getUser </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$fd</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>User|null </dd></dl>
+
+</div>
+</div>
 <a id="a972b704eec9bc53416f682833aab9fbc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a972b704eec9bc53416f682833aab9fbc">&#9670;&nbsp;</a></span>onClose()</h2>
 
@@ -253,6 +290,57 @@ Static Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramtype">int</td><td class="paramname">$fd</td><td></td></tr>
     <tr><td class="paramtype">string</td><td class="paramname">$reason</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
+<a id="afc13928cea71823a7c58ba75aa29f3bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc13928cea71823a7c58ba75aa29f3bf">&#9670;&nbsp;</a></span>sendMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Amadeus\Network\Reactor::sendMessage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$fd</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$action</td><td></td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$message</td><td></td></tr>
   </table>
   </dd>
 </dl>

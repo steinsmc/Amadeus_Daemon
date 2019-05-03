@@ -52,6 +52,7 @@ class WebSocketServer
             'task_worker_num' => 1
         ));
         $this->server->on('task', function ($server, $task_id, $from_id, $data) {
+            @cli_set_process_title('Amadeus Daemon Task Worker Process');
             Logger::printLine('Swoole task worker started', Logger::LOG_SUCCESS);
             if ($data == 'tick') {
                 if (!file_exists(Process::getCache() . '/TaskWorker.exist')) {
@@ -70,6 +71,7 @@ class WebSocketServer
             Logger::printLine('Swoole task worker stopped', Logger::LOG_INFORM);
         });
         $this->server->on('WorkerStart', function ($server, $workerId) {
+            @cli_set_process_title('Amadeus Daemon Websocket Worker Process'.$workerId);
             if ($workerId == 0) {
                 $server->task('tick');
             }

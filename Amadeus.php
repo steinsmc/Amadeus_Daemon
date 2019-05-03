@@ -33,11 +33,11 @@ namespace {
                         break;
                     }
                     $x++;
-                    if($x>3000){
+                    if($x>30){
                         echo "Performing a force kill".PHP_EOL;
                         system('killall php');
                     }
-                    usleep(100);
+                    sleep(1);
                 }
                 break;
             default:

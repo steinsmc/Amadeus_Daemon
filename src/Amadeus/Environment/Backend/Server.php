@@ -4,6 +4,7 @@
 namespace Amadeus\Environment\Backend;
 
 
+use Amadeus\Config\Config;
 use Amadeus\Environment\{Cgroup,Quota};
 use Amadeus\IO\Logger;
 use Amadeus\Plugin\Game\GameController;
@@ -116,7 +117,9 @@ class Server
         if (!@is_dir($this->directory)) {
             Logger::printLine('Server' . $this->SID . ' directory does not exist ' . $this->directory, Logger::LOG_FATAL);
         }
-        $this->Quota = new Quota($this->SID, $this->disk);
+        if(Config::get('quota_enabled')){
+            $this->Quota = new Quota($this->SID, $this->disk);
+        }
         if (Process::getGameControl()->getGameType($this->gameType) !== false) {
             $this->GameTypeController = Process::getGameControl()->getGameType($this->gameType);
             $this->GameTypeController->initServer($this->SID);
@@ -126,7 +129,9 @@ class Server
         }
         $this->PID = $this->GameTypeController->onServerStart($this->SID);
         Logger::printLine('server' . $this->SID . ' pid: ' . $this->PID);
-        $this->Cgroup = new Cgroup($this->SID, $this->cpu, $this->mem, $this->diskSpeed, $this->networkSpeed, $this->PID);
+        if(Config::get('cgroup_enabled')){
+            $this->Cgroup = new Cgroup($this->SID, $this->cpu, $this->mem, $this->diskSpeed, $this->networkSpeed, $this->PID);
+        }
         Logger::printLine('Server ' . $this->SID . ' successfully started', Logger::LOG_INFORM);
         return true;
     }

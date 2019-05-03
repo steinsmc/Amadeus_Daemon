@@ -90,11 +90,11 @@ class Cgroup
      */
     private function cgroupInit(): bool
     {
-        is_dir($this->c_cpu) ?: Logger::printLine('creating cpu limit for' . $this->SID, Logger::LOG_INFORM);
-        is_dir($this->c_memory) ?: Logger::printLine('creating memory limit for' . $this->SID, Logger::LOG_INFORM);
-        is_dir($this->c_blkio) ?: Logger::printLine('creating disk limit for' . $this->SID, Logger::LOG_INFORM);
-        is_dir($this->c_net_cls) ?: Logger::printLine('creating network limit for' . $this->SID, Logger::LOG_INFORM);
-        Cpu::set($this->c_cpu, 100000, ($this->Cpu / 100) * 100000, $this->PID) ?: Logger::printLine('failed to set cpu for server' . $this->SID, Logger::LOG_FATAL);
+        Cpu::clear($this->c_cpu) ?: Logger::printLine('Failed to remove cpu limit for ' . $this->SID, Logger::LOG_PANIC);
+        Mem::clear($this->c_memory) ?: Logger::printLine('Failed to remove memory limit for ' . $this->SID, Logger::LOG_PANIC);
+        Disk::clear($this->c_blkio) ?: Logger::printLine('Failed to remove disk speed limit for ' . $this->SID, Logger::LOG_PANIC);
+        Network::clear($this->c_net_cls) ?: Logger::printLine('Failed to remove network speed limit for ' . $this->SID, Logger::LOG_PANIC);
+        Cpu::set($this->c_cpu, 100000, ($this->Cpu / 100) * 100000*Config::get('daemon_cpu_cores'), $this->PID) ?: Logger::printLine('failed to set cpu for server' . $this->SID, Logger::LOG_FATAL);
         Mem::set($this->c_memory, $this->Mem * 1024 * 1024, $this->PID) ?: Logger::printLine('failed to set memory for server' . $this->SID, Logger::LOG_FATAL);
         Disk::set($this->c_blkio, Config::get('cgroup_disk_primary_id'), Config::get('cgroup_disk_secondary_id'), $this->DiskSpeed * 1024 * 1024, $this->PID) ?: Logger::printLine('failed to set disk speed for server' . $this->SID, Logger::LOG_FATAL);
         Network::set($this->c_net_cls, $this->NetworkSpeed, $this->PID) ?: Logger::printLine('failed to set network speed for server' . $this->SID, Logger::LOG_FATAL);

@@ -3,6 +3,7 @@
     <words>
       <w>blkio</w>
       <w>cgroup</w>
+      <w>cpuinfo</w>
       <w>dbname</w>
       <w>descriptorspec</w>
       <w>grpquota</w>

@@ -12,24 +12,24 @@ class Cpu
 {
     /**
      * @param string $c_cpu
-     * @param int $rt_period_us
-     * @param int $rt_runtime_us
+     * @param int $cfs_period_us
+     * @param int $cfs_quota_us
      * @param int $PID
      * @return bool
      */
-    public static function set(string $c_cpu, int $rt_period_us, int $rt_runtime_us, int $PID): bool
+    public static function set(string $c_cpu, int $cfs_period_us, int $cfs_quota_us, int $PID): bool
     {
         is_dir($c_cpu) ?: mkdir($c_cpu);
-        $fd = fopen($c_cpu . '/cpu.rt_period_us', 'w+');
-        fwrite($fd, $rt_period_us);
+        $fd = fopen($c_cpu . '/cpu.cfs_period_us', 'w+');
+        fwrite($fd, $cfs_period_us);
         fclose($fd);
-        if (trim(file_get_contents($c_cpu . '/cpu.rt_period_us')) != $rt_period_us) {
+        if (trim(file_get_contents($c_cpu . '/cpu.cfs_period_us')) != $cfs_period_us) {
             return false;
         }
-        $fd = fopen($c_cpu . '/cpu.rt_runtime_us', 'w+');
-        fwrite($fd, $rt_runtime_us);
+        $fd = fopen($c_cpu . '/cpu.cfs_quota_us', 'w+');
+        fwrite($fd, $cfs_quota_us);
         fclose($fd);
-        if (trim(file_get_contents($c_cpu . '/cpu.rt_runtime_us')) != $rt_runtime_us) {
+        if (trim(file_get_contents($c_cpu . '/cpu.cfs_quota_us')) != $cfs_quota_us) {
             return false;
         }
         $fd = fopen($c_cpu . '/tasks', 'a');

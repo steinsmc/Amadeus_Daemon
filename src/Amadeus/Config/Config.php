@@ -18,7 +18,8 @@ class Config
      */
     private static $_CONFIG = array(
         'daemon_api_version' => 1,
-        'daemon_os' => PHP_OS
+        'daemon_os' => PHP_OS,
+        'daemon_cpu_cores' => 1
     );
 
     /**
@@ -43,6 +44,8 @@ class Config
         }
         self::$_CONFIG['daemon_api_version'] = 1;
         self::$_CONFIG['daemon_os'] = PHP_OS;
+        exec('cat /proc/cpuinfo | grep "processor"| wc -l',$ret);
+        self::$_CONFIG['daemon_cpu_cores'] = intval(trim($ret[0]));
         Logger::printLine('Successfully registered', Logger::LOG_SUCCESS);
         return true;
     }

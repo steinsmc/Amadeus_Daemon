@@ -14,13 +14,13 @@ use Amadeus\Process;
 class PluginManager
 {
     /**
-     * @var
+     * @var array
      */
-    private $listeners;
+    private $listeners = array();
     /**
      * @var array
      */
-    private $plugins;
+    private $plugins = array();
 
     /**
      * PluginManager constructor.
@@ -29,14 +29,13 @@ class PluginManager
     {
         Logger::printLine('Loading plugins', Logger::LOG_SUCCESS);
         $items = array_diff(scandir('plugins/'), array('..', '.'));
-        $this->plugins = array();
         foreach ($items as $item) {
             if (is_file('plugins/' . $item) && substr($item, -5) === '.phar') {
                 $info = yaml_parse(file_get_contents('phar://plugins/' . $item . '/plugin.yaml'));
-                $this->plugins[] = array('name' => $info['name'], 'uri' => 'phar://' . Process::getBase() . '/plugins/' . $item, 'stub' => $info['stub'], 'namespace' => $info['namespace'], 'main' => $info['main'], 'type' => 'phar');
+                $this->plugins[$info['namespace']] = array('name' => $info['name'], 'uri' => 'phar://' . Process::getBase() . '/plugins/' . $item, 'stub' => $info['stub'], 'namespace' => $info['namespace'], 'main' => $info['main'], 'type' => 'phar');
             } else {
                 $info = yaml_parse_file('plugins/' . $item . '/plugin.yaml');
-                $this->plugins[] = array('name' => $info['name'], 'uri' => Process::getBase() . '/plugins/' . $item, 'stub' => $info['stub'], 'main' => $info['main'], 'namespace' => $info['namespace'], 'type' => 'dir');
+                $this->plugins[$info['namespace']] = array('name' => $info['name'], 'uri' => Process::getBase() . '/plugins/' . $item, 'stub' => $info['stub'], 'main' => $info['main'], 'namespace' => $info['namespace'], 'type' => 'dir');
             }
             Logger::printLine('Found ' . $item, Logger::LOG_INFORM);
         }
@@ -50,7 +49,8 @@ class PluginManager
     {
         if (count($this->plugins) > 0 && is_array($this->plugins)) {
             foreach ($this->plugins as $plugin) {
-                Process::getLoader()->addPsr4($plugin['namespace'], $plugin['uri'] . '/' . $plugin['stub']);
+                //doesn't support phar autoload
+                Process::getLoader()->setPsr4($plugin['namespace'], $plugin['uri'] . '/' . $plugin['stub'] . '/');
                 include_once($plugin['uri'] . '/' . $plugin['stub'] . '/' . $plugin['main'] . '.php');
                 $class_name = $plugin['namespace'] . $plugin['main'];
                 Logger::printLine('Loading ' . $plugin['name'], Logger::LOG_INFORM);

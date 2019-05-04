@@ -6,11 +6,13 @@
       <w>cpuinfo</w>
       <w>dbname</w>
       <w>descriptorspec</w>
+      <w>fileinfo</w>
       <w>grpquota</w>
       <w>killall</w>
       <w>lixisgay</w>
       <w>lixworth</w>
       <w>minecraft</w>
+      <w>moontoast</w>
       <w>mozilla</w>
       <w>pcntl</w>
       <w>pmmp</w>
@@ -21,6 +23,8 @@
       <w>setquota</w>
       <w>setsid</w>
       <w>steinsmc</w>
+      <w>sysvmsg</w>
+      <w>sysvshm</w>
       <w>useradd</w>
       <w>userdel</w>
       <w>usrquota</w>

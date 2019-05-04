@@ -146,4 +146,9 @@ class Process extends Xcraft implements SteinsMC
     {
         return self::$_BASE . '/cache';
     }
+
+    public static function getRuntime(): string
+    {
+        return self::$_BASE.'/cache/runtime';
+    }
 }

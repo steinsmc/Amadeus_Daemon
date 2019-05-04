@@ -32,6 +32,9 @@ class GameControl
      */
     public function onGameTypeRegister(string $type, object $reference): bool
     {
+        if(array_key_exists($type, $this->types)){
+            Logger::printLine('The same server controller appears and will be replaced later; We call this "バイツァ・ダスト(bite the dust)"', Logger::LOG_DANGER);
+        }
         $this->types[$type] = $reference;
         return true;
     }

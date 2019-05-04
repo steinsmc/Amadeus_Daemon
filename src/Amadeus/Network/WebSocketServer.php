@@ -45,7 +45,6 @@ class WebSocketServer
         if (empty($this->server_ip) or empty($this->server_port) or empty($this->server_workers)) {
             Logger::printLine('Failed to start websocket server...shutting down!', Logger::LOG_FATAL);
         }
-        @unlink(Process::getCache() . '/TaskWorker.exist');
         $this->server = new Server($this->server_ip, $this->server_port, SWOOLE_BASE, SWOOLE_TCP);
         $this->server->set(array(
             'worker_num' => $this->server_workers,
@@ -54,14 +53,13 @@ class WebSocketServer
         $this->server->on('task', function ($server, $task_id, $from_id, $data) {
             @cli_set_process_title('Amadeus Daemon Task Worker Process');
             Logger::printLine('Swoole task worker started', Logger::LOG_SUCCESS);
+            if (!file_exists(Process::getRuntime() . '/TaskWorker'.$task_id.'.pid')) {
+                file_put_contents(Process::getRuntime() . '/TaskWorker'.$task_id.'.pid', posix_getpid());
+            }
             if ($data == 'tick') {
-                if (!file_exists(Process::getCache() . '/TaskWorker.exist')) {
-                    file_put_contents(Process::getCache() . '/TaskWorker.exist', '');
-                    while (file_exists(Process::getBase() . '/Amadeus.pid')) {
-                        Process::getPluginManager()->trigger('onServerTick');
-                        sleep(1);
-                    }
-                    @unlink(Process::getCache() . '/TaskWorker.exist');
+                while (file_exists(Process::getBase() . '/Amadeus.pid')) {
+                    Process::getPluginManager()->trigger('onServerTick');
+                    sleep(1);
                 }
             }
             $server->finish("{$data} -> finished");
@@ -69,12 +67,18 @@ class WebSocketServer
 
         $this->server->on('finish', function ($server, $task_id, $data) {
             Logger::printLine('Swoole task worker stopped', Logger::LOG_INFORM);
+            @unlink(Process::getRuntime() . '/TaskWorker'.$task_id.'.pid');
         });
         $this->server->on('WorkerStart', function ($server, $workerId) {
-            @cli_set_process_title('Amadeus Daemon Websocket Worker Process'.$workerId);
+            @cli_set_process_title('Amadeus Daemon Websocket Worker Process' . $workerId);
+            @unlink(Process::getRuntime() . '/WsWorker'.$workerId.'.pid');
+            file_put_contents(Process::getRuntime() . '/WsWorker'.$workerId.'.pid', posix_getpid());
             if ($workerId == 0) {
                 $server->task('tick');
             }
+        });
+        $this->server->on('WorkerStop',function($server, $workerId){
+            @unlink(Process::getRuntime() . '/WsWorker'.$workerId.'.pid');
         });
         $this->server->on('open', ['Amadeus\Network\Reactor', 'onOpen']);
         $this->server->on('message', ['Amadeus\Network\Reactor', 'onMessage']);

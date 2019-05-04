@@ -21,15 +21,15 @@
     }
   ],
   "require": {
-    "humbug/box": "^3.0@dev",
+    "humbug/box": "^3.7@dev",
     "docker-php/docker-php": "^2.0@dev",
     "ext-yaml": "^2.0",
     "ext-posix": "^7.3",
     "ext-pcntl": "^7.3",
     "ext-json": "^1.7",
     "ext-mysqli": "^7.3",
-    "ramsey/uuid": "^4.0@dev",
-    "moontoast/math": "dev-master",
+    "ramsey/uuid": "^3.8",
+    "moontoast/math": "^1.1",
     "ext-fileinfo": "^7.3",
     "ext-readline": "^7.3",
     "ext-sysvshm": "^7.3",

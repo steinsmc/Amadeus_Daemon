@@ -17,14 +17,13 @@ class Quota
     /**
      * Quota constructor.
      * @param int $SID
-     * @param int $Disk
+     * @param int $disk
      */
-    public function __construct(int $SID, int $Disk)
+    public function __construct(int $SID, int $disk)
     {
         $rate = Config::get('quota_file_to_size_rate');
         $quota_disk = Config::get('quota_disk');
-        //Logger::printLine('quota info: ' . 'server' . $SID . ' ' . intval($Disk * 512) . ' ' . intval($Disk * 1024) . ' ' . intval(($Disk / $rate) / 2) . ' ' . intval($Disk / $rate) . ' ' . Config::get('quota_disk'), Logger::LOG_INFORM);
-        Disk::set('server' . $SID, intval($Disk * 512), intval($Disk * 1024), intval(($Disk / $rate) / 2), intval($Disk / $rate), $quota_disk);
+        Disk::set('server' . $SID, intval($disk * 512), intval($disk * 1024), intval(($disk / $rate) / 2), intval($disk / $rate), $quota_disk);
     }
 
     /**

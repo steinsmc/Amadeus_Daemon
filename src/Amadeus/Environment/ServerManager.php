@@ -45,24 +45,24 @@ class ServerManager
     }
 
     /**
-     * @param string $GameType
-     * @param int $Cpu
-     * @param int $Mem
-     * @param int $Disk
-     * @param int $DiskSpeed
-     * @param int $NetworkSpeed
+     * @param string $gameType
+     * @param int $cpu
+     * @param int $mem
+     * @param int $disk
+     * @param int $diskSpeed
+     * @param int $networkSpeed
      * @return array
      */
-    public function newServer(string $GameType = 'PM', int $Cpu = 100, int $Mem = 1024, int $Disk = 5120, int $DiskSpeed = 5, int $NetworkSpeed = 1): array
+    public function newServer(string $gameType = 'PM', int $cpu = 100, int $mem = 1024, int $disk = 5120, int $diskSpeed = 5, int $networkSpeed = 1): array
     {
         Logger::printLine('Creating a new server',Logger::LOG_INFORM);
         $SID = Process::getMySQL()->countServers() + 1;
-        $Directory = Process::getBase() . '/servers/server' . $SID;
-        @system('useradd -m -d ' . $Directory . ' server' . $SID . ' 2>&1');
-        $Key = Process::getMySQL()->newServer($Directory, $GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed);
-        $this->servers[$SID] = new Server($SID, $Key, $Directory, $GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, true);
+        $directory = Process::getBase() . '/servers/server' . $SID;
+        @system('useradd -m -d ' . $directory . ' server' . $SID . ' 2>&1');
+        $key = Process::getMySQL()->newServer($directory, $gameType, $cpu, $mem, $disk, $diskSpeed, $networkSpeed);
+        $this->servers[$SID] = new Server($SID, $key, $directory, $gameType, $cpu, $mem, $disk, $diskSpeed, $networkSpeed, true);
         $this->servers[$SID]->start();
-        return array('SID' => $SID, 'Directory' => $Directory);
+        return array('SID' => $SID, 'Directory' => $directory);
     }
 
     /**

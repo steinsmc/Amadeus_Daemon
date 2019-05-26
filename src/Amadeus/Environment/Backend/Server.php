@@ -77,34 +77,34 @@ class Server
     /**
      * @var
      */
-    private $GameTypeController;
+    private $gameTypeController;
 
     /**
      * Server constructor.
      * @param $SID
-     * @param $Key
-     * @param $Directory
-     * @param $GameType
-     * @param $Cpu
-     * @param $Mem
-     * @param $Disk
-     * @param $DiskSpeed
-     * @param $NetworkSpeed
-     * @param $Status
+     * @param $key
+     * @param $directory
+     * @param $gameType
+     * @param $cpu
+     * @param $mem
+     * @param $disk
+     * @param $diskSpeed
+     * @param $networkSpeed
+     * @param $status
      */
-    public function __construct($SID, $Key, $Directory, $GameType, $Cpu, $Mem, $Disk, $DiskSpeed, $NetworkSpeed, $Status)
+    public function __construct($SID, $key, $directory, $gameType, $cpu, $mem, $disk, $diskSpeed, $networkSpeed, $status)
     {
         Logger::printLine('Server ' . $SID . ' is starting', Logger::LOG_INFORM);
         $this->SID = $SID;
-        $this->key = $Key;
-        $this->directory = $Directory;
-        $this->gameType = $GameType;
-        $this->cpu = $Cpu;
-        $this->mem = $Mem;
-        $this->disk = $Disk;
-        $this->diskSpeed = $DiskSpeed;
-        $this->networkSpeed = $NetworkSpeed;
-        $this->status = $Status;
+        $this->key = $key;
+        $this->directory = $directory;
+        $this->gameType = $gameType;
+        $this->cpu = $cpu;
+        $this->mem = $mem;
+        $this->disk = $disk;
+        $this->diskSpeed = $diskSpeed;
+        $this->networkSpeed = $networkSpeed;
+        $this->status = $status;
         $this->user = 'server' . $SID;
         $this->group = 'server' . $SID;
     }

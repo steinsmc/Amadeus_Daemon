@@ -78,7 +78,7 @@ namespace {
         Amadeus\IO\Logger::printLine(ob_get_contents());
         ob_end_clean();
         while ($ret = \Swoole\Process::wait(true)) {
-            Logger::printLine("PID={$ret['pid']}", Logger::LOG_INFORM);
+            Logger::printLine("pid={$ret['pid']}", Logger::LOG_INFORM);
         }
         @unlink('/Amadeus.pid');
     });

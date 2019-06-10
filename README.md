@@ -14,4 +14,4 @@
 ## License
 Amadeus is open-source software licensed under the [Mozilla Public License 2.0](https://opensource.org/licenses/MPL-2.0).
 
-# [![PocketMine-MP](logo.png)](https://github.com/steinsmc/)
+# [![Amadeus](logo.png)](https://github.com/steinsmc/)

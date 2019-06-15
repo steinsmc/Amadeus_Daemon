@@ -24,20 +24,22 @@ namespace {
                 break;
             case '-r':
                 $pid = @file_get_contents($_BASE . '/Amadeus.pid');
-                @system('kill ' . $pid . ' >/dev/null 2>&1');
-                @unlink($_BASE . '/Amadeus.pid');
-                $x=0;
-                while (true) {
-                    system('kill -0 '.$pid.' >/dev/null 2>&1',$ret);
-                    if($ret!=0){
-                        break;
+                if(!empty($pid)){
+                    @system('kill ' . $pid . ' >/dev/null 2>&1');
+                    @unlink($_BASE . '/Amadeus.pid');
+                    $x=0;
+                    while (true) {
+                        system('kill -0 '.$pid.' >/dev/null 2>&1',$ret);
+                        if($ret!=0){
+                            break;
+                        }
+                        $x++;
+                        if($x>30){
+                            echo "Performing a force kill".PHP_EOL;
+                            system('killall php');
+                        }
+                        sleep(1);
                     }
-                    $x++;
-                    if($x>30){
-                        echo "Performing a force kill".PHP_EOL;
-                        system('killall php');
-                    }
-                    sleep(1);
                 }
                 break;
             default:

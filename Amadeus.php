@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace {
 
     use Amadeus\IO\Logger;
+    use Amadeus\Process;
+    use Amadeus\Runtime\Runtime;
 
     if (PHP_OS == 'Darwin') {
         exit('Error: MacOS is still unsupported, please wait for the announcement.');
@@ -14,32 +16,53 @@ namespace {
     if (PHP_OS == 'FreeBSD') {
         exit('Error: FreeBSD is still unsupported, please wait for the announcement.');
     }
+
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));
+    require_once($_BASE.'/src/Amadeus/Runtime/Runtime.php');
+    Amadeus\Runtime\Runtime::register($_BASE.'/cache/runtime');
     foreach ($argv as $arg) {
         switch ($arg) {
             case '-s':
-                @system('kill ' . @file_get_contents($_BASE . '/Amadeus.pid') . ' >/dev/null 2>&1');
-                @unlink($_BASE . '/Amadeus.pid');
-                exit;
-                break;
-            case '-r':
+                Amadeus\Runtime\Runtime::deleteProcessID('Daemon');
                 $pid = @file_get_contents($_BASE . '/Amadeus.pid');
-                if(!empty($pid)){
+                if (!empty($pid)) {
                     @system('kill ' . $pid . ' >/dev/null 2>&1');
-                    @unlink($_BASE . '/Amadeus.pid');
-                    $x=0;
+                    $x = 0;
                     while (true) {
-                        system('kill -0 '.$pid.' >/dev/null 2>&1',$ret);
-                        if($ret!=0){
+                        system('kill -0 ' . $pid . ' >/dev/null 2>&1', $ret);
+                        if ($ret != 0) {
                             break;
                         }
                         $x++;
-                        if($x>30){
-                            echo "Performing a force kill".PHP_EOL;
+                        if ($x > 30) {
+                            echo "Performing a force kill" . PHP_EOL;
                             system('killall php');
                         }
                         sleep(1);
                     }
+                    @unlink($_BASE . '/Amadeus.pid');
+                }
+                exit;
+                break;
+            case '-r':
+                Amadeus\Runtime\Runtime::deleteProcessID('Daemon');
+                $pid = @file_get_contents($_BASE . '/Amadeus.pid');
+                if (!empty($pid)) {
+                    @system('kill ' . $pid . ' >/dev/null 2>&1');
+                    $x = 0;
+                    while (true) {
+                        system('kill -0 ' . $pid . ' >/dev/null 2>&1', $ret);
+                        if ($ret != 0) {
+                            break;
+                        }
+                        $x++;
+                        if ($x > 30) {
+                            echo "Performing a force kill" . PHP_EOL;
+                            system('killall php');
+                        }
+                        sleep(1);
+                    }
+                    @unlink($_BASE . '/Amadeus.pid');
                 }
                 break;
             default:
@@ -69,20 +92,26 @@ namespace {
         exit('Error: Fork Failed ' . $pid . PHP_EOL);
     } else if ($pid > 0) {
         @file_put_contents($_BASE . '/Amadeus.pid', $pid);
+        Amadeus\Runtime\Runtime::registerProcessID('Daemon', $pid);
         exit;
     }
     @cli_set_process_title('Amadeus Daemon');
     chdir($_BASE);
     echo 'Amadeus Daemon Started!' . PHP_EOL;
     ob_start();
-    register_shutdown_function(function () {
+    register_shutdown_function(function () use ($_BASE) {
         Amadeus\IO\Logger::printLine('Stopping the Daemon...');
         Amadeus\IO\Logger::printLine(ob_get_contents());
         ob_end_clean();
+        Amadeus\Runtime\Runtime::deleteProcessID('Daemon');
+        Amadeus\Process::unload();
         while ($ret = \Swoole\Process::wait(true)) {
             Logger::printLine("pid={$ret['pid']}", Logger::LOG_INFORM);
         }
-        @unlink('/Amadeus.pid');
+        while (count(array_diff(scandir($_BASE . '/cache/runtime/'), array('..', '.'))) !== 0) {
+            sleep(1);
+        }
+        @unlink($_BASE . '/Amadeus.pid');
     });
 }
 
@@ -93,7 +122,7 @@ namespace Amadeus {
     @mkdir('plugins', 0755);
     @mkdir('servers', 0755);
     @mkdir('cache', 0777);
-    @mkdir('cache/runtime',0777);
+    @mkdir('cache/runtime', 0777);
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)), $loader);
 }

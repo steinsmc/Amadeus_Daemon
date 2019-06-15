@@ -50,7 +50,12 @@ class SampleConfig
      */
     public static function verify(array $config): bool
     {
-        Logger::printLine($config, Logger::LOG_INFORM);
+        $config_masked=$config;
+        $config_masked['daemon_mysql_dbname']='*';
+        $config_masked['daemon_mysql_user']='*';
+        $config_masked['daemon_mysql_password']='*';
+        $config_masked['daemon_password']='*';
+        Logger::printLine($config_masked, Logger::LOG_INFORM);
         foreach (self::$config as $k => $v) {
             Logger::printLine($k, Logger::LOG_INFORM);
             if (!array_key_exists($k, $config)) {

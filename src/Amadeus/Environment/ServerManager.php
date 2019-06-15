@@ -33,7 +33,7 @@ class ServerManager
      */
     public function startAllServers(): bool
     {
-        Logger::printLine('Starting all server',Logger::LOG_INFORM);
+        Logger::printLine('Starting all server', Logger::LOG_INFORM);
         $servers = Process::getMySQL()->getServers();
         foreach ($servers as $SID => $server) {
             @mkdir($server['Directory'], 0755);
@@ -41,6 +41,12 @@ class ServerManager
             $this->servers[$SID] = new Server($server['SID'], $server['Key'], $server['Directory'], $server['GameControl'], $server['Cpu'], $server['Mem'], $server['Disk'], $server['DiskSpeed'], $server['NetworkSpeed'], $server['Status']);
             $this->servers[$SID]->start();
         }
+        return true;
+    }
+
+    public function stopAllServers(): bool
+    {
+        unset($this->servers);
         return true;
     }
 
@@ -55,7 +61,7 @@ class ServerManager
      */
     public function newServer(string $gameType = 'PM', int $cpu = 100, int $mem = 1024, int $disk = 5120, int $diskSpeed = 5, int $networkSpeed = 1): array
     {
-        Logger::printLine('Creating a new server',Logger::LOG_INFORM);
+        Logger::printLine('Creating a new server', Logger::LOG_INFORM);
         $SID = Process::getMySQL()->countServers() + 1;
         $directory = Process::getBase() . '/servers/server' . $SID;
         @system('useradd -m -d ' . $directory . ' server' . $SID . ' 2>&1');
@@ -71,7 +77,7 @@ class ServerManager
      */
     public function delServer(int $SID): bool
     {
-        Logger::printLine('Deleting server'.$SID,Logger::LOG_WARNING);
+        Logger::printLine('Deleting server' . $SID, Logger::LOG_WARNING);
         if (isset($this->servers[$SID])) {
             unset($this->servers[$SID]);
             $Directory = Process::getBase() . '/servers/server' . $SID;

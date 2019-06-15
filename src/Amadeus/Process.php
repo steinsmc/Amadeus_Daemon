@@ -75,12 +75,17 @@ class Process extends Xcraft implements SteinsMC
 //        self::$ServerManager->newServer('pm', 1, 1, 2048, 1, 1);
 //        self::$ServerManager->newServer('pm', 1, 1, 4096, 1, 1);
 //        self::$ServerManager->newServer('pm', 1, 1, 8192, 1, 1);
-//        self::$ServerManager->newServer('pm', 1, 1, 16384, 1, 1);
+        //self::$ServerManager->newServer('pm', 50, 50, 16384, 5, 1);
         //self::$ServerManager->delServer(10);
         //self::$MySQL->newServer('/','pm',1,1,1,1,1);
         Logger::printLine('Amadeus Daemon successfully started', Logger::LOG_SUCCESS);
         self::$WebSocketServer->start();
         return true;
+    }
+
+    public static function unload(){
+        self::$WebSocketServer->stop();
+        self::$ServerManager->stopAllServers();
     }
 
     /**

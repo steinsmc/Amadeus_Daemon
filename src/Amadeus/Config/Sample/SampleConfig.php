@@ -50,6 +50,7 @@ class SampleConfig
      */
     public static function verify(array $config): bool
     {
+        //妈妈再也不用担心我的密码背写进log里上传给开发者的时候密码被看见了
         $config_masked=$config;
         $config_masked['daemon_mysql_dbname']='*';
         $config_masked['daemon_mysql_user']='*';

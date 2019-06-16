@@ -22,7 +22,11 @@ class Controller
     {
         switch ($action) {
             case 'register':
-                return register::onCall($fd, $message);
+                if(register::meetRequirement($message)){
+                    return register::onCall($fd, $message);
+                }
+                Reactor::rageQuit($fd,'Invalid Parameters');
+                return false;
                 break;
             default:
                 Reactor::rageQuit($fd, 'Unexpected Action');

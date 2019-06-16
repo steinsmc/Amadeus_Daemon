@@ -44,12 +44,12 @@ class Reactor
         if (self::$userList[$request->fd]->getIp() !== $server->getClientInfo($request->fd)['remote_ip']) {
             self::rageQuit($request->fd, 'IP change detected');
         }
-        if (!API::isOkay($request)) {
-            self::rageQuit($request->fd, 'Bad client');
-            return false;
-        }
         if (($data = API::unpackData($request->data)) === null) {
             self::rageQuit($request->fd, 'Bad request');
+            return false;
+        }
+        if (!API::isOkay($request)) {
+            self::rageQuit($request->fd, 'Bad client');
             return false;
         }
         return Controller::onCall($request->fd, $data['action'], $data['message']);

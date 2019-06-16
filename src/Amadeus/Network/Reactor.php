@@ -20,6 +20,7 @@ class Reactor
      * @var array
      */
     private static $userList = array();
+    private static $rdmsList = array();
 
     /**
      * @param Server $server
@@ -63,6 +64,9 @@ class Reactor
     public static function onClose(Server $server, int $fd): bool
     {
         unset(self::$userList[$fd]);
+        if (!empty(self::$rdmsList[$fd])) {
+            unset(self::$rdmsList[$fd]);
+        }
         Logger::PrintLine('New Disconnection,fd: ' . $fd . ', ip: ' . $server->getClientInfo($fd)['remote_ip'], Logger::LOG_INFORM);
         return true;
     }
@@ -88,8 +92,21 @@ class Reactor
     public static function sendMessage(int $fd, string $action, array $message): bool
     {
         $message['time'] = date('Y-m-d H:i:s', time());
-        Logger::printLine('Sending user' . $fd . ' a ' . $action . ' message, message detail: ' . json_encode($message, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), Logger::LOG_INFORM);
         Process::getWebSocketServer()->getServer()->push($fd, json_encode(array('action' => $action, 'message' => $message), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        $detail=json_encode($message, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        if(strlen($detail)>100){
+            $detail='*';
+        }
+        Logger::printLine('Sending user' . $fd . ' a ' . $action . ' message, message detail: ' . $detail, Logger::LOG_INFORM);
+        return true;
+    }
+
+    public static function sendRdms(string $action, array $message): bool
+    {
+        $message['time'] = date('Y-m-d H:i:s', time());
+        foreach(self::$rdmsList as $item=>$none){
+            Process::getWebSocketServer()->getServer()->push($item, json_encode(array('action' => $action, 'message' => $message), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        }
         return true;
     }
 
@@ -100,5 +117,16 @@ class Reactor
     public static function getUser(int $fd): ?User
     {
         return isset(self::$userList[$fd]) ? self::$userList[$fd] : null;
+    }
+
+    public static function addRdms(int $fd): bool
+    {
+        self::$rdmsList[$fd] = 'lol';
+        return true;
+    }
+
+    public static function getRdmsList(): array
+    {
+        return self::$rdmsList;
     }
 }

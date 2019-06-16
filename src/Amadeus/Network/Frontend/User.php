@@ -15,6 +15,11 @@ class User
      */
     /**
      * @var
+     * 0 : guest
+     * 1 : serverOwner
+     * 2 : co-administrator
+     * 3 : administrator
+     * 4 : rdms
      */
     private
         $fd,
@@ -28,7 +33,7 @@ class User
         $this->ip = $ip;
     }
 
-    public function setType(string $type): bool
+    public function setType(int $type): bool
     {
         if (empty($this->type)) {
             $this->type = $type;
@@ -37,7 +42,7 @@ class User
         return false;
     }
 
-    public function getType(): string
+    public function getType(): int
     {
         return $this->type;
     }

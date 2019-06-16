@@ -3,6 +3,7 @@
 namespace Amadeus\IO;
 
 use Amadeus\Config\Config;
+use Amadeus\Network\Reactor;
 use Amadeus\Process;
 use Swoole\Coroutine;
 
@@ -97,9 +98,12 @@ class Logger
             return false;
         }
         if (is_array($Message)) {
-            file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . json_encode($Message, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+            file_put_contents('Amadeus.log', $log="[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . json_encode($Message, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
         } else {
-            file_put_contents('Amadeus.log', "[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . $Message . PHP_EOL, FILE_APPEND);
+            file_put_contents('Amadeus.log', $log="[" . date("H:i:s") . " " . self::GetLevel($Level) . "] " . @debug_backtrace()[1]['class'] . @debug_backtrace()[1]['type'] . @debug_backtrace()[1]['function'] . ": " . $Message . PHP_EOL, FILE_APPEND);
+        }
+        if(Process::getStatus()==true){
+                Reactor::sendRdms('newLog',array('data'=>$log));
         }
         if (self::getLevel($Level) == "  FATAL") {
             //exit("THE DAEMON DIES BECAUSE AN FATAL ERROR OCCURRED".PHP_EOL);
@@ -108,6 +112,14 @@ class Logger
             exit;
         }
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getLog(): string
+    {
+        return file_get_contents('Amadeus.log');
     }
 
     /**

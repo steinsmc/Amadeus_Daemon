@@ -28,12 +28,14 @@ class SampleConfig
         'daemon_password' => 'lixisgay',
         'cgroup_enabled'=> true,
         'quota_enabled'=>true,
-        'docker_enable'=>false,
+        'docker_enabled'=>false,
         'cgroup_dir' => '/sys/fs/cgroup',
         'cgroup_disk_primary_id' => 253,
         'cgroup_disk_secondary_id' => 0,
         'quota_disk' => '/dev/vda1',
-        'quota_file_to_size_rate' => 4
+        'quota_file_to_size_rate' => 4,
+        'rdms_enabled'=>true,
+        'rdms_password'=>'lixisverygay'
     );
 
     /**
@@ -56,6 +58,7 @@ class SampleConfig
         $config_masked['daemon_mysql_user']='*';
         $config_masked['daemon_mysql_password']='*';
         $config_masked['daemon_password']='*';
+        $config_masked['rdms_password']='*';
         Logger::printLine($config_masked, Logger::LOG_INFORM);
         foreach (self::$config as $k => $v) {
             Logger::printLine($k, Logger::LOG_INFORM);

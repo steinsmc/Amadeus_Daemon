@@ -95,6 +95,7 @@ class WebSocketServer
     public function start(): bool
     {
         Logger::PrintLine('Starting Websocket server', Logger::LOG_SUCCESS);
+        Process::setStatus(true);
         $this->server->start();
         return true;
     }

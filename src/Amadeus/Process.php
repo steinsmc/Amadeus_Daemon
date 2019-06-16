@@ -51,6 +51,10 @@ class Process extends Xcraft implements SteinsMC
      * @var
      */
     private static $GameControl;
+    /**
+     * @var
+     */
+    private static $Status = false;
 
     /**
      * @param string $_BASE
@@ -83,9 +87,19 @@ class Process extends Xcraft implements SteinsMC
         return true;
     }
 
-    public static function unload(){
+    public static function unload()
+    {
         self::$WebSocketServer->stop();
         self::$ServerManager->stopAllServers();
+    }
+
+    public static function setStatus(bool $status):bool{
+        self::$Status=$status;
+        return true;
+    }
+
+    public static function getStatus():bool{
+        return self::$Status;
     }
 
     /**
@@ -154,6 +168,6 @@ class Process extends Xcraft implements SteinsMC
 
     public static function getRuntime(): string
     {
-        return self::$_BASE.'/cache/runtime';
+        return self::$_BASE . '/cache/runtime';
     }
 }

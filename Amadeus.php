@@ -18,8 +18,14 @@ namespace {
     }
 
     $_BASE = empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false));
+
+    @mkdir($_BASE . '/plugins', 0755, false);
+    @mkdir($_BASE . '/servers', 0755, false);
+    @mkdir($_BASE . '/cache/runtime', 0777, true);
+
     require_once($_BASE . '/src/Amadeus/Runtime/Runtime.php');
     Amadeus\Runtime\Runtime::register($_BASE . '/cache/runtime');
+
     foreach ($argv as $arg) {
         switch ($arg) {
             case '-s':
@@ -119,9 +125,6 @@ namespace Amadeus {
 
     use Phar;
 
-    @mkdir('plugins', 0755, false);
-    @mkdir('servers', 0755, false);
-    @mkdir('cache/runtime', 0777, true);
     $loader = require('vendor/autoload.php');
     Process::init(empty(Phar::running(false)) ? __DIR__ : dirname(Phar::running(false)), $loader);
 }

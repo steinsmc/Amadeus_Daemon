@@ -10,8 +10,8 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
-      <webServer id="378ab3af-040a-45be-9dd6-ecca41039efc" name="Amadeus-Daemon" url="http://45.40.204.211">
-        <fileTransfer host="45.40.204.211" port="22" accessType="SFTP">
+      <webServer id="378ab3af-040a-45be-9dd6-ecca41039efc" name="Amadeus-Daemon" url="http://111.231.138.146">
+        <fileTransfer host="111.231.138.146" port="22" privateKey="$USER_HOME$/Downloads/dhdj_1h2g_vps_1mbps" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

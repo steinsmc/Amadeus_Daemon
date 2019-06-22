@@ -26,6 +26,7 @@
       <w>setquota</w>
       <w>setsid</w>
       <w>steinsmc</w>
+      <w>swoole</w>
       <w>sysvmsg</w>
       <w>sysvshm</w>
       <w>useradd</w>

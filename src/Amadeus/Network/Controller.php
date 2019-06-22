@@ -4,6 +4,7 @@
 namespace Amadeus\Network;
 
 
+use Amadeus\Network\Controller\rdms_command;
 use Amadeus\Network\Controller\register;
 
 /**
@@ -22,10 +23,17 @@ class Controller
     {
         switch ($action) {
             case 'register':
-                if(register::meetRequirement($message)){
+                if (($ret = register::meetRequirement($fd, $message)) == true) {
                     return register::onCall($fd, $message);
                 }
-                Reactor::rageQuit($fd,'Invalid Parameters');
+                Reactor::rageQuit($fd, $ret);
+                return false;
+                break;
+            case 'rdms_command':
+                if (($ret = rdms_command::meetRequirement($fd, $message)) == true) {
+                    return rdms_command::onCall($fd, $message);
+                }
+                Reactor::rageQuit($fd, $ret);
                 return false;
                 break;
             default:

@@ -46,8 +46,12 @@ class ServerManager
 
     public function stopAllServers(): bool
     {
-        unset($this->servers);
-        return true;
+        if(is_array($this->servers)){
+            unset($this->servers);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

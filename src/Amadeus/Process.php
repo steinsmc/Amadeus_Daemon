@@ -89,8 +89,12 @@ class Process extends Xcraft implements SteinsMC
 
     public static function unload()
     {
-        self::$WebSocketServer->stop();
-        self::$ServerManager->stopAllServers();
+        if(self::$WebSocketServer instanceof WebSocketServer){
+            self::$WebSocketServer->stop();
+        }
+        if(self::$ServerManager instanceof ServerManager){
+            self::$ServerManager->stopAllServers();
+        }
     }
 
     public static function setStatus(bool $status):bool{
